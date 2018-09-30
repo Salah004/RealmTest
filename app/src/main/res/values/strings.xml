@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">RealmTest</string>
+    <string name="app_name">Realm Test</string>
+    <string-array name="units_array">
+        <item>Day</item>
+        <item>Week</item>
+        <item>Month</item>
+        <item>Year</item>
+    </string-array>
+
 </resources>

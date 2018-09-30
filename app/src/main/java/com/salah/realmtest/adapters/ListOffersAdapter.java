@@ -1,28 +1,30 @@
-package com.salah.realmtest;
+package com.salah.realmtest.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
+
+import com.salah.realmtest.R;
+import com.salah.realmtest.models.Offer;
 
 import io.realm.RealmResults;
 
-public class ListAdapter extends BaseAdapter {
+public class ListOffersAdapter extends BaseAdapter {
 
     private Context context;
-    private RealmResults<Person> persons;
+    private RealmResults<Offer> offers;
 
-    public ListAdapter(Context context, RealmResults<Person> persons) {
+    public ListOffersAdapter(Context context, RealmResults<Offer> offers) {
         this.context = context;
-        this.persons = persons;
+        this.offers = offers;
     }
 
     @Override
     public int getCount() {
-        return persons.size();
+        return offers.size();
     }
 
     @Override
@@ -44,8 +46,8 @@ public class ListAdapter extends BaseAdapter {
 
         TextView tv = view.findViewById(R.id.tv);
 
-        Person person = persons.get(position);
-        tv.setText(person.toString());
+        Offer offer = offers.get(position);
+        tv.setText(offer.getTitre()+" "+offer.getDuration()+" "+offer.getDurationUnit()+" "+offer.getPrice());
 
 
         return view;
