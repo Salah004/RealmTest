@@ -9,13 +9,9 @@ import io.realm.annotations.Required;
 public class Abonnement extends RealmObject{
     @PrimaryKey
     private String id;
-    @Required
     private Offer offer;
-    @Required
     private Person person;
-    @Required
     private Date creationDate = new Date();
-    @Required
     private int duration ;
 
     public String getId() {

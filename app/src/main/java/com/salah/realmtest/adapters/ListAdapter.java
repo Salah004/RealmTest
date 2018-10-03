@@ -5,31 +5,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.salah.realmtest.R;
-import com.salah.realmtest.models.Offer;
+import com.salah.realmtest.models.Person;
 
 import io.realm.RealmResults;
 
-public class ListOffersAdapter extends BaseAdapter {
+public class ListAdapter extends BaseAdapter {
 
     private Context context;
-    private RealmResults<Offer> offers;
+    private RealmResults<Person> persons;
 
-    public ListOffersAdapter(Context context, RealmResults<Offer> offers) {
+    public ListAdapter(Context context, RealmResults<Person> persons) {
         this.context = context;
-        this.offers = offers;
+        this.persons = persons;
     }
 
     @Override
     public int getCount() {
-        return offers.size();
+        return persons.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return offers.get(position);
+        return persons.get(position);
     }
 
     @Override
@@ -46,8 +47,8 @@ public class ListOffersAdapter extends BaseAdapter {
 
         TextView tv = view.findViewById(R.id.tv);
 
-        Offer offer = offers.get(position);
-        tv.setText(offer.getTitre()+" "+offer.getDuration()+" "+offer.getDurationUnit()+" "+offer.getPrice());
+        Person person = persons.get(position);
+        tv.setText(person.getNom()+" "+person.getPrenom()+" "+person.getTelephone());
 
 
         return view;

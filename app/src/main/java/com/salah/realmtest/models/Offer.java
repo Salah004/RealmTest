@@ -7,21 +7,17 @@ import java.util.Date;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
-import io.realm.annotations.Required;
 
 public class Offer extends RealmObject{
     @PrimaryKey
     private String id;
-    @Required
     private String titre;
     private String description;
-    @Required
     private int duration ;
-    @Required
     private String durationUnit;
-    @Required
     private double price;
     private Date creationDate = new Date();
+
     private RealmList<Abonnement> abonnements;
 
     public String getId() {

@@ -30,6 +30,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ajouter"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/white"
+            android:onClick="addPerson"
             android:id="@+id/btn_save"/>
         <TextView
             android:layout_width="wrap_content"
