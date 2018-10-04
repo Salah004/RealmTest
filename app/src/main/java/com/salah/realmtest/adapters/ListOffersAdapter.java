@@ -47,7 +47,7 @@ public class ListOffersAdapter extends BaseAdapter {
         TextView tv = view.findViewById(R.id.tv);
 
         Offer offer = offers.get(position);
-        tv.setText(offer.getTitre()+" "+offer.getDuration()+" "+offer.getDurationUnit()+" "+offer.getPrice());
+        tv.setText(offer.getTitle()+" "+offer.getDuration()+" "+offer.getDurationUnit()+" "+offer.getPrice());
 
 
         return view;

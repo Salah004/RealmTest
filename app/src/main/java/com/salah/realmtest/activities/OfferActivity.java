@@ -14,7 +14,6 @@ import android.widget.Spinner;
 import com.salah.realmtest.R;
 import com.salah.realmtest.adapters.ListOffersAdapter;
 import com.salah.realmtest.models.Offer;
-import com.salah.realmtest.models.Person;
 import com.salah.realmtest.services.RealmService;
 
 import io.realm.Realm;
@@ -22,7 +21,7 @@ import io.realm.RealmResults;
 
 public class OfferActivity extends AppCompatActivity {
 
-    private EditText et_titre , et_description , et_duration , et_price;
+    private EditText et_title, et_description , et_duration , et_price;
     private Spinner sp_unit;
     private Button btn_save ;
     private ListView lv_offers ;
@@ -32,7 +31,7 @@ public class OfferActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offer);
         realmService = new RealmService(Realm.getDefaultInstance());
-        et_titre = findViewById(R.id.et_titre);
+        et_title = findViewById(R.id.et_title);
         et_description = findViewById(R.id.et_description);
         et_duration = findViewById(R.id.et_duration);
         et_price = findViewById(R.id.et_price);
@@ -48,8 +47,8 @@ public class OfferActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Offer offer = (Offer) lv_offers.getItemAtPosition(position);
-                OfferAbonnementsListActivity.offer = offer ;
-                Intent intent = new Intent(OfferActivity.this,OfferAbonnementsListActivity.class);
+                OfferSubscriptionsListActivity.offer = offer ;
+                Intent intent = new Intent(OfferActivity.this,OfferSubscriptionsListActivity.class);
                 startActivity(intent);
             }
         });
@@ -73,7 +72,7 @@ public class OfferActivity extends AppCompatActivity {
     }
 
     public void addOffer(View view) {
-        String title = et_titre.getText().toString();
+        String title = et_title.getText().toString();
         String description = et_description.getText().toString();
         int duration = Integer.parseInt(et_duration.getText().toString());
         String unit = sp_unit.getSelectedItem().toString();

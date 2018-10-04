@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.PersonsActivity">
+    tools:context=".activities.AthletesActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,24 +15,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="nom"
-            android:id="@+id/et_nom"/>
+            android:id="@+id/et_first_name"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="prenom"
-            android:id="@+id/et_prenom"/>
+            android:id="@+id/et_last_name"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="tel"
-            android:id="@+id/et_num_tel"/>
+            android:id="@+id/et_phone"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ajouter"
             android:background="@color/colorPrimary"
             android:textColor="@android:color/white"
-            android:onClick="addPerson"
+            android:onClick="addAthlete"
             android:id="@+id/btn_save"/>
         <TextView
             android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/lv_persons"/>
+            android:id="@+id/lv_athletes"/>
     </LinearLayout>
 
 </LinearLayout>

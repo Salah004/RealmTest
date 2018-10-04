@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="members"
-        android:onClick="goToPersons"/>
+        android:onClick="goToAthletes"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Abonnements"
-        android:onClick="goToAbonnements"/>
+        android:text="Subscriptions"
+        android:onClick="goToSubscription"/>
 
 </LinearLayout>

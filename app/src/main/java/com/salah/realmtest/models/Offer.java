@@ -11,25 +11,24 @@ import io.realm.annotations.PrimaryKey;
 public class Offer extends RealmObject{
     @PrimaryKey
     private String id;
-    private String titre;
+    private String title;
     private String description;
     private int duration ;
     private String durationUnit;
     private double price;
     private Date creationDate = new Date();
-
-    private RealmList<Abonnement> abonnements;
+    private RealmList<Subscription> subscriptions;
 
     public String getId() {
         return id;
     }
 
-    public String getTitre() {
-        return titre;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -72,11 +71,11 @@ public class Offer extends RealmObject{
         this.creationDate = creationDate;
     }
 
-    public RealmList<Abonnement> getAbonnements() {
-        return abonnements;
+    public RealmList<Subscription> getSubscriptions() {
+        return subscriptions;
     }
 
-    public void setAbonnements(RealmList<Abonnement> abonnements) {
-        this.abonnements = abonnements;
+    public void setSubscriptions(RealmList<Subscription> subscriptions) {
+        this.subscriptions = subscriptions;
     }
 }

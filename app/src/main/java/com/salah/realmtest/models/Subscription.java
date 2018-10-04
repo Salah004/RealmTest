@@ -6,18 +6,18 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
 
-public class Abonnement extends RealmObject{
+public class Subscription extends RealmObject{
     @PrimaryKey
     private String id;
     private Offer offer;
-    private Person person;
+    private Athlete athlete;
     private Date creationDate = new Date();
+    private Date startDate ;
     private int duration ;
 
     public String getId() {
         return id;
     }
-
 
     public Offer getOffer() {
         return offer;
@@ -27,12 +27,12 @@ public class Abonnement extends RealmObject{
         this.offer = offer;
     }
 
-    public Person getPerson() {
-        return person;
+    public Athlete getAthlete() {
+        return athlete;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setAthlete(Athlete athlete) {
+        this.athlete = athlete;
     }
 
     public Date getCreationDate() {
@@ -41,6 +41,14 @@ public class Abonnement extends RealmObject{
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
     public int getDuration() {

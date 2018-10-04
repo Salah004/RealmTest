@@ -1,9 +1,10 @@
 package com.salah.realmtest.services;
 
-import com.salah.realmtest.models.Abonnement;
+import com.salah.realmtest.models.Subscription;
 import com.salah.realmtest.models.Offer;
-import com.salah.realmtest.models.Person;
+import com.salah.realmtest.models.Athlete;
 
+import java.util.Date;
 import java.util.UUID;
 
 import io.realm.Realm;
@@ -22,29 +23,30 @@ public class RealmService {
         mRealm.close();
     }
 
-    public RealmResults<Person> getAllPersons(){
-        return mRealm.where(Person.class).findAll();
+    public RealmResults<Athlete> getAllAthletes(){
+        return mRealm.where(Athlete.class).findAll();
     }
 
     public RealmResults<Offer> getAllOffers(){
         return mRealm.where(Offer.class).findAll();
     }
 
-    public RealmResults<Abonnement> getAllAbonnements(){
-        return mRealm.where(Abonnement.class).findAll();
+    public RealmResults<Subscription> getAllSubscriptions(){
+        return mRealm.where(Subscription.class).findAll();
     }
 
-    public void addAbonnementAsync(final Person person, final Offer offer, final int duration) {
+    public void addSubscriptionAsync(final Athlete athlete, final Offer offer, final Date startDate,  final int duration) {
 
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                Abonnement abonnement = realm.createObject(Abonnement.class , UUID.randomUUID().toString());
-                abonnement.setPerson(person);
-                abonnement.setOffer(offer);
-                abonnement.setDuration(duration);
-                person.getAbonnements().add(abonnement);
-                offer.getAbonnements().add(abonnement);
+                Subscription subscription = realm.createObject(Subscription.class , UUID.randomUUID().toString());
+                subscription.setAthlete(athlete);
+                subscription.setOffer(offer);
+                subscription.setStartDate(startDate);
+                subscription.setDuration(duration);
+                athlete.getSubscriptions().add(subscription);
+                offer.getSubscriptions().add(subscription);
             }
         }/*, new Realm.Transaction.OnSuccess() {
             @Override
@@ -64,7 +66,7 @@ public class RealmService {
             @Override
             public void execute(Realm realm) {
                 Offer offer = realm.createObject(Offer.class , UUID.randomUUID().toString());
-                offer.setTitre(title);
+                offer.setTitle(title);
                 offer.setDescription(description);
                 offer.setDuration(duration);
                 offer.setDurationUnit(durationUnit);
@@ -83,14 +85,14 @@ public class RealmService {
         }*/);
     }
 
-    public void addPersonAsync(final String nom, final String prenom, final String phone) {
+    public void addAthlete(final String firstName, final String lastName, final String phone) {
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                Person person = realm.createObject(Person.class , UUID.randomUUID().toString());
-                person.setNom(nom);
-                person.setPrenom(prenom);
-                person.setTelephone(phone);
+                Athlete athlete = realm.createObject(Athlete.class , UUID.randomUUID().toString());
+                athlete.setFirstName(firstName);
+                athlete.setLastName(lastName);
+                athlete.setPhone(phone);
             }
         }/*, new Realm.Transaction.OnSuccess() {
             @Override

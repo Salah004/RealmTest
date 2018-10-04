@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="titre"
-            android:id="@+id/et_titre"/>
+            android:id="@+id/et_title"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

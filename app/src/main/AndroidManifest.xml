@@ -17,11 +17,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.PersonsActivity" />
+        <activity android:name=".activities.AthletesActivity" />
         <activity android:name=".activities.OfferActivity" />
-        <activity android:name=".activities.AbonnementActivity" />
-        <activity android:name=".activities.PersonAbonnementsListActivity" />
-        <activity android:name=".activities.OfferAbonnementsListActivity"></activity>
+        <activity android:name=".activities.SubscriptionsActivity" />
+        <activity android:name=".activities.AthleteSubscriptionsListActivity" />
+        <activity android:name=".activities.OfferSubscriptionsListActivity"></activity>
     </application>
 
 </manifest>

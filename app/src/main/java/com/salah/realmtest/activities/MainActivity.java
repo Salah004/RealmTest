@@ -13,8 +13,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.salah.realmtest.R;
-import com.salah.realmtest.adapters.ListAdapter;
-import com.salah.realmtest.models.Person;
 
 import java.util.UUID;
 
@@ -53,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
 //        });
     }
 
-    public void goToPersons(View view) {
-        Intent intent = new Intent(this,PersonsActivity.class);
+    public void goToAthletes(View view) {
+        Intent intent = new Intent(this,AthletesActivity.class);
         startActivity(intent);
     }
 
@@ -63,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void goToAbonnements(View view) {
-        Intent intent = new Intent(this,AbonnementActivity.class);
+    public void goToSubscription(View view) {
+        Intent intent = new Intent(this,SubscriptionsActivity.class);
         startActivity(intent);
     }
 

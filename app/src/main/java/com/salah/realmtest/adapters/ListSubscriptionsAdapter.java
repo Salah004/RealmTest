@@ -5,32 +5,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.salah.realmtest.R;
-import com.salah.realmtest.models.Person;
+import com.salah.realmtest.models.Subscription;
 
 import io.realm.RealmResults;
 
-public class ListAdapter extends BaseAdapter {
+public class ListSubscriptionsAdapter extends BaseAdapter {
 
     private Context context;
-    private RealmResults<Person> persons;
+    private RealmResults<Subscription> subscriptions;
 
-    public ListAdapter(Context context, RealmResults<Person> persons) {
+    public ListSubscriptionsAdapter(Context context, RealmResults<Subscription> subscriptions) {
         this.context = context;
-        this.persons = persons;
+        this.subscriptions = subscriptions;
     }
 
     @Override
     public int getCount() {
-        return persons.size();
+        return subscriptions.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return persons.get(position);
+        return subscriptions.get(position);
     }
 
     @Override
@@ -47,8 +46,8 @@ public class ListAdapter extends BaseAdapter {
 
         TextView tv = view.findViewById(R.id.tv);
 
-        Person person = persons.get(position);
-        tv.setText(person.getNom()+" "+person.getPrenom()+" "+person.getTelephone());
+        Subscription subscription = subscriptions.get(position);
+        tv.setText(subscription.getAthlete().getFirstName()+" "+subscription.getOffer().getTitle());
 
 
         return view;

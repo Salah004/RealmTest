@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.AbonnementActivity">
+    tools:context=".activities.SubscriptionsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -102,7 +102,7 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/lv_abonnements"/>
+            android:id="@+id/lv_subscriptions"/>
     </LinearLayout>
 
 </LinearLayout>
