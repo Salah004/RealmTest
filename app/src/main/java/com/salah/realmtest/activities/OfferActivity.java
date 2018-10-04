@@ -1,8 +1,10 @@
 package com.salah.realmtest.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +14,7 @@ import android.widget.Spinner;
 import com.salah.realmtest.R;
 import com.salah.realmtest.adapters.ListOffersAdapter;
 import com.salah.realmtest.models.Offer;
+import com.salah.realmtest.models.Person;
 import com.salah.realmtest.services.RealmService;
 
 import io.realm.Realm;
@@ -40,6 +43,16 @@ public class OfferActivity extends AppCompatActivity {
         sp_unit.setAdapter(adapter);
         btn_save = findViewById(R.id.btn_save);
         lv_offers = findViewById(R.id.lv_offers);
+
+        lv_offers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Offer offer = (Offer) lv_offers.getItemAtPosition(position);
+                OfferAbonnementsListActivity.offer = offer ;
+                Intent intent = new Intent(OfferActivity.this,OfferAbonnementsListActivity.class);
+                startActivity(intent);
+            }
+        });
         showdata();
     }
 

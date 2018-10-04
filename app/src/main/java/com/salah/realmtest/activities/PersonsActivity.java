@@ -1,8 +1,10 @@
 package com.salah.realmtest.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -28,10 +30,20 @@ public class PersonsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_persons);
         realmService = new RealmService(Realm.getDefaultInstance());
         et_nom = findViewById(R.id.et_nom);
+
         et_prenom = findViewById(R.id.et_prenom);
         et_num_tel = findViewById(R.id.et_num_tel);
         btn_save = findViewById(R.id.btn_save);
         lv_persons = findViewById(R.id.lv_persons);
+        lv_persons.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Person person = (Person) lv_persons.getItemAtPosition(position);
+                PersonAbonnementsListActivity.person = person ;
+                Intent intent = new Intent(PersonsActivity.this,PersonAbonnementsListActivity.class);
+                startActivity(intent);
+            }
+        });
         showdata();
     }
 
