@@ -21,7 +21,8 @@
         <activity android:name=".activities.OfferActivity" />
         <activity android:name=".activities.SubscriptionsActivity" />
         <activity android:name=".activities.AthleteSubscriptionsListActivity" />
-        <activity android:name=".activities.OfferSubscriptionsListActivity"></activity>
+        <activity android:name=".activities.OfferSubscriptionsListActivity" />
+        <activity android:name=".activities.ManagerActivity"></activity>
     </application>
 
 </manifest>

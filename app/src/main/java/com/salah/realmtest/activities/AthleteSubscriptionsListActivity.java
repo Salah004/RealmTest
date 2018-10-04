@@ -20,7 +20,7 @@ public class AthleteSubscriptionsListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_athlete_subscriptions_list);
-        lv_subscriptions = findViewById(R.id.lv_abonnements);
+        lv_subscriptions = findViewById(R.id.lv_subscriptions);
         RealmList<Subscription> subscriptions = athlete.getSubscriptions();
         ListSubscriptionsAdapter adapter = new ListSubscriptionsAdapter(this,subscriptions.where().findAll());
         lv_subscriptions.setAdapter(adapter);
