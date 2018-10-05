@@ -1,21 +1,25 @@
 package com.salah.realmtest.models;
 
 import java.util.Date;
-import java.util.UUID;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
-import io.realm.annotations.Required;
 
 public class Athlete extends RealmObject{
     @PrimaryKey
     private String id ;
     private String firstName;
     private String lastName;
+    private String picturePath;
+    private int sex;
     private String phone;
     private Date creationDate = new Date();
     private RealmList<Subscription> subscriptions;
+    private RealmList<Debt> debts;
+    private RealmList<TechnicalSheet> sheets;
+    private Manager addedManager;
+
 
     public String getId() {
         return id;
@@ -49,16 +53,52 @@ public class Athlete extends RealmObject{
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
     public RealmList<Subscription> getSubscriptions() {
         return subscriptions;
     }
 
     public void setSubscriptions(RealmList<Subscription> subscriptions) {
         this.subscriptions = subscriptions;
+    }
+
+    public Manager getAddedManager() {
+        return addedManager;
+    }
+
+    public void setAddedManager(Manager addedManager) {
+        this.addedManager = addedManager;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
+
+    public RealmList<Debt> getDebts() {
+        return debts;
+    }
+
+    public void setDebts(RealmList<Debt> debts) {
+        this.debts = debts;
+    }
+
+    public String getPicturePath() {
+        return picturePath;
+    }
+
+    public void setPicturePath(String picturePath) {
+        this.picturePath = picturePath;
+    }
+
+    public RealmList<TechnicalSheet> getSheets() {
+        return sheets;
+    }
+
+    public void setSheets(RealmList<TechnicalSheet> sheets) {
+        this.sheets = sheets;
     }
 
     @Override

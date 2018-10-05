@@ -2,9 +2,9 @@ package com.salah.realmtest.models;
 
 import java.util.Date;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
-import io.realm.annotations.Required;
 
 public class Subscription extends RealmObject{
     @PrimaryKey
@@ -14,6 +14,8 @@ public class Subscription extends RealmObject{
     private Date creationDate = new Date();
     private Date startDate ;
     private int duration ;
+    private Manager addedManager;
+    private RealmList<Session> sessions;
 
     public String getId() {
         return id;
@@ -39,10 +41,6 @@ public class Subscription extends RealmObject{
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
     public Date getStartDate() {
         return startDate;
     }
@@ -57,5 +55,21 @@ public class Subscription extends RealmObject{
 
     public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    public Manager getAddedManager() {
+        return addedManager;
+    }
+
+    public void setAddedManager(Manager addedManager) {
+        this.addedManager = addedManager;
+    }
+
+    public RealmList<Session> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(RealmList<Session> sessions) {
+        this.sessions = sessions;
     }
 }

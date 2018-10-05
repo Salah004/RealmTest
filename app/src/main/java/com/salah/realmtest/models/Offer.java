@@ -13,11 +13,14 @@ public class Offer extends RealmObject{
     private String id;
     private String title;
     private String description;
+    private boolean open;
+    private int sessionNumber;
     private int duration ;
     private String durationUnit;
     private double price;
     private Date creationDate = new Date();
     private RealmList<Subscription> subscriptions;
+    private Manager addedManager;
 
     public String getId() {
         return id;
@@ -67,15 +70,35 @@ public class Offer extends RealmObject{
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
     public RealmList<Subscription> getSubscriptions() {
         return subscriptions;
     }
 
     public void setSubscriptions(RealmList<Subscription> subscriptions) {
         this.subscriptions = subscriptions;
+    }
+
+    public boolean isOpen() {
+        return open;
+    }
+
+    public void setOpen(boolean open) {
+        this.open = open;
+    }
+
+    public int getSessionNumber() {
+        return sessionNumber;
+    }
+
+    public void setSessionNumber(int sessionNumber) {
+        this.sessionNumber = sessionNumber;
+    }
+
+    public Manager getAddedManager() {
+        return addedManager;
+    }
+
+    public void setAddedManager(Manager addedManager) {
+        this.addedManager = addedManager;
     }
 }
