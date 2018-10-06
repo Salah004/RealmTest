@@ -1,5 +1,7 @@
 package com.salah.realmtest.services;
 
+import com.salah.realmtest.models.Debt;
+import com.salah.realmtest.models.Manager;
 import com.salah.realmtest.models.Subscription;
 import com.salah.realmtest.models.Offer;
 import com.salah.realmtest.models.Athlete;
@@ -8,7 +10,6 @@ import java.util.Date;
 import java.util.UUID;
 
 import io.realm.Realm;
-import io.realm.RealmList;
 import io.realm.RealmResults;
 
 public class RealmService {
@@ -61,7 +62,7 @@ public class RealmService {
         }*/);
     }
 
-    public void addOfferAsync(final String title, final String description, final int duration , final String durationUnit , final double price) {
+    public void addOffer(final String title, final String description, final int duration, final String durationUnit, final double price, final Boolean open, final int numberSessions, final Manager manager) {
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -71,21 +72,15 @@ public class RealmService {
                 offer.setDuration(duration);
                 offer.setDurationUnit(durationUnit);
                 offer.setPrice(price);
+                offer.setOpen(open);
+                offer.setSessionNumber(numberSessions);
+                offer.setAddedManager(manager);
+                manager.getOffers().add(offer);
             }
-        }/*, new Realm.Transaction.OnSuccess() {
-            @Override
-            public void onSuccess() {
-
-            }
-        }, new Realm.Transaction.OnError() {
-            @Override
-            public void onError(Throwable error) {
-
-            }
-        }*/);
+        });
     }
 
-    public void addAthlete(final String firstName, final String lastName, final String phone) {
+    public void addAthlete(final String firstName, final String lastName, final String phone, final int gender,final String picturePath,final Manager manager) {
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -93,18 +88,72 @@ public class RealmService {
                 athlete.setFirstName(firstName);
                 athlete.setLastName(lastName);
                 athlete.setPhone(phone);
+                athlete.setGender(gender);
+                athlete.setPicturePath(picturePath);
+                athlete.setAddedManager(manager);
+                manager.getAthletes().add(athlete);
             }
-        }/*, new Realm.Transaction.OnSuccess() {
-            @Override
-            public void onSuccess() {
-
-            }
-        }, new Realm.Transaction.OnError() {
-            @Override
-            public void onError(Throwable error) {
-
-            }
-        }*/);
+        });
     }
 
+    public Manager Login(String userName, String password) {
+        return mRealm.where(Manager.class).findFirst();
+    }
+
+    public void AddManager(final String userName, final String password, final String firstName, final String lastName, final String phone, final int gender, final int role, final String picturePath, final Manager addedManager) {
+        mRealm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                Manager manager = realm.createObject(Manager.class , userName);
+                manager.setPassword(password);
+                manager.setFirstName(firstName);
+                manager.setLastName(lastName);
+                manager.setPhone(phone);
+                manager.setGender(gender);
+                manager.setRole(role);
+                manager.setPicturePath(picturePath);
+                manager.setAddedManager(addedManager);
+                addedManager.getManagers().add(manager);
+            }
+        });
+    }
+
+    public RealmResults<Manager> getAllManagers() {
+        return mRealm.where(Manager.class).findAll();
+    }
+
+    public RealmResults<Debt> getAllDebts() {
+        return mRealm.where(Debt.class).findAll();
+    }
+
+    public void addDebt(final double sum, final String description, final Athlete athlete, final Manager manager) {
+        mRealm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                Debt debt = realm.createObject(Debt.class , UUID.randomUUID().toString());
+                debt.setSum(sum);
+                debt.setDescription(description);
+                debt.setAthlete(athlete);
+                debt.setAddedManager(manager);
+                manager.getDebts().add(debt);
+                athlete.getDebts().add(debt);
+            }
+        });
+    }
+
+    public void AddOwner(final String userName, final String password, final String firstName, final String lastName, final String phone, final int gender, final int role, final String picturePath) {
+        mRealm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                Manager manager = realm.createObject(Manager.class , userName);
+                manager.setPassword(password);
+                manager.setFirstName(firstName);
+                manager.setLastName(lastName);
+                manager.setPhone(phone);
+                manager.setGender(gender);
+                manager.setRole(role);
+                manager.setPicturePath(picturePath);
+            }
+        });
+    }
 }

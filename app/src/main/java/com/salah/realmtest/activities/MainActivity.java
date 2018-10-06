@@ -3,25 +3,19 @@ package com.salah.realmtest.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.TextureView;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.salah.realmtest.R;
-
-import java.util.UUID;
-
-import io.realm.Realm;
-import io.realm.RealmResults;
+import com.salah.realmtest.activities.athlete.AthletesActivity;
+import com.salah.realmtest.activities.offer.OffersActivity;
+import com.salah.realmtest.activities.subsciption.SubscriptionsActivity;
+import com.salah.realmtest.models.Manager;
 
 public class MainActivity extends AppCompatActivity {
 
-//    private EditText et_nom , et_prenom , et_num_tel ;
+    public static Manager manager;
+
+    //    private EditText et_nom , et_prenom , et_num_tel ;
 //    private Button btn_save ;
 //    private ListView lv ;
 //    Realm realm;
@@ -57,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToOffers(View view) {
-        Intent intent = new Intent(this,OfferActivity.class);
+        Intent intent = new Intent(this,OffersActivity.class);
         startActivity(intent);
     }
 

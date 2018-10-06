@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.athlete.AthletesActivity">
+    tools:context=".activities.offer.OffersActivity">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -25,11 +25,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:id="@+id/lv_athletes"/>
+        android:id="@+id/lv_offers"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New Athlete"
-        android:onClick="goToAddAthlete"/>
+        android:text="new offer"
+        android:onClick="goToAddOffer"/>
 
 </LinearLayout>

@@ -1,12 +1,12 @@
-package com.salah.realmtest.activities;
+package com.salah.realmtest.activities.athlete;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.salah.realmtest.R;
@@ -19,9 +19,9 @@ import io.realm.RealmResults;
 
 public class AthletesActivity extends AppCompatActivity {
 
-    private EditText et_first_name, et_last_name, et_phone;
-    private Button btn_save ;
     private ListView lv_athletes;
+    private ImageView iv_qr_code;
+    private EditText et_search;
     private RealmService realmService;
 
     @Override
@@ -29,12 +29,11 @@ public class AthletesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_athletes);
         realmService = new RealmService(Realm.getDefaultInstance());
-        et_first_name = findViewById(R.id.et_first_name);
 
-        et_last_name = findViewById(R.id.et_last_name);
-        et_phone = findViewById(R.id.et_phone);
-        btn_save = findViewById(R.id.btn_save);
         lv_athletes = findViewById(R.id.lv_athletes);
+        et_search = findViewById(R.id.et_search);
+        iv_qr_code = findViewById(R.id.iv_qr_code);
+
         lv_athletes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -44,6 +43,7 @@ public class AthletesActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         showdata();
     }
 
@@ -63,11 +63,11 @@ public class AthletesActivity extends AppCompatActivity {
         realmService.closeRealm();
     }
 
-    public void addAthlete(View view) {
-        String firstName = et_first_name.getText().toString();
-        String lastName = et_last_name.getText().toString();
-        String phone = et_phone.getText().toString();
-        realmService.addAthlete(firstName,lastName,phone);
-        showdata();
+    public void goToAddAthlete(View view) {
+        Intent intent = new Intent(AthletesActivity.this,AddAthleteActivity.class);
+        startActivity(intent);
+    }
+
+    public void searchByQrCode(View view) {
     }
 }

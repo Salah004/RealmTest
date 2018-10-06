@@ -1,15 +1,15 @@
-package com.salah.realmtest.activities;
+package com.salah.realmtest.activities.technicalSheet;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.salah.realmtest.R;
 
-public class ManagerActivity extends AppCompatActivity {
+public class TechnicalSheetsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manager);
+        setContentView(R.layout.activity_technical_sheets);
     }
 }

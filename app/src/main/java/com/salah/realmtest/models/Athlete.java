@@ -12,7 +12,7 @@ public class Athlete extends RealmObject{
     private String firstName;
     private String lastName;
     private String picturePath;
-    private int sex;
+    private int gender;
     private String phone;
     private Date creationDate = new Date();
     private RealmList<Subscription> subscriptions;
@@ -69,12 +69,12 @@ public class Athlete extends RealmObject{
         this.addedManager = addedManager;
     }
 
-    public int getSex() {
-        return sex;
+    public int getGender() {
+        return gender;
     }
 
-    public void setSex(int sex) {
-        this.sex = sex;
+    public void setGender(int gender) {
+        this.gender = gender;
     }
 
     public RealmList<Debt> getDebts() {

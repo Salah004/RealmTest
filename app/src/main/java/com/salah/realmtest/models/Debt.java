@@ -2,7 +2,11 @@ package com.salah.realmtest.models;
 
 import java.util.Date;
 
-public class Debt {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class Debt extends RealmObject{
+    @PrimaryKey
     private String id;
     private Athlete athlete;
     private double sum;

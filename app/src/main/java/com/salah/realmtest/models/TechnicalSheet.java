@@ -11,7 +11,7 @@ public class TechnicalSheet extends RealmObject{
     private double weight;
     private double length;
     private String picturePath;
-    private String otherInformations;
+    private String other;
     private Date creationDate = new Date();
     private Athlete athlete;
     private Manager addedManager;
@@ -44,12 +44,12 @@ public class TechnicalSheet extends RealmObject{
         this.picturePath = picturePath;
     }
 
-    public String getOtherInformations() {
-        return otherInformations;
+    public String getOther() {
+        return other;
     }
 
-    public void setOtherInformations(String otherInformations) {
-        this.otherInformations = otherInformations;
+    public void setOther(String other) {
+        this.other = other;
     }
 
     public Date getCreationDate() {

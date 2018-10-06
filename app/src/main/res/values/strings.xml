@@ -6,5 +6,13 @@
         <item>Month</item>
         <item>Year</item>
     </string-array>
-
+    <string-array name="genders_array">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <string-array name="roles_array">
+        <item>Owner</item>
+        <item>Admin</item>
+        <item>Manager</item>
+    </string-array>
 </resources>

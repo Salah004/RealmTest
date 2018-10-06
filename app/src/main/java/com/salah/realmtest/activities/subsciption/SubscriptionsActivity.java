@@ -1,4 +1,4 @@
-package com.salah.realmtest.activities;
+package com.salah.realmtest.activities.subsciption;
 
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;

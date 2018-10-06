@@ -17,12 +17,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.AthletesActivity" />
-        <activity android:name=".activities.OfferActivity" />
-        <activity android:name=".activities.SubscriptionsActivity" />
-        <activity android:name=".activities.AthleteSubscriptionsListActivity" />
-        <activity android:name=".activities.OfferSubscriptionsListActivity" />
-        <activity android:name=".activities.ManagerActivity"></activity>
+        <activity android:name=".activities.athlete.AthletesActivity" />
+        <activity android:name=".activities.offer.OffersActivity" />
+        <activity android:name=".activities.subsciption.SubscriptionsActivity" />
+        <activity android:name=".activities.athlete.AthleteSubscriptionsListActivity" />
+        <activity android:name=".activities.offer.OfferSubscriptionsListActivity" />
+        <activity android:name=".activities.manager.ManagersActivity" />
+        <activity android:name=".activities.athlete.AddAthleteActivity" />
+        <activity android:name=".activities.offer.AddOfferActivity" />
+        <activity android:name=".activities.subsciption.AddSubscriptionActivity" />
+        <activity android:name=".activities.session.AddSessionActivity" />
+        <activity android:name=".activities.manager.NewManagerActivity" />
+        <activity android:name=".activities.debt.AddDebtActivity" />
+        <activity android:name=".activities.technicalSheet.AddTechnicalSheetActivity" />
+        <activity android:name=".activities.debt.DebtsActivity" />
+        <activity android:name=".activities.technicalSheet.TechnicalSheetsActivity" />
+        <activity android:name=".activities.session.SessionsActivity" />
+        <activity android:name=".activities.manager.LoginActivity"></activity>
     </application>
 
 </manifest>

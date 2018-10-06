@@ -5,23 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="10dp"
-    tools:context=".activities.MainActivity">
-
+    tools:context=".activities.manager.LoginActivity">
+    <EditText
+        android:id="@+id/et_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="username"/>
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="password"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="debts"
-        android:onClick="goToAthletes"/>
+        android:onClick="onLogin"
+        android:text="login"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Offers"
-        android:onClick="goToOffers"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Subscriptions"
-        android:onClick="goToSubscription"/>
+        android:onClick="goToNewManager"
+        android:text="new manager"/>
 
 </LinearLayout>

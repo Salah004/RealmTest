@@ -1,7 +1,5 @@
 package com.salah.realmtest.models;
 
-import android.provider.ContactsContract;
-
 import java.util.Date;
 
 import io.realm.RealmList;

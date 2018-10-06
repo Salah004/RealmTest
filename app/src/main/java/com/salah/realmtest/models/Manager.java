@@ -8,13 +8,12 @@ import io.realm.annotations.PrimaryKey;
 
 public class Manager extends RealmObject{
     @PrimaryKey
-    private String id ;
+    private String userName;
     private String firstName;
     private String lastName;
     private String picturePath;
-    private int sex;
+    private int gender;
     private String phone;
-    private String userName;
     private String password;
     private Date creationDate = new Date();
     private RealmList<Athlete> athletes;
@@ -26,10 +25,6 @@ public class Manager extends RealmObject{
     private RealmList<Manager> managers;
     private Manager addedManager;
     private int role;
-
-    public String getId() {
-        return id;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -47,12 +42,12 @@ public class Manager extends RealmObject{
         this.lastName = lastName;
     }
 
-    public int getSex() {
-        return sex;
+    public int getGender() {
+        return gender;
     }
 
-    public void setSex(int sex) {
-        this.sex = sex;
+    public void setGender(int gender) {
+        this.gender = gender;
     }
 
     public String getPhone() {
@@ -65,10 +60,6 @@ public class Manager extends RealmObject{
 
     public String getUserName() {
         return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getPassword() {
