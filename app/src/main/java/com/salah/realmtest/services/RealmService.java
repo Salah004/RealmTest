@@ -2,6 +2,7 @@ package com.salah.realmtest.services;
 
 import com.salah.realmtest.models.Debt;
 import com.salah.realmtest.models.Manager;
+import com.salah.realmtest.models.Session;
 import com.salah.realmtest.models.Subscription;
 import com.salah.realmtest.models.Offer;
 import com.salah.realmtest.models.Athlete;
@@ -62,7 +63,7 @@ public class RealmService {
         }*/);
     }
 
-    public void addOffer(final String title, final String description, final int duration, final String durationUnit, final double price, final Boolean open, final int numberSessions, final Manager manager) {
+    public void addOffer(final String title, final String description, final int duration, final int durationUnit, final double price, final Boolean open, final int numberSessions, final Manager manager) {
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -153,6 +154,24 @@ public class RealmService {
                 manager.setGender(gender);
                 manager.setRole(role);
                 manager.setPicturePath(picturePath);
+            }
+        });
+    }
+
+    public RealmResults<Session> getAllSessions() {
+        return mRealm.where(Session.class).findAll();
+    }
+
+    public void addSession(final Subscription subscription, final Manager manager) {
+        mRealm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                Session session = realm.createObject(Session.class , UUID.randomUUID().toString());
+                session.setSubscriptions(subscription);
+                session.setAddedManager(manager);
+                session.setTrainingDate(new Date());
+                manager.getSessions().add(session);
+                subscription.getSessions().add(session);
             }
         });
     }

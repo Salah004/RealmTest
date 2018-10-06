@@ -14,7 +14,7 @@ public class Offer extends RealmObject{
     private boolean open;
     private int sessionNumber;
     private int duration ;
-    private String durationUnit;
+    private int durationUnit;
     private double price;
     private Date creationDate = new Date();
     private RealmList<Subscription> subscriptions;
@@ -48,11 +48,11 @@ public class Offer extends RealmObject{
         this.duration = duration;
     }
 
-    public String getDurationUnit() {
+    public int getDurationUnit() {
         return durationUnit;
     }
 
-    public void setDurationUnit(String durationUnit) {
+    public void setDurationUnit(int durationUnit) {
         this.durationUnit = durationUnit;
     }
 

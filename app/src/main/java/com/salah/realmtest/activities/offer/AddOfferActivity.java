@@ -54,7 +54,7 @@ public class AddOfferActivity extends AppCompatActivity {
         String title = et_title.getText().toString();
         String description = et_description.getText().toString();
         int duration = Integer.parseInt(et_duration.getText().toString());
-        String unit = sp_unit.getSelectedItem().toString();
+        int unit = sp_unit.getSelectedItemPosition();
         double price = Double.parseDouble(et_price.getText().toString());
         Boolean open = cb_open.isChecked();
         int numberSessions = Integer.parseInt(et_nb_session.getText().toString());
