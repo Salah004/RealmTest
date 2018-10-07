@@ -2,6 +2,7 @@ package com.salah.realmtest.activities.session;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -14,6 +15,7 @@ import com.salah.realmtest.models.Session;
 import com.salah.realmtest.models.Subscription;
 import com.salah.realmtest.services.RealmService;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import io.realm.Realm;
@@ -56,6 +58,7 @@ public class SessionsActivity extends AppCompatActivity {
         if (checkDate()){
             if (checkNumberSession()){
                 realmService.addSession(subscription, MainActivity.manager);
+                showdata();
             }else {
                 //number of sessions
             }
@@ -66,26 +69,40 @@ public class SessionsActivity extends AppCompatActivity {
 
     private boolean checkNumberSession() {
         if (subscription.getOffer().isOpen()) return true;
-        if (subscription.getSessions().size()<subscription.getOffer().getSessionNumber()) return true;
+        if (subscription.getSessions().size()<subscription.getOffer().getSessionNumber()*subscription.getDuration()) return true;
         return false;
     }
 
     private Boolean checkDate(){
-        Date endDate = subscription.getStartDate();
+        Date startDate = subscription.getStartDate();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(startDate);
+        Date endDate ;
         int duration = subscription.getDuration() * subscription.getOffer().getDuration() ;
         int unit = subscription.getOffer().getDurationUnit();
         switch (unit){
             case 0 : //day
+                calendar.add(Calendar.DAY_OF_MONTH,duration);
                 break;
             case 1 : //week
+                calendar.add(Calendar.WEEK_OF_MONTH,duration);
                 break;
             case 2 : //month
+                calendar.add(Calendar.MONTH,duration);
                 break;
             case 3 : //year
+                calendar.add(Calendar.YEAR,duration);
                 break;
             default:break;
         }
+        endDate = calendar.getTime();
         return endDate.after(new Date());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showdata();
     }
 
 }

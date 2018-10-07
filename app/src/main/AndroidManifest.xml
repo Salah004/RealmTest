@@ -11,16 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activities.athlete.AthletesActivity" />
         <activity android:name=".activities.offer.OffersActivity" />
         <activity android:name=".activities.subsciption.SubscriptionsActivity" />
-        <activity android:name=".activities.athlete.AthleteSubscriptionsListActivity" />
         <activity android:name=".activities.offer.OfferSubscriptionsListActivity" />
         <activity android:name=".activities.manager.ManagersActivity" />
         <activity android:name=".activities.athlete.AddAthleteActivity" />
@@ -32,7 +27,13 @@
         <activity android:name=".activities.debt.DebtsActivity" />
         <activity android:name=".activities.technicalSheet.TechnicalSheetsActivity" />
         <activity android:name=".activities.session.SessionsActivity" />
-        <activity android:name=".activities.manager.LoginActivity"></activity>
+        <activity android:name=".activities.manager.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

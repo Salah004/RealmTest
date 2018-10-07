@@ -61,4 +61,10 @@ public class DebtsActivity extends AppCompatActivity {
         super.onDestroy();
         realmService.closeRealm();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showdata();
+    }
 }

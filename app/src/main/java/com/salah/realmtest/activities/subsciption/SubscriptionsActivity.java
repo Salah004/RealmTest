@@ -14,7 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.salah.realmtest.R;
-import com.salah.realmtest.adapters.ListAthletesAdapter;
+import com.salah.realmtest.activities.MainActivity;
 import com.salah.realmtest.adapters.ListOffersAdapter;
 import com.salah.realmtest.adapters.ListSubscriptionsAdapter;
 import com.salah.realmtest.models.Athlete;
@@ -29,9 +29,11 @@ import io.realm.RealmResults;
 
 public class SubscriptionsActivity extends AppCompatActivity {
 
+    public static Athlete athlete;
     private EditText et_duration, et_paid, et_return;
-    private Spinner sp_athletes, sp_offers;
+    private Spinner /*sp_athletes,*/ sp_offers;
     private TextView tv_to_paid, tv_to_return , tv_debt;
+    private TextView tv_user_name , tv_athlete;
     private Button btn_save ;
     private ListView lv_subscriptions;
     RealmService realmService;
@@ -47,13 +49,17 @@ public class SubscriptionsActivity extends AppCompatActivity {
         tv_to_paid = findViewById(R.id.tv_to_paid);
         tv_to_return = findViewById(R.id.tv_to_return);
         tv_debt = findViewById(R.id.tv_debt);
-        sp_athletes = findViewById(R.id.sp_membre);
+        tv_user_name = findViewById(R.id.tv_user_name);
+        tv_athlete = findViewById(R.id.tv_athlete);
+        tv_user_name.setText("Manager "+MainActivity.manager.getFirstName()+" "+MainActivity.manager.getLastName());
+        tv_athlete.setText("Athlete "+athlete.getFirstName()+" "+athlete.getLastName());
+        //sp_athletes = findViewById(R.id.sp_membre);
         sp_offers = findViewById(R.id.sp_offer);
-        RealmResults<Athlete> athletes = realmService.getAllAthletes();
+        //RealmResults<Athlete> athletes = realmService.getAllAthletes();
         final RealmResults<Offer> offers = realmService.getAllOffers();
-        ListAthletesAdapter personAdapter = new ListAthletesAdapter(this,athletes);
+        //ListAthletesAdapter athletesAdapter = new ListAthletesAdapter(this,athletes);
         ListOffersAdapter offersAdapter = new ListOffersAdapter(this,offers);
-        sp_athletes.setAdapter(personAdapter);
+        //sp_athletes.setAdapter(athletesAdapter);
         sp_offers.setAdapter(offersAdapter);
         //
         sp_offers.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -129,7 +135,8 @@ public class SubscriptionsActivity extends AppCompatActivity {
 
     private void showdata() {
 
-        RealmResults<Subscription> subscriptions = realmService.getAllSubscriptions();
+        //RealmResults<Subscription> subscriptions = realmService.getAllSubscriptions();
+        RealmResults<Subscription> subscriptions = athlete.getSubscriptions().where().findAll();
         if (subscriptions.isEmpty()) return;
         ListSubscriptionsAdapter adapter = new ListSubscriptionsAdapter(this,subscriptions);
         lv_subscriptions.setAdapter(adapter);
@@ -170,11 +177,17 @@ public class SubscriptionsActivity extends AppCompatActivity {
         try {
             int duration = Integer.parseInt(et_duration.getText().toString()) ;
             Offer offer = (Offer) sp_offers.getSelectedItem();
-            Athlete athlete = (Athlete) sp_athletes.getSelectedItem();
-            realmService.addSubscriptionAsync(athlete,offer,new Date(),duration);
+            //Athlete athlete = (Athlete) sp_athletes.getSelectedItem();
+            realmService.addSubscription(athlete,offer,new Date(),duration,MainActivity.manager);
             showdata();
         }catch (Exception e){
 
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showdata();
     }
 }

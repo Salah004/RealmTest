@@ -37,7 +37,7 @@ public class RealmService {
         return mRealm.where(Subscription.class).findAll();
     }
 
-    public void addSubscriptionAsync(final Athlete athlete, final Offer offer, final Date startDate,  final int duration) {
+    public void addSubscription(final Athlete athlete, final Offer offer, final Date startDate, final int duration, final Manager manager) {
 
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -47,20 +47,12 @@ public class RealmService {
                 subscription.setOffer(offer);
                 subscription.setStartDate(startDate);
                 subscription.setDuration(duration);
+                subscription.setAddedManager(manager);
                 athlete.getSubscriptions().add(subscription);
                 offer.getSubscriptions().add(subscription);
+                manager.getSubscriptions().add(subscription);
             }
-        }/*, new Realm.Transaction.OnSuccess() {
-            @Override
-            public void onSuccess() {
-
-            }
-        }, new Realm.Transaction.OnError() {
-            @Override
-            public void onError(Throwable error) {
-
-            }
-        }*/);
+        });
     }
 
     public void addOffer(final String title, final String description, final int duration, final int durationUnit, final double price, final Boolean open, final int numberSessions, final Manager manager) {

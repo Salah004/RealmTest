@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.salah.realmtest.R;
@@ -17,15 +18,18 @@ public class LoginActivity extends AppCompatActivity {
 
     //public static Manager manager;
     private EditText et_username, et_password;
+    private Button btn_creat_owner;
     private RealmService realmService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         realmService = new RealmService(Realm.getDefaultInstance());
-
         et_username=findViewById(R.id.et_username);
         et_password=findViewById(R.id.et_password);
+        btn_creat_owner=findViewById(R.id.btn_creat_owner);
+
+        checkExistOwner();
     }
 
     public void onLogin(View view) {
@@ -51,4 +55,17 @@ public class LoginActivity extends AppCompatActivity {
         super.onDestroy();
         realmService.closeRealm();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkExistOwner();
+    }
+
+    private void checkExistOwner(){
+        if (!realmService.getAllManagers().isEmpty()){
+            btn_creat_owner.setVisibility(View.GONE);
+        }
+    }
+
 }

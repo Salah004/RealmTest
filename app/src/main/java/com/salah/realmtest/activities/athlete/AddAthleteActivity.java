@@ -31,6 +31,7 @@ public class AddAthleteActivity extends AppCompatActivity {
         et_first_name = findViewById(R.id.et_first_name);
         et_last_name = findViewById(R.id.et_last_name);
         et_phone = findViewById(R.id.et_phone);
+        sp_gender = findViewById(R.id.sp_gender);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.genders_array, android.R.layout.simple_spinner_item);

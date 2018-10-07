@@ -12,4 +12,10 @@ public class TechnicalSheetsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_technical_sheets);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //showdata();
+    }
 }

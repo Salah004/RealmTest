@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.salah.realmtest.R;
+import com.salah.realmtest.activities.subsciption.SubscriptionsActivity;
 import com.salah.realmtest.adapters.ListAthletesAdapter;
 import com.salah.realmtest.models.Athlete;
 import com.salah.realmtest.services.RealmService;
@@ -38,8 +39,8 @@ public class AthletesActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Athlete athlete = (Athlete) lv_athletes.getItemAtPosition(position);
-                AthleteSubscriptionsListActivity.athlete = athlete ;
-                Intent intent = new Intent(AthletesActivity.this,AthleteSubscriptionsListActivity.class);
+                SubscriptionsActivity.athlete = athlete ;
+                Intent intent = new Intent(AthletesActivity.this,SubscriptionsActivity.class);
                 startActivity(intent);
             }
         });
@@ -69,5 +70,11 @@ public class AthletesActivity extends AppCompatActivity {
     }
 
     public void searchByQrCode(View view) {
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showdata();
     }
 }

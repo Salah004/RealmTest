@@ -6,15 +6,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activities.subsciption.SubscriptionsActivity">
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_user_name"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_athlete"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/sp_membre"/>
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

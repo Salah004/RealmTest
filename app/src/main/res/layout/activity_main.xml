@@ -8,20 +8,24 @@
     android:layout_margin="10dp"
     tools:context=".activities.MainActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_user_name"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="debts"
+        android:text="Athletes"
         android:onClick="goToAthletes"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Offers"
         android:onClick="goToOffers"/>
-    <Button
+    <!--Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Subscriptions"
-        android:onClick="goToSubscription"/>
+        android:onClick="goToSubscription"/-->
 
 </LinearLayout>

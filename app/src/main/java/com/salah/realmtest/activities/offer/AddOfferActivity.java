@@ -57,7 +57,14 @@ public class AddOfferActivity extends AppCompatActivity {
         int unit = sp_unit.getSelectedItemPosition();
         double price = Double.parseDouble(et_price.getText().toString());
         Boolean open = cb_open.isChecked();
-        int numberSessions = Integer.parseInt(et_nb_session.getText().toString());
+        int numberSessions = 0;
+        if (!open){
+            try {
+                numberSessions = Integer.parseInt(et_nb_session.getText().toString());
+            }catch (Exception ex){
+
+            }
+        }
         realmService.addOffer(title,description,duration,unit,price,open,numberSessions, MainActivity.manager);
     }
 

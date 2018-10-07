@@ -31,6 +31,9 @@ public class NewManagerActivity extends AppCompatActivity {
         et_user_name = findViewById(R.id.et_user_name);
         et_password = findViewById(R.id.et_password);
 
+        sp_gender = findViewById(R.id.sp_gender);
+        sp_role = findViewById(R.id.sp_role);
+
         ArrayAdapter<CharSequence> genderAdapter = ArrayAdapter.createFromResource(this,
                 R.array.genders_array, android.R.layout.simple_spinner_item);
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

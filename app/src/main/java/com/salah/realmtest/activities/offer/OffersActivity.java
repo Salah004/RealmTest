@@ -63,4 +63,10 @@ public class OffersActivity extends AppCompatActivity {
     public void searchByQrCode(View view) {
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showdata();
+    }
+
 }
