@@ -127,7 +127,7 @@ public class SubscriptionsActivity extends AppCompatActivity {
             }
         });
 
-        btn_save = findViewById(R.id.btn_save);
+        btn_save = findViewById(R.id.ll);
         lv_subscriptions = findViewById(R.id.lv_subscriptions);
         showdata();
         areChanges();

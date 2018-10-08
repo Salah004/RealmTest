@@ -26,8 +26,8 @@ public class NewManagerActivity extends AppCompatActivity {
         realmService = new RealmService(Realm.getDefaultInstance());
 
         et_first_name = findViewById(R.id.et_first_name);
-        et_last_name = findViewById(R.id.et_last_name);
-        et_phone = findViewById(R.id.et_phone);
+        et_last_name = findViewById(R.id.et_username);
+        et_phone = findViewById(R.id.et_password);
         et_user_name = findViewById(R.id.et_user_name);
         et_password = findViewById(R.id.et_password);
 

@@ -64,6 +64,6 @@
         android:layout_height="wrap_content"
         android:text="Add"
         android:onClick="addOffer"
-        android:id="@+id/btn_save"/>
+        android:id="@+id/ll"/>
 
 </LinearLayout>

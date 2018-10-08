@@ -1,33 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".activities.manager.LoginActivity">
+
+    <ImageView
+        android:id="@+id/iv_athlete"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/et_username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/userphoto" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/gl"
+        app:layout_constraintGuide_percent="0.5"/>
+
     <EditText
         android:id="@+id/et_username"
-        android:layout_width="match_parent"
+        android:layout_width="256dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/reg_edittext_style"
+        android:ems="10"
+        android:hint="user name"
         android:inputType="textPersonName"
-        android:hint="username"/>
+        app:layout_constraintBottom_toTopOf="@id/et_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <EditText
         android:id="@+id/et_password"
-        android:layout_width="match_parent"
+        android:layout_width="256dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/reg_edittext_style"
+        android:ems="10"
+        android:hint="password"
         android:inputType="textPassword"
-        android:hint="password"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onLogin"
-        android:text="login"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_creat_owner"
-        android:onClick="goToNewManager"
-        android:text="new manager"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/gl" />
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_password">
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/reg_btn_style"
+            android:text="login"
+            android:textColor="@color/white"
+            android:onClick="onLogin"
+            android:id="@+id/btn_save"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"/>
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/reg_btn_style"
+            android:text="new manager"
+            android:id="@+id/btn_creat_owner"
+            android:onClick="goToNewManager"
+            android:textColor="@color/white" />
+    </LinearLayout>
+    <ProgressBar
+        android:id="@+id/pb_save"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/ll"
+        app:layout_constraintEnd_toEndOf="@id/ll"
+        app:layout_constraintStart_toStartOf="@id/ll"
+        app:layout_constraintTop_toTopOf="@id/ll"
+        android:visibility="gone"/>
+
+
+</android.support.constraint.ConstraintLayout>
