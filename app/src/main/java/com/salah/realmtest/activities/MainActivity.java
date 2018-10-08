@@ -14,15 +14,15 @@ import com.salah.realmtest.models.Manager;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView tv_user_name;
+    //private TextView tv_user_name;
     public static Manager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tv_user_name = findViewById(R.id.tv_user_name);
-        tv_user_name.setText("Manager : "+manager.getFirstName()+" "+manager.getLastName());
+        //tv_user_name = findViewById(R.id.tv_user_name);
+        //tv_user_name.setText("Manager : "+manager.getFirstName()+" "+manager.getLastName());
     }
 
     public void goToAthletes(View view) {
