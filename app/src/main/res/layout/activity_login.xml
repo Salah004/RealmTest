@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#FFFFFF"
     tools:context=".activities.manager.LoginActivity">
 
     <ImageView
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/reg_btn_style"
             android:text="login"
-            android:textColor="@color/white"
+            android:textColor="#FFFFFF"
             android:onClick="onLogin"
             android:id="@+id/btn_save"/>
         <View
@@ -97,7 +97,7 @@
             android:text="new manager"
             android:id="@+id/btn_creat_owner"
             android:onClick="goToNewManager"
-            android:textColor="@color/white" />
+            android:textColor="#FFFFFF" />
     </LinearLayout>
     <ProgressBar
         android:id="@+id/pb_save"

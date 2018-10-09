@@ -194,7 +194,7 @@
     </LinearLayout>
 
     <Button
-        android:textColor="#fff"
+        android:textColor="#ffffff"
         android:background="@drawable/buttonstyleithgradient"
         android:layout_marginTop="35dp"
         android:layout_gravity="center_horizontal"
