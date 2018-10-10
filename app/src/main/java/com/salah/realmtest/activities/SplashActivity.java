@@ -1,4 +1,4 @@
-package com.salah.realmtest;
+package com.salah.realmtest.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.salah.realmtest.R;
 import com.salah.realmtest.activities.manager.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
@@ -32,6 +33,7 @@ public class SplashActivity extends AppCompatActivity {
 
                 }finally {
                     startActivity(intent);
+                    finish();
                 }
             }
         };

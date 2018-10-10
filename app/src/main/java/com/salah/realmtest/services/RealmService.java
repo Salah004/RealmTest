@@ -73,7 +73,8 @@ public class RealmService {
         });
     }
 
-    public void addAthlete(final String firstName, final String lastName, final String phone, final int gender,final String picturePath,final Manager manager) {
+    public Athlete addAthlete(final String firstName, final String lastName, final String phone, final int gender, final String picturePath, final Manager manager) {
+        final Athlete[] mAthlete = new Athlete[1];
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -85,12 +86,16 @@ public class RealmService {
                 athlete.setPicturePath(picturePath);
                 athlete.setAddedManager(manager);
                 manager.getAthletes().add(athlete);
+                mAthlete[0] = athlete;
             }
         });
+        return mAthlete[0];
     }
 
     public Manager Login(String userName, String password) {
-        return mRealm.where(Manager.class).findFirst();
+        return mRealm.where(Manager.class).equalTo("userName",userName).equalTo("password",password).findFirst();
+        //return mRealm.where(Manager.class).findFirst();
+
     }
 
     public void AddManager(final String userName, final String password, final String firstName, final String lastName, final String phone, final int gender, final int role, final String picturePath, final Manager addedManager) {

@@ -3,9 +3,11 @@ package com.salah.realmtest.activities.manager;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.salah.realmtest.R;
 import com.salah.realmtest.activities.MainActivity;
@@ -37,10 +39,16 @@ public class LoginActivity extends AppCompatActivity {
         String password = et_password.getText().toString();
         Manager loginManager = null ;
         loginManager = realmService.Login(userName,password);
+
+
+
         if (loginManager!=null){
             MainActivity.manager = loginManager;
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
+            finish();
+        }else {
+            Toast.makeText(this,"username or password incorrect",Toast.LENGTH_LONG).show();
         }
     }
 
