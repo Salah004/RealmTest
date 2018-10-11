@@ -1,12 +1,15 @@
 package com.salah.realmtest.activities.subsciption;
 
 import android.graphics.Color;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +17,9 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.philliphsu.bottomsheetpickers.BottomSheetPickerDialog;
+import com.philliphsu.bottomsheetpickers.date.DatePickerDialog;
+import com.philliphsu.bottomsheetpickers.time.BottomSheetTimePickerDialog;
 import com.salah.realmtest.R;
 import com.salah.realmtest.activities.MainActivity;
 import com.salah.realmtest.adapters.ListOffersAdapter;
@@ -23,12 +29,14 @@ import com.salah.realmtest.models.Offer;
 import com.salah.realmtest.models.Subscription;
 import com.salah.realmtest.services.RealmService;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-public class SubscriptionsActivity extends AppCompatActivity {
+public class SubscriptionsActivity extends AppCompatActivity implements
+        BottomSheetTimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener{
 
     public static Athlete athlete;
     private EditText et_duration, et_paid, et_return;
@@ -36,8 +44,12 @@ public class SubscriptionsActivity extends AppCompatActivity {
     private TextView tv_to_paid, tv_to_return , tv_debt;
     private TextView tv_user_name , tv_athlete;
     private Button btn_save ;
+    private Date startDate = new Date();
     private ListView lv_subscriptions;
     RealmService realmService;
+
+    double paid = 0 , _return = 0 , toPaid = 0 , toReturn = 0 , debt = 0 ;
+    int duration = 0 ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,8 +157,12 @@ public class SubscriptionsActivity extends AppCompatActivity {
     }
 
     private void areChanges(){
-        double paid = 0 , _return = 0 , toPaid = 0 , toReturn = 0 , debt = 0 ;
-        int duration = 0 ;
+        paid = 0 ;
+        _return = 0 ;
+        toPaid = 0 ;
+        toReturn = 0 ;
+        debt = 0 ;
+        duration = 0 ;
         try{
             duration = Integer.parseInt(et_duration.getText().toString()) ;
         }catch (Exception e){}
@@ -178,8 +194,8 @@ public class SubscriptionsActivity extends AppCompatActivity {
         try {
             int duration = Integer.parseInt(et_duration.getText().toString()) ;
             Offer offer = (Offer) sp_offers.getSelectedItem();
-            //Athlete athlete = (Athlete) sp_athletes.getSelectedItem();
-            realmService.addSubscription(athlete,offer,new Date(),duration,MainActivity.manager);
+            realmService.addSubscription(athlete,offer,startDate,duration,debt,MainActivity.manager);
+            realmService.addDebt(debt,"subscription",athlete,MainActivity.manager);
             showdata();
         }catch (Exception e){
 
@@ -190,5 +206,58 @@ public class SubscriptionsActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         showdata();
+    }
+
+    public void displayCalender(View view) {
+        DialogFragment dialog = createDialog();
+        dialog.show(getSupportFragmentManager(), "TAG");
+    }
+
+    @Override
+    public void onDateSet(DatePickerDialog dialog, int year, int monthOfYear, int dayOfMonth) {
+        Calendar cal = new java.util.GregorianCalendar();
+        cal.set(Calendar.YEAR, year);
+        cal.set(Calendar.MONTH, monthOfYear);
+        cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        startDate = cal.getTime();
+        TextView tv =findViewById(R.id.tv_date_start);
+        tv.setText(startDate.toString());
+    }
+
+    @Override
+    public void onTimeSet(ViewGroup viewGroup, int hourOfDay, int minute) {
+
+    }
+
+    private DialogFragment createDialog() {
+        BottomSheetPickerDialog dialog = null;
+        Calendar now = Calendar.getInstance();
+        dialog = DatePickerDialog.newInstance(
+                this,
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH));
+        Boolean themeDark = true;
+        DatePickerDialog dateDialog = (DatePickerDialog) dialog;
+        dateDialog.setMinDate(now);
+        Calendar max = Calendar.getInstance();
+        max.add(Calendar.YEAR, 10);
+        dateDialog.setMaxDate(max);
+        dateDialog.setYearRange(1970, 2032);
+        dateDialog.setHeaderTextColorSelected(0xFFFF4081);
+        dateDialog.setHeaderTextColorUnselected(0x4AFF4081);
+        dateDialog.setDayOfWeekHeaderTextColorSelected(0xFFFF4081);
+        dateDialog.setDayOfWeekHeaderTextColorUnselected(0x4AFF4081);
+
+
+        dialog.setAccentColor(0xFFFF4081);
+        dialog.setBackgroundColor(true? 0xFF90CAF9 : 0xFF2196F3);
+        dialog.setHeaderColor(true? 0xFF90CAF9 : 0xFF2196F3);
+        dialog.setHeaderTextDark(true);
+
+        dialog.setThemeDark(themeDark);
+
+
+        return dialog;
     }
 }

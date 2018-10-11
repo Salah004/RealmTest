@@ -3,13 +3,18 @@ package com.salah.realmtest.activities.athlete;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import com.salah.realmtest.R;
+import com.salah.realmtest.activities.MainActivity;
+import com.salah.realmtest.activities.debt.DebtsActivity;
 import com.salah.realmtest.activities.subsciption.SubscriptionsActivity;
 import com.salah.realmtest.adapters.ListAthletesAdapter;
 import com.salah.realmtest.models.Athlete;
@@ -38,10 +43,15 @@ public class AthletesActivity extends AppCompatActivity {
         lv_athletes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Athlete athlete = (Athlete) lv_athletes.getItemAtPosition(position);
-                SubscriptionsActivity.athlete = athlete ;
-                Intent intent = new Intent(AthletesActivity.this,SubscriptionsActivity.class);
-                startActivity(intent);
+//                Athlete athlete = (Athlete) lv_athletes.getItemAtPosition(position);
+//                SubscriptionsActivity.athlete = athlete ;
+//                Intent intent = new Intent(AthletesActivity.this,SubscriptionsActivity.class);
+//                startActivity(intent);
+
+//                Athlete athlete = (Athlete) lv_athletes.getItemAtPosition(position);
+//                DebtsActivity.athlete = athlete ;
+//                Intent intent = new Intent(AthletesActivity.this,DebtsActivity.class);
+//                startActivity(intent);
             }
         });
 
@@ -76,5 +86,38 @@ public class AthletesActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         showdata();
+    }
+
+    public void showMenu(View view){
+        final Athlete mathlete = (Athlete) view.getTag();
+        Toast.makeText(this,mathlete.getId(),Toast.LENGTH_LONG).show();
+        PopupMenu popup = new PopupMenu(AthletesActivity.this, view);
+        //Inflating the Popup using xml file
+        popup.getMenuInflater()
+                .inflate(R.menu.menu, popup.getMenu());
+
+        //registering popup with OnMenuItemClickListener
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.it_debts){
+                    DebtsActivity.athlete = mathlete ;
+                    Intent intent = new Intent(AthletesActivity.this,DebtsActivity.class);
+                    startActivity(intent);
+                }
+                if (item.getItemId() == R.id.it_sub){
+                    SubscriptionsActivity.athlete = mathlete ;
+                    Intent intent = new Intent(AthletesActivity.this,SubscriptionsActivity.class);
+                    startActivity(intent);
+                }
+                Toast.makeText(
+                        AthletesActivity.this,
+                        "You Clicked : " + item.getTitle(),
+                        Toast.LENGTH_SHORT
+                ).show();
+                return true;
+            }
+        });
+
+        popup.show();
     }
 }

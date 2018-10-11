@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.salah.realmtest">
 
-
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -17,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MainActivity"></activity>
+        <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.athlete.AthletesActivity" />
         <activity android:name=".activities.offer.OffersActivity" />
         <activity android:name=".activities.subsciption.SubscriptionsActivity" />
@@ -32,8 +31,7 @@
         <activity android:name=".activities.debt.DebtsActivity" />
         <activity android:name=".activities.technicalSheet.TechnicalSheetsActivity" />
         <activity android:name=".activities.session.SessionsActivity" />
-        <activity android:name=".activities.manager.LoginActivity">
-        </activity>
+        <activity android:name=".activities.manager.LoginActivity"></activity>
         <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,7 +39,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.subsciption.DetectAthleteSubscriptionActivity">
+        <activity android:name=".activities.subsciption.DetectAthleteSubscriptionActivity"></activity>
+        <activity android:name=".activities.TestActivity">
 
         </activity>
     </application>

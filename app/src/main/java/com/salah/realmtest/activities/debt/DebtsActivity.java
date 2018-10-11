@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.salah.realmtest.R;
 import com.salah.realmtest.adapters.ListDebtsAdapter;
@@ -40,6 +41,15 @@ public class DebtsActivity extends AppCompatActivity {
     private void showdata() {
         //RealmResults<Debt> debts = realmService.getAllDebts();
         RealmResults<Debt> debts = athlete.getDebts().where().findAll();
+
+        try {
+            double sum = (double)debts.sum("sum");
+            TextView tv = findViewById(R.id.tv_total);
+            tv.setText(sum+"");
+        }catch (Exception e){
+
+        }
+
 
         if (debts.isEmpty()) return;
         ListDebtsAdapter adapter = new ListDebtsAdapter(this,debts);

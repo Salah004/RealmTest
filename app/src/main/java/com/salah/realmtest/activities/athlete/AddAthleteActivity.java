@@ -1,21 +1,14 @@
 package com.salah.realmtest.activities.athlete;
 
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
 import com.salah.realmtest.R;
 import com.salah.realmtest.activities.MainActivity;
 import com.salah.realmtest.dialogs.QrCodeViewDialog;
@@ -63,18 +56,6 @@ public class AddAthleteActivity extends AppCompatActivity {
         }catch (Exception e){
             Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
         }
-
-
-//        String text="" ;// Whatever you need to encode in the QR code
-//        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-//        try {
-//            BitMatrix bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE,200,200);
-//            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-//            Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
-//            ((ImageView) findViewById(R.id.iv_athlete)).setImageBitmap(bitmap);
-//        } catch (WriterException e) {
-//            e.printStackTrace();
-//        }
     }
 
     @Override

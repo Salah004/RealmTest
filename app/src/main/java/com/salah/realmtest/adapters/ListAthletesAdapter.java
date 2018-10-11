@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -49,6 +50,12 @@ public class ListAthletesAdapter extends BaseAdapter {
 
         Athlete athlete = athletes.get(position);
         tv.setText(athlete.getFirstName()+" "+athlete.getLastName()+" "+athlete.getPhone());
+
+        Button btn = view.findViewById(R.id.btn);
+
+        btn.setVisibility(View.VISIBLE);
+
+        btn.setTag(athlete);
 
 
         return view;

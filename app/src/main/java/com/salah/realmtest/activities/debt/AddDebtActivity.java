@@ -10,6 +10,7 @@ import com.salah.realmtest.R;
 import com.salah.realmtest.activities.MainActivity;
 import com.salah.realmtest.activities.manager.LoginActivity;
 import com.salah.realmtest.models.Athlete;
+import com.salah.realmtest.models.Debt;
 import com.salah.realmtest.services.RealmService;
 
 import io.realm.Realm;
@@ -35,11 +36,11 @@ public class AddDebtActivity extends AppCompatActivity {
         tv_total = findViewById(R.id.tv_total);
     }
 
-    public void addDebt(View view) {
+    public void goToAddDebt(View view) {
         double sum = Double.parseDouble(et_sum.getText().toString());
         if(!operation) sum = sum * -1 ;
         String description = et_description.getText().toString();
-        realmService.addDebt(sum,description,athlete, MainActivity.manager);
+        Debt debt = realmService.addDebt(sum,description,athlete, MainActivity.manager);
     }
     @Override
     protected void onDestroy() {
