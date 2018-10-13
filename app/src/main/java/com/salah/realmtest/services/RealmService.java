@@ -37,8 +37,8 @@ public class RealmService {
         return mRealm.where(Subscription.class).findAll();
     }
 
-    public void addSubscription(final Athlete athlete, final Offer offer, final Date startDate, final int duration, final double debt, final Manager manager) {
-
+    public Subscription addSubscription(final Athlete athlete, final Offer offer, final Date startDate, final int duration, final double amountDebt, final Manager manager) {
+        final Subscription[] mSubscriptions = new Subscription[1];
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -51,12 +51,24 @@ public class RealmService {
                 athlete.getSubscriptions().add(subscription);
                 offer.getSubscriptions().add(subscription);
                 manager.getSubscriptions().add(subscription);
+                if (amountDebt!=0){
+                    Debt debt = realm.createObject(Debt.class , UUID.randomUUID().toString());
+                    debt.setAmount(amountDebt);
+                    debt.setDescription("Subscription");
+                    debt.setAthlete(athlete);
+                    debt.setAddedManager(manager);
+                    manager.getDebts().add(debt);
+                    athlete.getDebts().add(debt);
+                }
+                mSubscriptions[0]=subscription;
                 //if (debt!=0)addDebt(debt,"subscription",athlete,manager);
             }
         });
+        return mSubscriptions[0];
     }
 
-    public void addOffer(final String title, final String description, final int duration, final int durationUnit, final double price, final Boolean open, final int numberSessions, final Manager manager) {
+    public Offer addOffer(final String title, final String description, final int duration, final int durationUnit, final double price, final Boolean open, final int numberSessions, final Manager manager) {
+        final Offer[] mOffers = new Offer[1];
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -70,8 +82,10 @@ public class RealmService {
                 offer.setSessionNumber(numberSessions);
                 offer.setAddedManager(manager);
                 manager.getOffers().add(offer);
+                mOffers[0] = offer;
             }
         });
+        return mOffers[0];
     }
 
     public Athlete addAthlete(final String firstName, final String lastName, final String phone, final int gender, final String picturePath, final Manager manager) {
@@ -99,7 +113,8 @@ public class RealmService {
 
     }
 
-    public void AddManager(final String userName, final String password, final String firstName, final String lastName, final String phone, final int gender, final int role, final String picturePath, final Manager addedManager) {
+    public Manager AddManager(final String userName, final String password, final String firstName, final String lastName, final String phone, final int gender, final int role, final String picturePath, final Manager addedManager) {
+        final Manager[] mManagers = new Manager[1];
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -113,8 +128,10 @@ public class RealmService {
                 manager.setPicturePath(picturePath);
                 manager.setAddedManager(addedManager);
                 addedManager.getManagers().add(manager);
+                mManagers[0] = manager;
             }
         });
+        return mManagers[0];
     }
 
     public RealmResults<Manager> getAllManagers() {
@@ -125,13 +142,13 @@ public class RealmService {
         return mRealm.where(Debt.class).findAll();
     }
 
-    public Debt addDebt(final double sum, final String description, final Athlete athlete, final Manager manager) {
+    public Debt addDebt(final double amount, final String description, final Athlete athlete, final Manager manager) {
         final Debt[] mDebts = new Debt[1];
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
                 Debt debt = realm.createObject(Debt.class , UUID.randomUUID().toString());
-                debt.setSum(sum);
+                debt.setAmount(amount);
                 debt.setDescription(description);
                 debt.setAthlete(athlete);
                 debt.setAddedManager(manager);
@@ -143,7 +160,8 @@ public class RealmService {
         return mDebts[0];
     }
 
-    public void AddOwner(final String userName, final String password, final String firstName, final String lastName, final String phone, final int gender, final int role, final String picturePath) {
+    public Manager AddOwner(final String userName, final String password, final String firstName, final String lastName, final String phone, final int gender, final int role, final String picturePath) {
+        final Manager[] mManagers = new Manager[1];
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -155,8 +173,10 @@ public class RealmService {
                 manager.setGender(gender);
                 manager.setRole(role);
                 manager.setPicturePath(picturePath);
+                mManagers[0] = manager;
             }
         });
+        return mManagers[0];
     }
 
     public RealmResults<Session> getAllSessions() {

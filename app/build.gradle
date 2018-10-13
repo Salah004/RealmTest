@@ -45,4 +45,6 @@ dependencies {
 
     // Standard -- not recommended!
     implementation 'com.philliphsu:bottomsheetpickers:2.4.1'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
 }

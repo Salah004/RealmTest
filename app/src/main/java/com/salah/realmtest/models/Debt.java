@@ -9,7 +9,7 @@ public class Debt extends RealmObject{
     @PrimaryKey
     private String id;
     private Athlete athlete;
-    private double sum;
+    private double amount;
     private String description;
     private Date date = new Date();
     private Manager addedManager;
@@ -26,12 +26,12 @@ public class Debt extends RealmObject{
         this.athlete = athlete;
     }
 
-    public double getSum() {
-        return sum;
+    public double getAmount() {
+        return amount;
     }
 
-    public void setSum(double sum) {
-        this.sum = sum;
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
     public String getDescription() {

@@ -31,8 +31,8 @@ public class AddAthleteActivity extends AppCompatActivity {
         realmService = new RealmService(Realm.getDefaultInstance());
 
         et_first_name = findViewById(R.id.et_first_name);
-        et_last_name = findViewById(R.id.et_username);
-        et_phone = findViewById(R.id.et_password);
+        et_last_name = findViewById(R.id.et_user_name);
+        et_phone = findViewById(R.id.et_phone);
         sp_gender = findViewById(R.id.sp_gender);
         btn_save = findViewById(R.id.btn_save);
 

@@ -24,7 +24,8 @@
         <activity android:name=".activities.manager.ManagersActivity" />
         <activity android:name=".activities.athlete.AddAthleteActivity" />
         <activity android:name=".activities.offer.AddOfferActivity" />
-        <activity android:name=".activities.subsciption.AddSubscriptionActivity" />
+        <activity android:name=".activities.subsciption.AddSubscriptionActivity">
+        </activity>
         <activity android:name=".activities.manager.NewManagerActivity" />
         <activity android:name=".activities.debt.AddDebtActivity" />
         <activity android:name=".activities.technicalSheet.AddTechnicalSheetActivity" />
@@ -40,6 +41,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.subsciption.DetectAthleteSubscriptionActivity"></activity>
+        <activity android:name=".activities.debt.DetectAthleteDebtActivity"></activity>
         <activity android:name=".activities.TestActivity">
 
         </activity>

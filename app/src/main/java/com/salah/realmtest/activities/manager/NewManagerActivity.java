@@ -9,6 +9,7 @@ import android.widget.Spinner;
 
 import com.salah.realmtest.R;
 import com.salah.realmtest.activities.MainActivity;
+import com.salah.realmtest.models.Manager;
 import com.salah.realmtest.services.RealmService;
 
 import io.realm.Realm;
@@ -26,8 +27,8 @@ public class NewManagerActivity extends AppCompatActivity {
         realmService = new RealmService(Realm.getDefaultInstance());
 
         et_first_name = findViewById(R.id.et_first_name);
-        et_last_name = findViewById(R.id.et_username);
-        et_phone = findViewById(R.id.et_password);
+        et_last_name = findViewById(R.id.et_last_name);
+        et_phone = findViewById(R.id.et_phone);
         et_user_name = findViewById(R.id.et_user_name);
         et_password = findViewById(R.id.et_password);
 
@@ -56,9 +57,24 @@ public class NewManagerActivity extends AppCompatActivity {
         String phone = et_phone.getText().toString();
         String picturePath = "";
         if (manager_owner){
-            realmService.AddOwner(userName,password,firstName,lastName,phone,gender,role,picturePath);
+            try{
+                Manager manager = realmService.AddOwner(userName,password,firstName,lastName,phone,gender,role,picturePath);
+                if (manager!=null){
+                    view.setEnabled(false);
+                }
+            }catch (Exception e){
+
+            }
+
         }else {
-            realmService.AddManager(userName,password,firstName,lastName,phone,gender,role,picturePath, MainActivity.manager);
+            try{
+                Manager manager = realmService.AddManager(userName,password,firstName,lastName,phone,gender,role,picturePath, MainActivity.manager);
+                if (manager!=null){
+                    view.setEnabled(false);
+                }
+            }catch (Exception e){
+
+            }
         }
     }
 

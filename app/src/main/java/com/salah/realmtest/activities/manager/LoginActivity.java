@@ -3,7 +3,6 @@ package com.salah.realmtest.activities.manager;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         realmService = new RealmService(Realm.getDefaultInstance());
-        et_username=findViewById(R.id.et_username);
+        et_username=findViewById(R.id.et_user_name);
         et_password=findViewById(R.id.et_password);
         btn_creat_owner=findViewById(R.id.btn_creat_owner);
 

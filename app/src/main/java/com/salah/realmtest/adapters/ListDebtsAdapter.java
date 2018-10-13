@@ -1,15 +1,16 @@
 package com.salah.realmtest.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.salah.realmtest.R;
 import com.salah.realmtest.models.Debt;
-import com.salah.realmtest.models.Manager;
 
 import io.realm.RealmResults;
 
@@ -43,12 +44,24 @@ public class ListDebtsAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View view = inflater.inflate(R.layout.list_item, null);
+        View view = inflater.inflate(R.layout.item_list_debts, null);
 
-        TextView tv = view.findViewById(R.id.tv);
+        TextView tv_amount = view.findViewById(R.id.tv_amount);
+        TextView tv_date = view.findViewById(R.id.tv_date);
+        ImageView iv_operation = view.findViewById(R.id.iv_operation);
 
         Debt debt = debts.get(position);
-        tv.setText(debt.getDate()+" "+debt.getSum());
+
+        if (debt.getAmount()>0){
+            tv_amount.setTextColor(Color.RED);
+            iv_operation.setImageResource(R.drawable.ic_arrow_upward_black_24dp);
+        }
+        else{
+            tv_amount.setTextColor(Color.GREEN);
+            iv_operation.setImageResource(R.drawable.ic_arrow_downward_black_24dp);
+        }
+        tv_amount.setText(Math.abs(debt.getAmount())+"");
+        tv_date.setText(debt.getDate()+"");
 
         return view;
 

@@ -43,7 +43,7 @@ public class DebtsActivity extends AppCompatActivity {
         RealmResults<Debt> debts = athlete.getDebts().where().findAll();
 
         try {
-            double sum = (double)debts.sum("sum");
+            double sum = (double)debts.sum("amount");
             TextView tv = findViewById(R.id.tv_total);
             tv.setText(sum+"");
         }catch (Exception e){
@@ -63,6 +63,12 @@ public class DebtsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToPayDebt(View view) {
+        AddDebtActivity.athlete = athlete ;
+        AddDebtActivity.operation = false;
+        Intent intent = new Intent(DebtsActivity.this,AddDebtActivity.class);
+        startActivity(intent);
+    }
     public void selectDate(View view) {
     }
 
@@ -77,4 +83,6 @@ public class DebtsActivity extends AppCompatActivity {
         super.onResume();
         showdata();
     }
+
+
 }

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -44,18 +45,28 @@ public class ListAthletesAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View view = inflater.inflate(R.layout.list_item, null);
+        View view = inflater.inflate(R.layout.item_list_athletes, null);
 
-        TextView tv = view.findViewById(R.id.tv);
+        TextView tv_name = view.findViewById(R.id.tv_name);
+        TextView tv_debt = view.findViewById(R.id.tv_debt);
+        ImageView iv_safe = view.findViewById(R.id.iv_safe);
 
         Athlete athlete = athletes.get(position);
-        tv.setText(athlete.getFirstName()+" "+athlete.getLastName()+" "+athlete.getPhone());
+        tv_name.setText(athlete.getFirstName()+" "+athlete.getLastName());
 
-        Button btn = view.findViewById(R.id.btn);
+        try {
+            double sum = (double)athlete.getDebts().sum("amount");
+            if (sum!=0) tv_debt.setText(sum+" DZD");
+            else {
+                tv_debt.setVisibility(View.GONE);
+                iv_safe.setVisibility(View.VISIBLE);
+            }
+        }catch (Exception e){
 
-        btn.setVisibility(View.VISIBLE);
+        }
 
-        btn.setTag(athlete);
+        ImageView iv = view.findViewById(R.id.iv);
+        iv.setTag(athlete);
 
 
         return view;

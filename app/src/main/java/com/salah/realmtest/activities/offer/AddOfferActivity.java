@@ -8,11 +8,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.salah.realmtest.R;
 import com.salah.realmtest.activities.MainActivity;
 import com.salah.realmtest.activities.manager.LoginActivity;
 import com.salah.realmtest.models.Manager;
+import com.salah.realmtest.models.Offer;
 import com.salah.realmtest.services.RealmService;
 
 import io.realm.Realm;
@@ -65,7 +67,14 @@ public class AddOfferActivity extends AppCompatActivity {
 
             }
         }
-        realmService.addOffer(title,description,duration,unit,price,open,numberSessions, MainActivity.manager);
+        try{
+            Offer offer = realmService.addOffer(title,description,duration,unit,price,open,numberSessions, MainActivity.manager);
+            if (offer!=null){
+                view.setEnabled(false);
+            }
+        }catch (Exception e){
+            Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
