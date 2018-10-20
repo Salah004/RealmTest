@@ -3,33 +3,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="#ffffff"
     tools:context=".activities.manager.ManagersActivity">
+    <include layout="@layout/toolbar"/>
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:elevation="0dp"
+        android:background="@drawable/reg_edittext_style">
         <EditText
-            android:id="@+id/et_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Search" />
+            android:background="@null"
+            android:drawableLeft="@drawable/ic_search_gray_24dp"
+            android:hint="Search"/>
         <ImageView
-            android:id="@+id/iv_qr_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right|center_vertical"
-            android:src="@android:drawable/ic_menu_search"
-            android:onClick="searchByQrCode"/>
+            android:src="@drawable/ic_search_gray_24dp"
+            android:layout_gravity="right"/>
     </FrameLayout>
-    <ListView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
         android:layout_weight="1"
-        android:id="@+id/lv_managers"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="new Manager"
-        android:onClick="goToAddManager"/>
+        android:layout_height="0dp">
+        <ListView
+            android:id="@+id/lv_managers"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="10dp"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_add_black_24dp"
+            fab:backgroundTint="@color/colorPrimary"
+            android:onClick="goToAddManager"/>
+    </FrameLayout>
 
 </LinearLayout>

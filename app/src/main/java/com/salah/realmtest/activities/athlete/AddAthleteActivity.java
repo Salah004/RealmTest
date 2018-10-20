@@ -1,11 +1,13 @@
 package com.salah.realmtest.activities.athlete;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -14,14 +16,21 @@ import com.salah.realmtest.activities.MainActivity;
 import com.salah.realmtest.dialogs.QrCodeViewDialog;
 import com.salah.realmtest.models.Athlete;
 import com.salah.realmtest.services.RealmService;
+import com.vansuita.pickimage.bean.PickResult;
+import com.vansuita.pickimage.bundle.PickSetup;
+import com.vansuita.pickimage.dialog.PickImageDialog;
+import com.vansuita.pickimage.listeners.IPickResult;
 
+import es.dmoral.toasty.Toasty;
 import io.realm.Realm;
 
-public class AddAthleteActivity extends AppCompatActivity {
+public class AddAthleteActivity extends AppCompatActivity  implements IPickResult {
 
     private EditText et_first_name, et_last_name, et_phone;
     private Spinner sp_gender;
-    Button btn_save ;
+    private Button btn_save ;
+    private ImageView iv_athlete;
+    private String pick = null;
     private RealmService realmService;
 
     @Override
@@ -35,6 +44,7 @@ public class AddAthleteActivity extends AppCompatActivity {
         et_phone = findViewById(R.id.et_phone);
         sp_gender = findViewById(R.id.sp_gender);
         btn_save = findViewById(R.id.btn_save);
+        iv_athlete = findViewById(R.id.iv_athlete);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.genders_array, android.R.layout.simple_spinner_item);
@@ -47,14 +57,32 @@ public class AddAthleteActivity extends AppCompatActivity {
         String lastName = et_last_name.getText().toString();
         int gender = sp_gender.getSelectedItemPosition();
         String phone = et_phone.getText().toString();
-        String picturePath = "";
         try {
-            Athlete athlete= realmService.addAthlete(firstName,lastName,phone,gender,picturePath, MainActivity.manager);
+            Athlete athlete= realmService.addAthlete(firstName,lastName,phone,gender, pick, MainActivity.manager);
             btn_save.setEnabled(false);
             QrCodeViewDialog dialog = new QrCodeViewDialog(this,athlete.getId()){};
             dialog.show();
         }catch (Exception e){
-            Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
+            Toasty.error(this,e.getMessage(),Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onPickResult(PickResult r) {
+        if (r.getError() == null) {
+            //If you want the Uri.
+            //Mandatory to refresh image from Uri.
+            //getImageView().setImageURI(null);
+
+            //Setting the real returned image.
+            //getImageView().setImageURI(r.getUri());
+
+            //If you want the Bitmap.
+            //iv_add_pick.setVisibility(View.GONE);
+            iv_athlete.setImageBitmap(r.getBitmap());
+            pick = r.getPath();
+        } else {
+            Toasty.error(this, r.getError().getMessage(), Toast.LENGTH_SHORT, true).show();
         }
     }
 
@@ -62,5 +90,10 @@ public class AddAthleteActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         realmService.closeRealm();
+    }
+
+    public void takePick(View view) {
+        PickSetup setup = new PickSetup();
+        PickImageDialog.build(setup).show(this);
     }
 }

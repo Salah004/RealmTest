@@ -42,12 +42,16 @@ public class ListOffersAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View view = inflater.inflate(R.layout.list_item, null);
+        View view = inflater.inflate(R.layout.item_list_offers, null);
 
-        TextView tv = view.findViewById(R.id.tv);
-
+        TextView tv_name = view.findViewById(R.id.tv_name);
+        TextView tv_duration = view.findViewById(R.id.tv_duration);
+        TextView tv_price = view.findViewById(R.id.tv_price);
+        String[] s = context.getResources().getStringArray(R.array.units_array);
         Offer offer = offers.get(position);
-        tv.setText(offer.getTitle()+" "+offer.getDuration()+" "+offer.getDurationUnit()+" "+offer.getPrice());
+        tv_name.setText(offer.getTitle());
+        tv_duration.setText(offer.getDuration()+" "+s[offer.getDurationUnit()]);
+        tv_price.setText(offer.getPrice()+"");
 
 
         return view;

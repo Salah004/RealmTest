@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.salah.realmtest.R;
 import com.salah.realmtest.activities.athlete.AthletesActivity;
 import com.salah.realmtest.activities.debt.DetectAthleteDebtActivity;
+import com.salah.realmtest.activities.manager.ManagersActivity;
 import com.salah.realmtest.activities.offer.OffersActivity;
 import com.salah.realmtest.activities.subsciption.DetectAthleteSubscriptionActivity;
 import com.salah.realmtest.activities.subsciption.SubscriptionsActivity;
@@ -34,16 +35,7 @@ public class MainActivity extends AppCompatActivity {
         tv_nb_offers = findViewById(R.id.tv_nb_offers);
         tv_nb_current_sub = findViewById(R.id.tv_nb_current_sub);
         tv_nb_athletes = findViewById(R.id.tv_nb_athletes);
-
-        int nbAthletes = realmService.getAllAthletes().size();
-        double amountDebts = (Double) realmService.getAllDebts().sum("amount");
-        int nbOffers = realmService.getAllOffers().size();
-        int nbSubscriptions = realmService.getAllSubscriptions().size();//****
-
-        tv_nb_athletes.setText(nbAthletes+" athletes");
-        tv_amount_debts.setText(amountDebts+" DZD of debts");
-        tv_nb_offers.setText(nbOffers+" offers");
-        tv_nb_current_sub.setText(nbSubscriptions+" subscriptions");
+        refresh();
     }
 
     public void goToAthletes(View view) {
@@ -80,5 +72,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         realmService.closeRealm();
+    }
+
+    private void refresh(){
+        int nbAthletes = realmService.getAllAthletes().size();
+        double amountDebts = (Double) realmService.getAllDebts().sum("amount");
+        int nbOffers = realmService.getAllOffers().size();
+        int nbSubscriptions = realmService.getAllSubscriptions().size();//****
+
+        tv_nb_athletes.setText(nbAthletes+" athletes");
+        tv_amount_debts.setText(amountDebts+" DZD of debts");
+        tv_nb_offers.setText(nbOffers+" offers");
+        tv_nb_current_sub.setText(nbSubscriptions+" subscriptions");
+    }
+
+    @Override
+    protected void onResumeFragments() {
+        super.onResumeFragments();
+        refresh();
+    }
+
+    public void goToSessions(View view) {
+    }
+
+    public void goToManagers(View view) {
+        Intent intent = new Intent(this,ManagersActivity.class);
+        startActivity(intent);
     }
 }

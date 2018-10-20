@@ -24,7 +24,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/userphoto"
         tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="40dp" />
+        tools:layout_editor_absoluteY="40dp"
+        android:onClick="takePick"/>
 
     <android.support.constraint.Guideline
         android:id="@+id/gl"

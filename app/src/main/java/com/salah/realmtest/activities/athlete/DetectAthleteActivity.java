@@ -1,10 +1,12 @@
 package com.salah.realmtest.activities.athlete;
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.PointF;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
@@ -18,27 +20,49 @@ import android.widget.Toast;
 
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView.OnQRCodeReadListener;
+import com.intentfilter.androidpermissions.PermissionManager;
 import com.salah.realmtest.R;
+import com.salah.realmtest.models.Athlete;
+import com.salah.realmtest.services.RealmService;
 
 import java.io.IOException;
 
-public class DetectAthleteActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback, OnQRCodeReadListener {
+import es.dmoral.toasty.Toasty;
+import io.realm.Realm;
 
-    private static final int MY_PERMISSION_REQUEST_CAMERA = 0;
+import static java.util.Collections.singleton;
+
+public class DetectAthleteActivity extends AppCompatActivity implements  OnQRCodeReadListener {
+
     private boolean TORCH_ON = false;
     static public boolean ALLOW_DETECT = true ;
     private QRCodeReaderView qrCodeReaderView;
     private ImageView btn_torch , btn_menu ;
 
+    private RealmService realmService;
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detect_athlete);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-                == PackageManager.PERMISSION_GRANTED) {
+        realmService = new RealmService(Realm.getDefaultInstance());
+        if (Build.VERSION.SDK_INT >= 23) {
+            PermissionManager permissionManager = PermissionManager.getInstance(DetectAthleteActivity.this);
+            permissionManager.checkPermissions(singleton(Manifest.permission.CAMERA), new PermissionManager.PermissionRequestListener() {
+                @Override
+                public void onPermissionGranted() {
+                    Toasty.success(DetectAthleteActivity.this, "Permissions Granted", Toast.LENGTH_SHORT).show();
+                    initQRCodeReaderView();
+                }
+
+                @Override
+                public void onPermissionDenied() {
+                    Toasty.error(DetectAthleteActivity.this, "Permissions Denied", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }else {
             initQRCodeReaderView();
-        } else {
-            requestCameraPermission();
         }
+
     }
 
     @Override protected void onResume() {
@@ -61,20 +85,6 @@ public class DetectAthleteActivity extends AppCompatActivity implements Activity
         super.onBackPressed();
     }
 
-    @Override public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                                     @NonNull int[] grantResults) {
-        if (requestCode != MY_PERMISSION_REQUEST_CAMERA) {
-            return;
-        }
-
-        if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this, "Camera permission was granted.", Toast.LENGTH_SHORT).show();
-            initQRCodeReaderView();
-        } else {
-            Toast.makeText(this, "Camera permission request was denied.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     @Override public void onQRCodeRead(String text, PointF[] points) {
         if( ALLOW_DETECT ){
             Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -92,21 +102,17 @@ public class DetectAthleteActivity extends AppCompatActivity implements Activity
                 btn_torch.setImageResource(R.drawable.ic_flash_on_24dp);
             }
             TORCH_ON = !TORCH_ON;
-            Toast.makeText(this,text,Toast.LENGTH_LONG).show();
-//            InfoActivity.info = text;
-//            Intent intent = new Intent(DecoderActivity.this,InfoActivity.class);
-//            startActivity(intent);
+            Athlete athlete = realmService.getAllAthleteById(text);
+            // Toast.makeText(this,text,Toast.LENGTH_LONG).show();
+            if (athlete!=null){
+
+            }else {
+                Toast.makeText(this,"QrCode not valid",Toast.LENGTH_LONG).show();
+            }
+//
         }
     }
 
-    private void requestCameraPermission() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
-        } else {
-            ActivityCompat.requestPermissions(this, new String[] {
-                    Manifest.permission.CAMERA
-            }, MY_PERMISSION_REQUEST_CAMERA);
-        }
-    }
 
     private void initQRCodeReaderView() {
         qrCodeReaderView = findViewById(R.id.qrdecoderview);
@@ -140,6 +146,12 @@ public class DetectAthleteActivity extends AppCompatActivity implements Activity
             }
         });
         popup.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realmService.closeRealm();
     }
 
     public void onBack(View view) {

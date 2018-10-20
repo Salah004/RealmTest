@@ -1,5 +1,7 @@
 package com.salah.realmtest.models;
 
+import android.graphics.Bitmap;
+
 import java.util.Date;
 
 import io.realm.RealmList;
@@ -11,7 +13,7 @@ public class Athlete extends RealmObject{
     private String id ;
     private String firstName;
     private String lastName;
-    private String picturePath;
+    private String pick;
     private int gender;
     private String phone;
     private Date creationDate = new Date();
@@ -85,12 +87,12 @@ public class Athlete extends RealmObject{
         this.debts = debts;
     }
 
-    public String getPicturePath() {
-        return picturePath;
+    public String getPick() {
+        return pick;
     }
 
-    public void setPicturePath(String picturePath) {
-        this.picturePath = picturePath;
+    public void setPick(String pick) {
+        this.pick = pick;
     }
 
     public RealmList<TechnicalSheet> getSheets() {
@@ -99,17 +101,5 @@ public class Athlete extends RealmObject{
 
     public void setSheets(RealmList<TechnicalSheet> sheets) {
         this.sheets = sheets;
-    }
-
-    @Override
-    public String toString() {
-        return "Athlete{" +
-                "id='" + id + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", phone='" + phone + '\'' +
-                ", creationDate=" + creationDate +
-                ", subscriptions=" + subscriptions +
-                '}';
     }
 }

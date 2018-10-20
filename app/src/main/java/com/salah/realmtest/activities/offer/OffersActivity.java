@@ -60,9 +60,6 @@ public class OffersActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void searchByQrCode(View view) {
-    }
-
     @Override
     protected void onResume() {
         super.onResume();

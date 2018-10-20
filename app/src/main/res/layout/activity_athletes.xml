@@ -19,6 +19,7 @@
         android:elevation="0dp"
         android:background="@drawable/reg_edittext_style">
         <EditText
+            android:id="@+id/et_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"

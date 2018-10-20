@@ -1,5 +1,7 @@
 package com.salah.realmtest.services;
 
+import android.graphics.Bitmap;
+
 import com.salah.realmtest.models.Debt;
 import com.salah.realmtest.models.Manager;
 import com.salah.realmtest.models.Session;
@@ -88,7 +90,7 @@ public class RealmService {
         return mOffers[0];
     }
 
-    public Athlete addAthlete(final String firstName, final String lastName, final String phone, final int gender, final String picturePath, final Manager manager) {
+    public Athlete addAthlete(final String firstName, final String lastName, final String phone, final int gender, final String pick, final Manager manager) {
         final Athlete[] mAthlete = new Athlete[1];
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -98,7 +100,7 @@ public class RealmService {
                 athlete.setLastName(lastName);
                 athlete.setPhone(phone);
                 athlete.setGender(gender);
-                athlete.setPicturePath(picturePath);
+                athlete.setPick(pick);
                 athlete.setAddedManager(manager);
                 manager.getAthletes().add(athlete);
                 mAthlete[0] = athlete;
@@ -113,7 +115,7 @@ public class RealmService {
 
     }
 
-    public Manager AddManager(final String userName, final String password, final String firstName, final String lastName, final String phone, final int gender, final int role, final String picturePath, final Manager addedManager) {
+    public Manager AddManager(final String userName, final String password, final String firstName, final String lastName, final String phone, final int gender, final int role, final String pick, final Manager addedManager) {
         final Manager[] mManagers = new Manager[1];
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -125,7 +127,7 @@ public class RealmService {
                 manager.setPhone(phone);
                 manager.setGender(gender);
                 manager.setRole(role);
-                manager.setPicturePath(picturePath);
+                manager.setPick(pick);
                 manager.setAddedManager(addedManager);
                 addedManager.getManagers().add(manager);
                 mManagers[0] = manager;
@@ -160,7 +162,7 @@ public class RealmService {
         return mDebts[0];
     }
 
-    public Manager AddOwner(final String userName, final String password, final String firstName, final String lastName, final String phone, final int gender, final int role, final String picturePath) {
+    public Manager AddOwner(final String userName, final String password, final String firstName, final String lastName, final String phone, final int gender, final int role, final String pick) {
         final Manager[] mManagers = new Manager[1];
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -172,7 +174,7 @@ public class RealmService {
                 manager.setPhone(phone);
                 manager.setGender(gender);
                 manager.setRole(role);
-                manager.setPicturePath(picturePath);
+                manager.setPick(pick);
                 mManagers[0] = manager;
             }
         });
@@ -195,5 +197,9 @@ public class RealmService {
                 subscription.getSessions().add(session);
             }
         });
+    }
+
+    public Athlete getAllAthleteById(String text) {
+        return mRealm.where(Athlete.class).equalTo("id",text).findFirst();
     }
 }
