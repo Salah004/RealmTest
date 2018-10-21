@@ -42,7 +42,8 @@
         </activity>
         <activity android:name=".activities.subsciption.DetectAthleteSubscriptionActivity"></activity>
         <activity android:name=".activities.debt.DetectAthleteDebtActivity"></activity>
-        <activity android:name=".activities.TestActivity">
+        <activity android:name=".activities.TestActivity"/>
+        <activity android:name=".activities.athlete.AthleteActivity">
 
         </activity>
         <provider

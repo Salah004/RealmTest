@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.salah.realmtest.R;
 import com.salah.realmtest.models.Debt;
 
+import java.text.SimpleDateFormat;
+
 import io.realm.RealmResults;
 
 public class ListDebtsAdapter extends BaseAdapter {
@@ -61,7 +63,9 @@ public class ListDebtsAdapter extends BaseAdapter {
             iv_operation.setImageResource(R.drawable.ic_arrow_downward_black_24dp);
         }
         tv_amount.setText(Math.abs(debt.getAmount())+"");
-        tv_date.setText(debt.getDate()+"");
+        SimpleDateFormat dateFormatter = new SimpleDateFormat(
+                "dd/MM/yyyy");
+        tv_date.setText(dateFormatter.format(debt.getDate()));
 
         return view;
 

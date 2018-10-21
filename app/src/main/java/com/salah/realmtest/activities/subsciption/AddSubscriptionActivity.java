@@ -22,12 +22,14 @@ import com.philliphsu.bottomsheetpickers.time.BottomSheetTimePickerDialog;
 import com.salah.realmtest.R;
 import com.salah.realmtest.activities.MainActivity;
 import com.salah.realmtest.adapters.ListOffersAdapter;
+import com.salah.realmtest.adapters.SimpleListOffersAdapter;
 import com.salah.realmtest.models.Athlete;
 import com.salah.realmtest.models.Debt;
 import com.salah.realmtest.models.Offer;
 import com.salah.realmtest.models.Subscription;
 import com.salah.realmtest.services.RealmService;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -71,14 +73,15 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
 
         sp_offers = findViewById(R.id.sp_offer);
         final RealmResults<Offer> offers = realmService.getAllOffers();
-        ListOffersAdapter offersAdapter = new ListOffersAdapter(this,offers);
+        SimpleListOffersAdapter offersAdapter = new SimpleListOffersAdapter(this,offers);
         sp_offers.setAdapter(offersAdapter);
 
 
 
         tv_start_date = findViewById(R.id.tv_start_date);
-        Calendar calendar = Calendar.getInstance();
-        tv_start_date.setText(startDate.toString());
+        SimpleDateFormat dateFormatter = new SimpleDateFormat(
+                "dd/MM/yyyy");
+        tv_start_date.setText(dateFormatter.format(startDate));
 
 
 
@@ -235,7 +238,11 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
             if (subscription!=null){
                 view.setEnabled(false);
                 tv_debt.setTextColor(Color.BLUE);
-                tv_debt.setText(expirationDate(subscription).toString());
+
+
+                SimpleDateFormat dateFormatter = new SimpleDateFormat(
+                        "dd/MM/yyyy");
+                tv_debt.setText(dateFormatter.format(expirationDate(subscription)));
             }
 
         }catch (Exception e){

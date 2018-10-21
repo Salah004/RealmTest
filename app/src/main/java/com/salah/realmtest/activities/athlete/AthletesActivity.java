@@ -20,6 +20,7 @@ import com.salah.realmtest.adapters.ListAthletesAdapter;
 import com.salah.realmtest.models.Athlete;
 import com.salah.realmtest.services.RealmService;
 
+import es.dmoral.toasty.Toasty;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -43,15 +44,11 @@ public class AthletesActivity extends AppCompatActivity {
         lv_athletes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Athlete athlete = (Athlete) lv_athletes.getItemAtPosition(position);
-//                SubscriptionsActivity.athlete = athlete ;
-//                Intent intent = new Intent(AthletesActivity.this,SubscriptionsActivity.class);
-//                startActivity(intent);
-
-//                Athlete athlete = (Athlete) lv_athletes.getItemAtPosition(position);
-//                DebtsActivity.athlete = athlete ;
-//                Intent intent = new Intent(AthletesActivity.this,DebtsActivity.class);
-//                startActivity(intent);
+                Toasty.success(AthletesActivity.this,"ddd",Toast.LENGTH_LONG);
+                Athlete athlete = (Athlete) lv_athletes.getItemAtPosition(position);
+                AthleteActivity.athlete = athlete ;
+                Intent intent = new Intent(AthletesActivity.this,AthleteActivity.class);
+                startActivity(intent);
             }
         });
 
