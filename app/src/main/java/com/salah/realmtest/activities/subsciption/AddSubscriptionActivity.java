@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.philliphsu.bottomsheetpickers.BottomSheetPickerDialog;
 import com.philliphsu.bottomsheetpickers.date.DatePickerDialog;
 import com.philliphsu.bottomsheetpickers.time.BottomSheetTimePickerDialog;
+import com.salah.realmtest.Informations;
 import com.salah.realmtest.R;
 import com.salah.realmtest.activities.MainActivity;
 import com.salah.realmtest.adapters.ListOffersAdapter;
@@ -242,7 +243,7 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
 
                 SimpleDateFormat dateFormatter = new SimpleDateFormat(
                         "dd/MM/yyyy");
-                tv_debt.setText(dateFormatter.format(expirationDate(subscription)));
+                tv_debt.setText(dateFormatter.format(Informations.expirationDate(subscription)));
             }
 
         }catch (Exception e){
@@ -252,32 +253,6 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
 
     private Date datePriview(Offer offer, int duration) {
         return new Date();
-    }
-
-    private Date expirationDate(Subscription subscription){
-        Date startDate = subscription.getStartDate();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(startDate);
-        Date endDate ;
-        int duration = subscription.getDuration() * subscription.getOffer().getDuration() ;
-        int unit = subscription.getOffer().getDurationUnit();
-        switch (unit){
-            case 0 : //day
-                calendar.add(Calendar.DAY_OF_MONTH,duration);
-                break;
-            case 1 : //week
-                calendar.add(Calendar.WEEK_OF_MONTH,duration);
-                break;
-            case 2 : //month
-                calendar.add(Calendar.MONTH,duration);
-                break;
-            case 3 : //year
-                calendar.add(Calendar.YEAR,duration);
-                break;
-            default:break;
-        }
-        endDate = calendar.getTime();
-        return endDate;
     }
 
 }

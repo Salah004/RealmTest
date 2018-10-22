@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.salah.realmtest.Informations;
 import com.salah.realmtest.R;
 import com.salah.realmtest.models.Subscription;
 
@@ -59,7 +60,7 @@ public class ListSubscriptionsAdapter extends BaseAdapter {
                 "dd/MM/yyyy");
 
         tv_date_start.setText(dateFormatter.format(subscription.getStartDate()));
-        tv_date_end.setText(dateFormatter.format(expirationDate(subscription)));
+        tv_date_end.setText(dateFormatter.format(Informations.expirationDate(subscription)));
 
 
 
@@ -67,29 +68,5 @@ public class ListSubscriptionsAdapter extends BaseAdapter {
 
     }
 
-    private Date expirationDate(Subscription subscription){
-        Date startDate = subscription.getStartDate();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(startDate);
-        Date endDate ;
-        int duration = subscription.getDuration() * subscription.getOffer().getDuration() ;
-        int unit = subscription.getOffer().getDurationUnit();
-        switch (unit){
-            case 0 : //day
-                calendar.add(Calendar.DAY_OF_MONTH,duration);
-                break;
-            case 1 : //week
-                calendar.add(Calendar.WEEK_OF_MONTH,duration);
-                break;
-            case 2 : //month
-                calendar.add(Calendar.MONTH,duration);
-                break;
-            case 3 : //year
-                calendar.add(Calendar.YEAR,duration);
-                break;
-            default:break;
-        }
-        endDate = calendar.getTime();
-        return endDate;
-    }
+
 }
