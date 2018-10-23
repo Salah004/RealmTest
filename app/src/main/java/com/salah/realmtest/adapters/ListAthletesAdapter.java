@@ -11,10 +11,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.salah.realmtest.Informations;
 import com.salah.realmtest.R;
 import com.salah.realmtest.models.Athlete;
 
 import java.io.File;
+import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.realm.RealmResults;
@@ -52,6 +54,7 @@ public class ListAthletesAdapter extends BaseAdapter {
         View view = inflater.inflate(R.layout.item_list_athletes, null);
 
         TextView tv_name = view.findViewById(R.id.tv_name);
+        TextView tv_end_date = view.findViewById(R.id.tv_end_date);
         TextView tv_debt = view.findViewById(R.id.tv_debt);
         ImageView iv_safe = view.findViewById(R.id.iv_safe);
         ImageView iv = view.findViewById(R.id.iv);
@@ -79,6 +82,12 @@ public class ListAthletesAdapter extends BaseAdapter {
             }
         }catch (Exception e){
             Log.e("ImageERR",athlete.getPick()+"\n"+e.getMessage());
+        }
+        try{
+            Date endDate = athlete.getSubscriptions().maxDate("endDate");
+            tv_end_date.setText(Informations.dateToString(endDate));
+        }catch (Exception e){
+            tv_end_date.setVisibility(View.GONE);
         }
 
         iv.setTag(athlete);

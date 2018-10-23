@@ -56,11 +56,9 @@ public class ListSubscriptionsAdapter extends BaseAdapter {
         Subscription subscription = subscriptions.get(position);
         tv_offer.setText(subscription.getOffer().getTitle());
 
-        SimpleDateFormat dateFormatter = new SimpleDateFormat(
-                "dd/MM/yyyy");
 
-        tv_date_start.setText(dateFormatter.format(subscription.getStartDate()));
-        tv_date_end.setText(dateFormatter.format(Informations.expirationDate(subscription)));
+        tv_date_start.setText(Informations.dateToString(subscription.getStartDate()));
+        tv_date_end.setText(Informations.dateToString(subscription.getEndDate()));
 
 
 

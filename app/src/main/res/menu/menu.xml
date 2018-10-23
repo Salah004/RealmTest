@@ -6,5 +6,5 @@
 
     <item
         android:id="@+id/it_sub"
-        android:title="sub"/>
+        android:title="Subscriptions"/>
 </menu>

@@ -2,6 +2,7 @@ package com.salah.realmtest.services;
 
 import android.graphics.Bitmap;
 
+import com.salah.realmtest.Informations;
 import com.salah.realmtest.models.Debt;
 import com.salah.realmtest.models.Manager;
 import com.salah.realmtest.models.Session;
@@ -50,6 +51,7 @@ public class RealmService {
                 subscription.setStartDate(startDate);
                 subscription.setDuration(duration);
                 subscription.setAddedManager(manager);
+                subscription.setEndDate(Informations.expirationDate(subscription));
                 athlete.getSubscriptions().add(subscription);
                 offer.getSubscriptions().add(subscription);
                 manager.getSubscriptions().add(subscription);

@@ -2,10 +2,17 @@ package com.salah.realmtest;
 
 import com.salah.realmtest.models.Subscription;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class Informations {
+    private static SimpleDateFormat dateFormatter = new SimpleDateFormat(
+            "dd/MM/yyyy");
+    static public String dateToString(Date date) {
+        return dateFormatter.format(date);
+    }
+
     public static Date expirationDate(Subscription subscription){
         Date startDate = subscription.getStartDate();
         Calendar calendar = Calendar.getInstance();

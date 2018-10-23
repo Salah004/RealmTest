@@ -44,7 +44,6 @@ public class AthletesActivity extends AppCompatActivity {
         lv_athletes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toasty.success(AthletesActivity.this,"ddd",Toast.LENGTH_LONG);
                 Athlete athlete = (Athlete) lv_athletes.getItemAtPosition(position);
                 AthleteActivity.athlete = athlete ;
                 Intent intent = new Intent(AthletesActivity.this,AthleteActivity.class);
@@ -87,7 +86,6 @@ public class AthletesActivity extends AppCompatActivity {
 
     public void showMenu(View view){
         final Athlete mathlete = (Athlete) view.getTag();
-        Toast.makeText(this,mathlete.getId(),Toast.LENGTH_LONG).show();
         PopupMenu popup = new PopupMenu(AthletesActivity.this, view);
         //Inflating the Popup using xml file
         popup.getMenuInflater()
@@ -106,11 +104,6 @@ public class AthletesActivity extends AppCompatActivity {
                     Intent intent = new Intent(AthletesActivity.this,SubscriptionsActivity.class);
                     startActivity(intent);
                 }
-                Toast.makeText(
-                        AthletesActivity.this,
-                        "You Clicked : " + item.getTitle(),
-                        Toast.LENGTH_SHORT
-                ).show();
                 return true;
             }
         });

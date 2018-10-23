@@ -34,6 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import es.dmoral.toasty.Toasty;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -44,7 +45,7 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
     public static Athlete athlete;
     private EditText et_duration, et_paid, et_return;
     private Spinner sp_offers;
-    private TextView tv_to_paid, tv_to_return , tv_debt;
+    //private TextView tv_to_paid, tv_to_return , tv_debt;
     //private TextView tv_user_name , tv_athlete;
 
     double paid = 0 , _return = 0 , toPaid = 0 , toReturn = 0 , debt = 0 ;
@@ -63,9 +64,9 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
         et_duration = findViewById(R.id.et_duration);
         et_paid = findViewById(R.id.et_paid);
         et_return = findViewById(R.id.et_return);
-        tv_to_paid = findViewById(R.id.tv_to_paid);
-        tv_to_return = findViewById(R.id.tv_to_return);
-        tv_debt = findViewById(R.id.tv_debt);
+        //tv_to_paid = findViewById(R.id.tv_to_paid);
+        //tv_to_return = findViewById(R.id.tv_to_return);
+        //tv_debt = findViewById(R.id.tv_debt);
 
        // tv_user_name = findViewById(R.id.tv_user_name);
        //tv_athlete = findViewById(R.id.tv_athlete);
@@ -80,9 +81,8 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
 
 
         tv_start_date = findViewById(R.id.tv_start_date);
-        SimpleDateFormat dateFormatter = new SimpleDateFormat(
-                "dd/MM/yyyy");
-        tv_start_date.setText(dateFormatter.format(startDate));
+
+        tv_start_date.setText(Informations.dateToString(startDate));
 
 
 
@@ -163,9 +163,9 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
             toPaid = offer.getPrice() * duration;
             toReturn = paid - toPaid ;
             debt = _return - toReturn ;
-            tv_to_paid.setText("toPaid :"+toPaid+" DZD");
-            if(toReturn>0) tv_to_return.setText("toReturn : "+toReturn+" DZD") ; else tv_to_return.setText("toReturn : ");
-            tv_debt.setText("debt "+Math.abs(debt)+" DZD");
+            //tv_to_paid.setText("toPaid :"+toPaid+" DZD");
+            //if(toReturn>0) tv_to_return.setText("toReturn : "+toReturn+" DZD") ; else tv_to_return.setText("toReturn : ");
+            //tv_debt.setText("debt "+Math.abs(debt)+" DZD");
         }catch (Exception e){}
     }
 
@@ -210,7 +210,7 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
         cal.set(Calendar.MONTH, monthOfYear);
         cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         startDate = cal.getTime();
-        tv_start_date.setText(dayOfMonth+"/"+monthOfYear+"/"+year);
+        tv_start_date.setText(Informations.dateToString(startDate));
     }
 
     @Override
@@ -232,27 +232,26 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
         try {
             int duration = Integer.parseInt(et_duration.getText().toString()) ;
             Offer offer = (Offer) sp_offers.getSelectedItem();
-            Date preview = datePriview(offer,duration);
-            int size = athlete.getSubscriptions().where().greaterThan("startDate",preview).findAll().size();
+
+            int size =  athlete.getSubscriptions()
+                    .where()
+                    .lessThan("startDate",startDate)
+                    .greaterThan("endDate",startDate)
+                    .findAll()
+                    .size();
+
+            Toasty.error(this,size+"",Toast.LENGTH_LONG).show();
+
             //if(size==0)
             Subscription subscription = realmService.addSubscription(athlete,offer,startDate,duration,debt,MainActivity.manager);
             if (subscription!=null){
                 view.setEnabled(false);
-                tv_debt.setTextColor(Color.BLUE);
-
-
-                SimpleDateFormat dateFormatter = new SimpleDateFormat(
-                        "dd/MM/yyyy");
-                tv_debt.setText(dateFormatter.format(Informations.expirationDate(subscription)));
+               // tv_debt.setTextColor(Color.BLUE);
+               // tv_debt.setText(Informations.dateToString(subscription.getEndDate()));
             }
-
         }catch (Exception e){
-            Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
+            Toasty.error(this,e.getMessage(),Toast.LENGTH_LONG).show();
         }
-    }
-
-    private Date datePriview(Offer offer, int duration) {
-        return new Date();
     }
 
 }

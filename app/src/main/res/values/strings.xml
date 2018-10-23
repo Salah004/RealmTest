@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Realm Test</string>
+    <string name="app_name">Powerclub gym</string>
     <string-array name="units_array">
         <item>Day</item>
         <item>Week</item>

@@ -1,5 +1,6 @@
 package com.salah.realmtest.models;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import io.realm.RealmList;
@@ -13,6 +14,7 @@ public class Subscription extends RealmObject{
     private Athlete athlete;
     private Date creationDate = new Date();
     private Date startDate ;
+    private Date endDate;
     private int duration ;
     private Manager addedManager;
     private RealmList<Session> sessions;
@@ -71,5 +73,13 @@ public class Subscription extends RealmObject{
 
     public void setSessions(RealmList<Session> sessions) {
         this.sessions = sessions;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 }
