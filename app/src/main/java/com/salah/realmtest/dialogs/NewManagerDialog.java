@@ -1,6 +1,5 @@
-package com.salah.realmtest.activities.manager;
+package com.salah.realmtest.dialogs;
 
-import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +21,7 @@ import com.vansuita.pickimage.listeners.IPickResult;
 import es.dmoral.toasty.Toasty;
 import io.realm.Realm;
 
-public class NewManagerActivity extends AppCompatActivity implements IPickResult {
+public class NewManagerDialog extends AppCompatActivity implements IPickResult {
 
     public static boolean manager_owner;
     private EditText et_user_name, et_password, et_first_name, et_last_name, et_phone;
@@ -33,7 +32,7 @@ public class NewManagerActivity extends AppCompatActivity implements IPickResult
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_manager);
+        setContentView(R.layout.dialog_new_manager);
         realmService = new RealmService(Realm.getDefaultInstance());
 
         et_first_name = findViewById(R.id.et_first_name);

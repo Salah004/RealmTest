@@ -1,4 +1,4 @@
-package com.salah.realmtest.activities.offer;
+package com.salah.realmtest.dialogs;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,14 +12,12 @@ import android.widget.Toast;
 
 import com.salah.realmtest.R;
 import com.salah.realmtest.activities.MainActivity;
-import com.salah.realmtest.activities.manager.LoginActivity;
-import com.salah.realmtest.models.Manager;
 import com.salah.realmtest.models.Offer;
 import com.salah.realmtest.services.RealmService;
 
 import io.realm.Realm;
 
-public class AddOfferActivity extends AppCompatActivity {
+public class AddOfferDialog extends AppCompatActivity {
 
     private EditText et_title, et_description, et_duration, et_price, et_nb_session;
     private Spinner sp_unit;
@@ -29,7 +27,7 @@ public class AddOfferActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_offer);
+        setContentView(R.layout.dialog_add_offer);
         realmService = new RealmService(Realm.getDefaultInstance());
 
         et_title = findViewById(R.id.et_title);

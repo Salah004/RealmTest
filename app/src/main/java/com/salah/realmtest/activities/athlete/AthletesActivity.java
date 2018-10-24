@@ -10,17 +10,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
-import android.widget.Toast;
 
 import com.salah.realmtest.R;
-import com.salah.realmtest.activities.MainActivity;
 import com.salah.realmtest.activities.debt.DebtsActivity;
 import com.salah.realmtest.activities.subsciption.SubscriptionsActivity;
 import com.salah.realmtest.adapters.ListAthletesAdapter;
+import com.salah.realmtest.dialogs.AddAthleteActivity;
 import com.salah.realmtest.models.Athlete;
 import com.salah.realmtest.services.RealmService;
 
-import es.dmoral.toasty.Toasty;
 import io.realm.Realm;
 import io.realm.RealmResults;
 

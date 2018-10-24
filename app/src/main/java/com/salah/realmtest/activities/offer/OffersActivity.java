@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.salah.realmtest.R;
 import com.salah.realmtest.adapters.ListOffersAdapter;
+import com.salah.realmtest.dialogs.AddOfferDialog;
 import com.salah.realmtest.models.Offer;
 import com.salah.realmtest.services.RealmService;
 
@@ -56,7 +57,7 @@ public class OffersActivity extends AppCompatActivity {
     }
 
     public void goToAddOffer(View view) {
-        Intent intent = new Intent(OffersActivity.this,AddOfferActivity.class);
+        Intent intent = new Intent(OffersActivity.this,AddOfferDialog.class);
         startActivity(intent);
     }
 

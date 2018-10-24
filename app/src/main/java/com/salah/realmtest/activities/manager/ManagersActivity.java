@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.salah.realmtest.R;
 import com.salah.realmtest.adapters.ListManagersAdapter;
+import com.salah.realmtest.dialogs.NewManagerDialog;
 import com.salah.realmtest.models.Manager;
 import com.salah.realmtest.services.RealmService;
 
@@ -61,8 +62,8 @@ public class ManagersActivity extends AppCompatActivity {
     }
 
     public void goToAddManager(View view) {
-        NewManagerActivity.manager_owner = false;
-        Intent intent = new Intent(ManagersActivity.this,NewManagerActivity.class);
+        NewManagerDialog.manager_owner = false;
+        Intent intent = new Intent(ManagersActivity.this,NewManagerDialog.class);
         startActivity(intent);
     }
 

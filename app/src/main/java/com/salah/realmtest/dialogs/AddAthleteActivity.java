@@ -1,4 +1,4 @@
-package com.salah.realmtest.activities.athlete;
+package com.salah.realmtest.dialogs;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
