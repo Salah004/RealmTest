@@ -14,6 +14,7 @@ import com.salah.realmtest.activities.debt.DetectAthleteDebtActivity;
 import com.salah.realmtest.activities.manager.ManagersActivity;
 import com.salah.realmtest.activities.offer.OffersActivity;
 import com.salah.realmtest.activities.subsciption.DetectAthleteSubscriptionActivity;
+import com.salah.realmtest.activities.subsciption.ExpiredActivity;
 import com.salah.realmtest.activities.subsciption.SubscriptionsActivity;
 import com.salah.realmtest.models.Manager;
 import com.salah.realmtest.services.RealmService;
@@ -54,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToSubscription(View view) {
-        Intent intent = new Intent(this,DetectAthleteSubscriptionActivity.class);
+//        Intent intent = new Intent(this,DetectAthleteSubscriptionActivity.class);
+//        startActivity(intent);
+        Intent intent = new Intent(this,ExpiredActivity.class);
         startActivity(intent);
     }
 

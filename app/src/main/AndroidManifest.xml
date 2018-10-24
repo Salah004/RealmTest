@@ -4,7 +4,10 @@
     package="com.salah.realmtest">
 
     <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -24,15 +27,14 @@
         <activity android:name=".activities.manager.ManagersActivity" />
         <activity android:name=".activities.athlete.AddAthleteActivity" />
         <activity android:name=".activities.offer.AddOfferActivity" />
-        <activity android:name=".activities.subsciption.AddSubscriptionActivity">
-        </activity>
+        <activity android:name=".activities.subsciption.AddSubscriptionActivity"></activity>
         <activity android:name=".activities.manager.NewManagerActivity" />
         <activity android:name=".activities.debt.AddDebtActivity" />
         <activity android:name=".activities.technicalSheet.AddTechnicalSheetActivity" />
         <activity android:name=".activities.debt.DebtsActivity" />
         <activity android:name=".activities.technicalSheet.TechnicalSheetsActivity" />
         <activity android:name=".activities.session.SessionsActivity" />
-        <activity android:name=".activities.manager.LoginActivity"></activity>
+        <activity android:name=".activities.manager.LoginActivity" />
         <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,12 +42,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.subsciption.DetectAthleteSubscriptionActivity"></activity>
-        <activity android:name=".activities.debt.DetectAthleteDebtActivity"></activity>
-        <activity android:name=".activities.TestActivity"/>
-        <activity android:name=".activities.athlete.AthleteActivity">
+        <activity android:name=".activities.subsciption.DetectAthleteSubscriptionActivity" />
+        <activity android:name=".activities.debt.DetectAthleteDebtActivity" />
+        <activity android:name=".activities.TestActivity" />
+        <activity android:name=".activities.athlete.AthleteActivity"></activity>
 
-        </activity>
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.com.vansuita.pickimage.provider"
@@ -56,6 +57,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/picker_provider_paths" />
         </provider>
+
+        <activity android:name=".activities.subsciption.ExpiredActivity"></activity>
     </application>
 
 </manifest>

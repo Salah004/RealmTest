@@ -169,39 +169,7 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
         }catch (Exception e){}
     }
 
-    private DialogFragment createDialog() {
-        BottomSheetPickerDialog dialog = null;
-        Calendar now = Calendar.getInstance();
-        dialog = DatePickerDialog.newInstance(
-                this,
-                now.get(Calendar.YEAR),
-                now.get(Calendar.MONTH),
-                now.get(Calendar.DAY_OF_MONTH));
-        Boolean themeDark = true;
-        DatePickerDialog dateDialog = (DatePickerDialog) dialog;
-        dateDialog.setMinDate(now);
-        Calendar max = Calendar.getInstance();
-        max.add(Calendar.YEAR, 10);
-        dateDialog.setMaxDate(max);
-        dateDialog.setYearRange(1970, 2032);
-        /*
-        dateDialog.setHeaderTextColorSelected(0xFFFF4081);
-        dateDialog.setHeaderTextColorUnselected(0x4AFF4081);
-        dateDialog.setDayOfWeekHeaderTextColorSelected(0xFFFF4081);
-        dateDialog.setDayOfWeekHeaderTextColorUnselected(0x4AFF4081);
 
-
-        dialog.setAccentColor(0xFFFF4081);
-        dialog.setBackgroundColor(true? 0xFF90CAF9 : 0xFF2196F3);
-        dialog.setHeaderColor(true? 0xFF90CAF9 : 0xFF2196F3);
-        */
-        dialog.setHeaderTextDark(true);
-
-        dialog.setThemeDark(themeDark);
-
-
-        return dialog;
-    }
 
     @Override
     public void onDateSet(DatePickerDialog dialog, int year, int monthOfYear, int dayOfMonth) {
@@ -218,7 +186,7 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
     }
 
     public void changStartDate(View view) {
-        DialogFragment dialog = createDialog();
+        DialogFragment dialog = Informations.createDialog(this);
         dialog.show(getSupportFragmentManager(), "TAG");
     }
 
