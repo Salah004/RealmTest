@@ -25,9 +25,9 @@
         <activity android:name=".activities.subsciption.SubscriptionsActivity" />
         <activity android:name=".activities.offer.OfferSubscriptionsListActivity" />
         <activity android:name=".activities.manager.ManagersActivity" />
-        <activity android:name=".dialogs.AddAthleteDialog" />
+        <activity android:name=".activities.athlete.AddAthleteActivity" />
         <activity android:name=".activities.subsciption.AddSubscriptionActivity"></activity>
-        <activity android:name=".dialogs.NewManagerDialog" />
+        <activity android:name=".activities.manager.NewManagerActivity" />
         <activity android:name=".activities.technicalSheet.AddTechnicalSheetActivity" />
         <activity android:name=".activities.debt.DebtsActivity" />
         <activity android:name=".activities.technicalSheet.TechnicalSheetsActivity" />

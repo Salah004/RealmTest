@@ -12,14 +12,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.salah.realmtest.R;
-import com.salah.realmtest.activities.MainActivity;
 import com.salah.realmtest.activities.subsciption.SubscriptionsActivity;
 import com.salah.realmtest.adapters.ListAthletesAdapter;
-import com.salah.realmtest.dialogs.AddAthleteDialog;
 import com.salah.realmtest.models.Athlete;
 import com.salah.realmtest.services.RealmService;
 
@@ -82,28 +79,8 @@ public class AthletesActivity extends AppCompatActivity {
     }
 
     public void goToAddAthlete(View view) {
-        AddAthleteDialog dialog = new AddAthleteDialog(AthletesActivity.this) {
-            @Override
-            public void addAthlete(EditText et_first_name, EditText et_last_name, Spinner sp_gender, EditText et_phone, String pick) {
-                try {
-                    String firstName = et_first_name.getText().toString();
-                    String lastName = et_last_name.getText().toString();
-                    int gender = sp_gender.getSelectedItemPosition();
-                    String phone = et_phone.getText().toString();
-                    Athlete athlete= realmService.addAthlete(firstName,lastName,phone,gender, pick , MainActivity.manager);
-                    if (athlete!=null){
-                        setup();
-                        dismiss();
-                        Toasty.success(AthletesActivity.this,athlete.getFirstName(),Toast.LENGTH_LONG).show();
-                    }
-                    //QrCodeViewDialog dialog = new QrCodeViewDialog(this,athlete.getId()){};
-                    //dialog.show();
-                }catch (Exception e){
-                    Toasty.error(AthletesActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
-                }
-            }
-        };
-        dialog.show();
+        Intent intent = new Intent(AthletesActivity.this,AddAthleteActivity.class);
+        startActivity(intent);
     }
 
     public void searchByQrCode(View view) {

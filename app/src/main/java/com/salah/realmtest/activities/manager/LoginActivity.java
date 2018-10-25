@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import com.salah.realmtest.R;
 import com.salah.realmtest.activities.MainActivity;
-import com.salah.realmtest.dialogs.NewManagerDialog;
 import com.salah.realmtest.models.Manager;
 import com.salah.realmtest.services.RealmService;
 
@@ -53,8 +52,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void goToNewManager(View view) {
-        NewManagerDialog.manager_owner = true ;
-        Intent intent = new Intent(LoginActivity.this,NewManagerDialog.class);
+        NewManagerActivity.manager_owner = true ;
+        Intent intent = new Intent(LoginActivity.this,NewManagerActivity.class);
         startActivity(intent);
     }
 
