@@ -1,34 +1,34 @@
 package com.salah.realmtest.dialogs;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.salah.realmtest.R;
-import com.salah.realmtest.activities.MainActivity;
-import com.salah.realmtest.models.Offer;
-import com.salah.realmtest.services.RealmService;
 
-import io.realm.Realm;
-
-public class AddOfferDialog extends AppCompatActivity {
+public abstract class AddOfferDialog extends Dialog {
 
     private EditText et_title, et_description, et_duration, et_price, et_nb_session;
     private Spinner sp_unit;
     private CheckBox cb_open;
-    private RealmService realmService;
+    private Button btn_add;
+    private Context context;
+
+    public AddOfferDialog(Context context) {
+        super(context , android.R.style.DeviceDefault_Light_ButtonBar );
+        this.context = context ;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_add_offer);
-        realmService = new RealmService(Realm.getDefaultInstance());
 
         et_title = findViewById(R.id.et_title);
         et_description = findViewById(R.id.et_description);
@@ -38,7 +38,15 @@ public class AddOfferDialog extends AppCompatActivity {
         cb_open = findViewById(R.id.cb_open);
         et_nb_session.setEnabled(!cb_open.isChecked());
         sp_unit = findViewById(R.id.sp_unit);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        btn_add = findViewById(R.id.btn_add);
+        btn_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addOffer( et_title, et_description, et_duration, et_price, et_nb_session, sp_unit, cb_open);
+            }
+        });
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
                 R.array.units_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_unit.setAdapter(adapter);
@@ -50,34 +58,5 @@ public class AddOfferDialog extends AppCompatActivity {
         });
     }
 
-    public void addOffer(View view) {
-        String title = et_title.getText().toString();
-        String description = et_description.getText().toString();
-        int duration = Integer.parseInt(et_duration.getText().toString());
-        int unit = sp_unit.getSelectedItemPosition();
-        double price = Double.parseDouble(et_price.getText().toString());
-        Boolean open = cb_open.isChecked();
-        int numberSessions = 0;
-        if (!open){
-            try {
-                numberSessions = Integer.parseInt(et_nb_session.getText().toString());
-            }catch (Exception ex){
-
-            }
-        }
-        try{
-            Offer offer = realmService.addOffer(title,description,duration,unit,price,open,numberSessions, MainActivity.manager);
-            if (offer!=null){
-                view.setEnabled(false);
-            }
-        }catch (Exception e){
-            Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        realmService.closeRealm();
-    }
+    public abstract void addOffer( EditText et_title,EditText et_description,EditText et_duration,EditText et_price,EditText et_nb_session,Spinner sp_unit,CheckBox cb_open);
 }

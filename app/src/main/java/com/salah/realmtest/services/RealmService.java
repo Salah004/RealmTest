@@ -9,6 +9,7 @@ import com.salah.realmtest.models.Session;
 import com.salah.realmtest.models.Subscription;
 import com.salah.realmtest.models.Offer;
 import com.salah.realmtest.models.Athlete;
+import com.salah.realmtest.models.TechnicalSheet;
 
 import java.util.Date;
 import java.util.UUID;
@@ -203,5 +204,27 @@ public class RealmService {
 
     public Athlete getAllAthleteById(String text) {
         return mRealm.where(Athlete.class).equalTo("id",text).findFirst();
+    }
+
+    public boolean deleteAthlete(final Athlete mathlete) {
+        final boolean[] del = new boolean[1];
+        mRealm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                try {
+                    RealmResults<Debt> debts = mathlete.getDebts().where().findAll();
+                    RealmResults<Subscription> subscriptions = mathlete.getSubscriptions().where().findAll();
+                    RealmResults<TechnicalSheet> sheets = mathlete.getSheets().where().findAll();
+                    debts.deleteAllFromRealm();
+                    subscriptions.deleteAllFromRealm();
+                    sheets.deleteAllFromRealm();
+                    mathlete.deleteFromRealm();
+                    del[0] = true;
+                }catch (Exception e){
+                    del[0] = false;
+                }
+            }
+        });
+        return del[0];
     }
 }

@@ -45,7 +45,7 @@
             android:layout_margin="16dp"
             android:src="@drawable/ic_add_black_24dp"
             fab:backgroundTint="@color/colorPrimary"
-            android:onClick="goToAddOffer"/>
+            android:onClick="addOffer"/>
     </FrameLayout>
 
 </LinearLayout>

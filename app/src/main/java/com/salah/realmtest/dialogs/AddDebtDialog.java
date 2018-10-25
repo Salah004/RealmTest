@@ -2,20 +2,12 @@ package com.salah.realmtest.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.salah.realmtest.R;
-import com.salah.realmtest.activities.MainActivity;
-import com.salah.realmtest.models.Athlete;
-import com.salah.realmtest.models.Debt;
-import com.salah.realmtest.services.RealmService;
-
-import io.realm.Realm;
 
 public abstract class AddDebtDialog extends Dialog {
 
@@ -37,7 +29,7 @@ public abstract class AddDebtDialog extends Dialog {
 
         et_description = findViewById(R.id.et_description);
         et_amount = findViewById(R.id.et_amount);
-        btn_add = findViewById(R.id.btn);
+        btn_add = findViewById(R.id.btn_add);
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

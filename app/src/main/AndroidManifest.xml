@@ -25,8 +25,7 @@
         <activity android:name=".activities.subsciption.SubscriptionsActivity" />
         <activity android:name=".activities.offer.OfferSubscriptionsListActivity" />
         <activity android:name=".activities.manager.ManagersActivity" />
-        <activity android:name=".dialogs.AddAthleteActivity" />
-        <activity android:name=".dialogs.AddOfferDialog" />
+        <activity android:name=".dialogs.AddAthleteDialog" />
         <activity android:name=".activities.subsciption.AddSubscriptionActivity"></activity>
         <activity android:name=".dialogs.NewManagerDialog" />
         <activity android:name=".activities.technicalSheet.AddTechnicalSheetActivity" />
