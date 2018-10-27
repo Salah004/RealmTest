@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.salah.realmtest.R;
@@ -47,12 +48,16 @@ public class ListOffersAdapter extends BaseAdapter {
         TextView tv_name = view.findViewById(R.id.tv_name);
         TextView tv_duration = view.findViewById(R.id.tv_duration);
         TextView tv_price = view.findViewById(R.id.tv_price);
+        ImageView iv = view.findViewById(R.id.iv);
+
         String[] s = context.getResources().getStringArray(R.array.units_array);
         Offer offer = offers.get(position);
         tv_name.setText(offer.getTitle());
         tv_duration.setText(offer.getDuration()+" "+s[offer.getDurationUnit()]);
-        tv_price.setText(offer.getPrice()+"");
+        tv_price.setText(offer.getPrice()+" DZD");
 
+
+        iv.setTag(offer);
 
         return view;
 

@@ -8,7 +8,7 @@
     android:background="#FFFFFF"
     tools:context=".activities.manager.NewManagerActivity">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_manager"
         android:layout_width="90dp"
         android:layout_height="90dp"
@@ -22,7 +22,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/userphoto"
+        android:src="@drawable/userphoto"
         tools:layout_editor_absoluteX="160dp"
         tools:layout_editor_absoluteY="40dp"
         android:onClick="takePick"/>

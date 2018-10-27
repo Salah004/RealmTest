@@ -10,10 +10,8 @@ import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
@@ -28,7 +26,7 @@ public class DetectAthleteSessionActivity extends AppCompatActivity implements A
     private boolean TORCH_ON = false;
     static public boolean ALLOW_DETECT = true ;
     private QRCodeReaderView qrCodeReaderView;
-    private ImageView btn_torch , btn_menu ;
+    private ImageView btn_torch  ;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,7 +109,6 @@ public class DetectAthleteSessionActivity extends AppCompatActivity implements A
     private void initQRCodeReaderView() {
         qrCodeReaderView = findViewById(R.id.qrdecoderview);
         btn_torch = findViewById(R.id.btn_torch);
-        btn_menu = findViewById(R.id.btn_menu);
         qrCodeReaderView.setOnQRCodeReadListener(this);
         qrCodeReaderView.setQRDecodingEnabled(true);
         qrCodeReaderView.setAutofocusInterval(2000L);
@@ -130,17 +127,6 @@ public class DetectAthleteSessionActivity extends AppCompatActivity implements A
         TORCH_ON = !TORCH_ON;
     }
 
-    public void showMenu(View view) {
-        PopupMenu popup = new PopupMenu(this, btn_menu );
-        popup.getMenuInflater().inflate(R.menu.qr_menu, popup.getMenu());
-        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            public boolean onMenuItemClick(MenuItem item) {
-                //Toast.makeText(ReadQRCodeActivity.this,"You Clicked : " + item.getTitle(),Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        });
-        popup.show();
-    }
 
     public void onBack(View view) {
         onBackPressed();

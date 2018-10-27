@@ -1,36 +1,28 @@
 package com.salah.realmtest.activities.subsciption;
 
-import android.graphics.Color;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.format.DateUtils;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.philliphsu.bottomsheetpickers.BottomSheetPickerDialog;
 import com.philliphsu.bottomsheetpickers.date.DatePickerDialog;
 import com.philliphsu.bottomsheetpickers.time.BottomSheetTimePickerDialog;
 import com.salah.realmtest.Informations;
 import com.salah.realmtest.R;
 import com.salah.realmtest.activities.MainActivity;
-import com.salah.realmtest.adapters.ListOffersAdapter;
 import com.salah.realmtest.adapters.SimpleListOffersAdapter;
 import com.salah.realmtest.models.Athlete;
-import com.salah.realmtest.models.Debt;
 import com.salah.realmtest.models.Offer;
 import com.salah.realmtest.models.Subscription;
 import com.salah.realmtest.services.RealmService;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -213,7 +205,8 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
             //if(size==0)
             Subscription subscription = realmService.addSubscription(athlete,offer,startDate,duration,debt,MainActivity.manager);
             if (subscription!=null){
-                view.setEnabled(false);
+                Toasty.success(this,Informations.dateToString(subscription.getEndDate()),Toast.LENGTH_LONG).show();
+                onBackPressed();
                // tv_debt.setTextColor(Color.BLUE);
                // tv_debt.setText(Informations.dateToString(subscription.getEndDate()));
             }
@@ -222,4 +215,8 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

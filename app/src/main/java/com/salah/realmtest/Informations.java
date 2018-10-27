@@ -1,6 +1,7 @@
 package com.salah.realmtest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 
 import com.philliphsu.bottomsheetpickers.BottomSheetPickerDialog;
@@ -52,13 +53,18 @@ public class Informations {
                 now.get(Calendar.YEAR),
                 now.get(Calendar.MONTH),
                 now.get(Calendar.DAY_OF_MONTH));
+
         Boolean themeDark = true;
         DatePickerDialog dateDialog = (DatePickerDialog) dialog;
         dateDialog.setMinDate(now);
         Calendar max = Calendar.getInstance();
         max.add(Calendar.YEAR, 10);
+        Calendar min = Calendar.getInstance();
+        min.add(Calendar.YEAR,-10);
         dateDialog.setMaxDate(max);
+        dateDialog.setMinDate(min);
         dateDialog.setYearRange(1970, 2032);
+
         /*
         dateDialog.setHeaderTextColorSelected(0xFFFF4081);
         dateDialog.setHeaderTextColorUnselected(0x4AFF4081);
@@ -77,4 +83,5 @@ public class Informations {
 
         return dialog;
     }
+
 }

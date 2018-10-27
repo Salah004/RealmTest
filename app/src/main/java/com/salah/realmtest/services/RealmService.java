@@ -206,19 +206,55 @@ public class RealmService {
         return mRealm.where(Athlete.class).equalTo("id",text).findFirst();
     }
 
-    public boolean deleteAthlete(final Athlete mathlete) {
+    public boolean deleteAthlete(final Athlete mAthlete) {
         final boolean[] del = new boolean[1];
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
                 try {
-                    RealmResults<Debt> debts = mathlete.getDebts().where().findAll();
-                    RealmResults<Subscription> subscriptions = mathlete.getSubscriptions().where().findAll();
-                    RealmResults<TechnicalSheet> sheets = mathlete.getSheets().where().findAll();
+                    RealmResults<Debt> debts = mAthlete.getDebts().where().findAll();
+                    RealmResults<Subscription> subscriptions = mAthlete.getSubscriptions().where().findAll();
+                    RealmResults<TechnicalSheet> sheets = mAthlete.getSheets().where().findAll();
                     debts.deleteAllFromRealm();
                     subscriptions.deleteAllFromRealm();
                     sheets.deleteAllFromRealm();
-                    mathlete.deleteFromRealm();
+                    mAthlete.deleteFromRealm();
+                    del[0] = true;
+                }catch (Exception e){
+                    del[0] = false;
+                }
+            }
+        });
+        return del[0];
+    }
+
+    public boolean deleteOffer(final Offer mOffer) {
+        final boolean[] del = new boolean[1];
+        mRealm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                try {
+                    RealmResults<Subscription> subscriptions = mOffer.getSubscriptions().where().findAll();
+                    subscriptions.deleteAllFromRealm();
+                    mOffer.deleteFromRealm();
+                    del[0] = true;
+                }catch (Exception e){
+                    del[0] = false;
+                }
+            }
+        });
+        return del[0];
+    }
+
+    public boolean deleteSubscription(final Subscription subscription) {
+        final boolean[] del = new boolean[1];
+        mRealm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                try {
+                    RealmResults<Session> sessions = subscription.getSessions().where().findAll();
+                    sessions.deleteAllFromRealm();
+                    subscription.deleteFromRealm();
                     del[0] = true;
                 }catch (Exception e){
                     del[0] = false;

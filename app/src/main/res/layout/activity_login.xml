@@ -18,11 +18,13 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/et_user_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/userphoto" />
+        android:background="@drawable/cercle_background_primary"
+        android:src="@drawable/ic_fitness_center_black_24dp" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"

@@ -66,6 +66,8 @@ public class ListExpiredsAdapter extends BaseAdapter {
         ImageView iv_safe = view.findViewById(R.id.iv_safe);
         ImageView iv = view.findViewById(R.id.iv);
 
+        iv.setVisibility(View.GONE);
+
         CircleImageView iv_athlete = view.findViewById(R.id.iv_athlete);
 
         Subscription subscription = subscriptions.get(position);
@@ -99,7 +101,6 @@ public class ListExpiredsAdapter extends BaseAdapter {
             tv_end_date.setVisibility(View.GONE);
         }
 
-        iv.setTag(athlete);
 
         return view;
 

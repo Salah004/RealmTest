@@ -1,21 +1,15 @@
 package com.salah.realmtest.activities.athlete;
 import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.PointF;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
@@ -37,7 +31,7 @@ public class DetectAthleteActivity extends AppCompatActivity implements  OnQRCod
     private boolean TORCH_ON = false;
     static public boolean ALLOW_DETECT = true ;
     private QRCodeReaderView qrCodeReaderView;
-    private ImageView btn_torch , btn_menu ;
+    private ImageView btn_torch  ;
 
     private RealmService realmService;
 
@@ -107,7 +101,7 @@ public class DetectAthleteActivity extends AppCompatActivity implements  OnQRCod
             if (athlete!=null){
 
             }else {
-                Toast.makeText(this,"QrCode not valid",Toast.LENGTH_LONG).show();
+                Toasty.error(this,"QrCode not valid",Toast.LENGTH_LONG).show();
             }
 //
         }
@@ -117,7 +111,6 @@ public class DetectAthleteActivity extends AppCompatActivity implements  OnQRCod
     private void initQRCodeReaderView() {
         qrCodeReaderView = findViewById(R.id.qrdecoderview);
         btn_torch = findViewById(R.id.btn_torch);
-        btn_menu = findViewById(R.id.btn_menu);
         qrCodeReaderView.setOnQRCodeReadListener(this);
         qrCodeReaderView.setQRDecodingEnabled(true);
         qrCodeReaderView.setAutofocusInterval(2000L);
@@ -134,18 +127,6 @@ public class DetectAthleteActivity extends AppCompatActivity implements  OnQRCod
             btn_torch.setImageResource(R.drawable.ic_flash_off_24dp);
         }
         TORCH_ON = !TORCH_ON;
-    }
-
-    public void showMenu(View view) {
-        PopupMenu popup = new PopupMenu(this, btn_menu );
-        popup.getMenuInflater().inflate(R.menu.qr_menu, popup.getMenu());
-        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            public boolean onMenuItemClick(MenuItem item) {
-                //Toast.makeText(ReadQRCodeActivity.this,"You Clicked : " + item.getTitle(),Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        });
-        popup.show();
     }
 
     @Override

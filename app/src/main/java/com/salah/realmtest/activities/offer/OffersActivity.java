@@ -3,11 +3,14 @@ package com.salah.realmtest.activities.offer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -33,15 +36,20 @@ public class OffersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_offers);
         realmService = new RealmService(Realm.getDefaultInstance());
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         lv_offers = findViewById(R.id.lv_offers);
 
         lv_offers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Offer offer = (Offer) lv_offers.getItemAtPosition(position);
-                OfferSubscriptionsListActivity.offer = offer ;
-                Intent intent = new Intent(OffersActivity.this,OfferSubscriptionsListActivity.class);
-                startActivity(intent);
+                //OfferSubscriptionsListActivity.offer = offer ;
+                //Intent intent = new Intent(OffersActivity.this,OfferSubscriptionsListActivity.class);
+                //startActivity(intent);
             }
         });
         setup();
@@ -94,6 +102,33 @@ public class OffersActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         setup();
+    }
+
+    public void showActionMenu(View view){
+        final Offer mOffer = (Offer) view.getTag();
+        PopupMenu popup = new PopupMenu(this, view);
+        popup.getMenuInflater()
+                .inflate(R.menu.menu_action, popup.getMenu());
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.it_delete){
+                    boolean del = realmService.deleteOffer(mOffer);
+                    if (del){
+                        setup();
+                        Toasty.success(OffersActivity.this,"deleted",Toast.LENGTH_LONG).show();
+                    }else {
+                        setup();
+                        Toasty.error(OffersActivity.this,"failed",Toast.LENGTH_LONG).show();
+                    }
+                }
+                if (item.getItemId() == R.id.it_edit){
+
+                }
+                return true;
+            }
+        });
+
+        popup.show();
     }
 
 }

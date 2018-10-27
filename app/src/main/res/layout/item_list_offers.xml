@@ -55,10 +55,10 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="showActionMenu"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="5dp"
                 android:padding="5dp"
-                android:background="@drawable/reg_edittext_style"
                 android:src="@drawable/ic_more_vert_black_24dp"
                 android:id="@+id/iv"/>
 

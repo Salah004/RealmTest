@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".dialogs.AddAthleteDialog">
+    tools:context=".activities.athlete.AddAthleteActivity">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_athlete"
         android:layout_width="90dp"
         android:layout_height="90dp"
@@ -22,7 +22,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/userphoto"
+        android:src="@drawable/userphoto"
         android:onClick="takePick"/>
 
     <android.support.constraint.Guideline

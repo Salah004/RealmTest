@@ -1,36 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/graylight"
+    tools:context=".activities.athlete.AthleteActivity"
     android:orientation="vertical">
-    <LinearLayout
-        android:background="@drawable/gradientbackground"
+    <include layout="@layout/toolbar"/>
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:background="@color/black_overlay"
+        android:layout_weight="1">
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_athlete"
-            android:layout_marginTop="45dp"
-            android:layout_gravity="center_horizontal"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/userphoto"/>
-        <TextView
-            android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/userphoto"
+            app:layout_constraintBottom_toTopOf="@+id/tv_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="Wiliam Snoe"
-            android:id="@+id/tv_name"
             android:textColor="#fff"
+            android:textSize="21sp"
             android:textStyle="bold"
-            android:textSize="21sp"/>
-    </LinearLayout>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.75" />
+    </android.support.constraint.ConstraintLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -42,7 +69,8 @@
             android:orientation="horizontal"
             android:paddingLeft="25dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:onClick="goToDetbs">
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
@@ -62,7 +90,8 @@
             android:orientation="horizontal"
             android:paddingLeft="25dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:onClick="goToSubscription">
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
@@ -82,7 +111,8 @@
             android:orientation="horizontal"
             android:paddingLeft="25dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:onClick="call">
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"

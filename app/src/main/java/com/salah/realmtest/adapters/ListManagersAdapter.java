@@ -54,6 +54,7 @@ public class ListManagersAdapter extends BaseAdapter {
 
         TextView tv_name = view.findViewById(R.id.tv_name);
         CircleImageView iv_manager = view.findViewById(R.id.iv_manager);
+        ImageView iv = view.findViewById(R.id.iv);
 
         Manager manager = managers.get(position);
         tv_name.setText(manager.getFirstName()+" "+manager.getLastName());
@@ -68,6 +69,8 @@ public class ListManagersAdapter extends BaseAdapter {
             Log.e("ImageERR",manager.getPick()+"\n"+e.getMessage());
         }
 
+
+        iv.setTag(manager);
 
         return view;
 

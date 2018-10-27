@@ -18,6 +18,7 @@ import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.dialog.PickImageDialog;
 import com.vansuita.pickimage.listeners.IPickResult;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import es.dmoral.toasty.Toasty;
 import io.realm.Realm;
 
@@ -27,7 +28,7 @@ public class NewManagerActivity extends AppCompatActivity implements IPickResult
     private EditText et_user_name, et_password, et_first_name, et_last_name, et_phone;
     private Spinner sp_gender, sp_role;
     private RealmService realmService;
-    private ImageView iv_manager;
+    private CircleImageView iv_manager;
     private String pick = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

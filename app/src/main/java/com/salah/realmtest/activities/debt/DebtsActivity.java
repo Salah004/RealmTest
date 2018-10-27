@@ -2,6 +2,7 @@ package com.salah.realmtest.activities.debt;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -33,6 +34,11 @@ public class DebtsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_debts);
         realmService = new RealmService(Realm.getDefaultInstance());
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         lv_debts = findViewById(R.id.lv_debts);
         lv_debts.setOnItemClickListener(new AdapterView.OnItemClickListener() {

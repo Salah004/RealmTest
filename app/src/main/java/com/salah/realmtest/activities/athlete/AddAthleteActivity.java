@@ -3,6 +3,7 @@ package com.salah.realmtest.activities.athlete;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,6 +22,7 @@ import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.dialog.PickImageDialog;
 import com.vansuita.pickimage.listeners.IPickResult;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import es.dmoral.toasty.Toasty;
 import io.realm.Realm;
 
@@ -29,7 +31,7 @@ public class AddAthleteActivity extends AppCompatActivity  implements IPickResul
     private EditText et_first_name, et_last_name, et_phone;
     private Spinner sp_gender;
     private Button btn_save ;
-    private ImageView iv_athlete;
+    private CircleImageView iv_athlete;
     private String pick = null;
     private RealmService realmService;
 

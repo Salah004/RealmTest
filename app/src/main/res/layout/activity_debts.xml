@@ -7,6 +7,7 @@
     android:background="#ffffff"
     tools:context=".activities.debt.DebtsActivity">
     <include layout="@layout/toolbar"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,6 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
+                android:textColor="@color/primary_text"
                 android:text="Amount"/>
         </LinearLayout>
         <View
@@ -48,6 +50,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/primary_text"
                 android:textSize="16dp"
                 android:text="Date"/>
         </LinearLayout>
@@ -76,10 +79,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16dp"
+            android:textColor="@color/primary_text"
             android:text="Sum : "/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/primary_text"
             android:text="0.0 DZD"
             android:textSize="16dp"
             android:id="@+id/tv_total"/>

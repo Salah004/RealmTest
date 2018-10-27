@@ -52,4 +52,6 @@ dependencies {
     implementation 'com.philliphsu:bottomsheetpickers:2.4.1'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
 
+    implementation 'com.github.clans:fab:1.6.4'
+
 }
