@@ -35,6 +35,9 @@ public class AddAthleteActivity extends AppCompatActivity  implements IPickResul
     private String pick = null;
     private RealmService realmService;
 
+    static public boolean update = false ;
+    static public Athlete athlete;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,8 +63,14 @@ public class AddAthleteActivity extends AppCompatActivity  implements IPickResul
             String lastName = et_last_name.getText().toString();
             int gender = sp_gender.getSelectedItemPosition();
             String phone = et_phone.getText().toString();
-            Athlete athlete= realmService.addAthlete(firstName,lastName,phone,gender, pick, MainActivity.manager);
-            Toasty.success(this,athlete.getFirstName(),Toast.LENGTH_LONG).show();
+            Athlete mAthlete = null ;
+            if (update){
+                mAthlete = realmService.updateAthlete(firstName,lastName,phone,gender, pick ,athlete);
+            }else {
+                mAthlete = realmService.addAthlete(firstName,lastName,phone,gender, pick, MainActivity.manager);
+            }
+
+            Toasty.success(this,mAthlete.getFirstName(),Toast.LENGTH_LONG).show();
             onBackPressed();
             //btn_save.setEnabled(false);
             //QrCodeViewDialog dialog = new QrCodeViewDialog(this,athlete.getId()){};

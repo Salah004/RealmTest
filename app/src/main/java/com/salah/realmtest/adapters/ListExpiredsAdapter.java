@@ -29,7 +29,7 @@ import io.realm.RealmResults;
 public class ListExpiredsAdapter extends BaseAdapter {
 
     private Context context;
-    private RealmResults<Subscription> subscriptions;
+    private RealmResults<Subscription> subscriptions;//get last expired
     private RealmResults<Subscription> originalSubscriptions;
 
     public ListExpiredsAdapter(Context context, RealmResults<Subscription> subscriptions) {

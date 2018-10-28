@@ -88,7 +88,7 @@ public class SubscriptionsActivity extends AppCompatActivity {
     private void setup() {
 
         RealmResults<Subscription> subscriptions = athlete.getSubscriptions().where().sort("endDate", Sort.DESCENDING).findAll();
-        if (subscriptions.isEmpty()) return;
+        //if (subscriptions.isEmpty()) return;
         ListSubscriptionsAdapter adapter = new ListSubscriptionsAdapter(this,subscriptions);
         lv_subscriptions.setAdapter(adapter);
 

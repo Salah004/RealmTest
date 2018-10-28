@@ -3,6 +3,7 @@ package com.salah.realmtest.activities.athlete;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -73,7 +74,7 @@ public class AthleteActivity extends AppCompatActivity {
                 iv_athlete.setImageBitmap(myBitmap);
             }
         }catch (Exception e){
-            Log.e("ImageERR",athlete.getPick()+"\n"+e.getMessage());
+
         }
 
 
@@ -104,5 +105,8 @@ public class AthleteActivity extends AppCompatActivity {
     }
 
     public void call(View view) {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:"+athlete.getPhone()));
+        startActivity(intent);
     }
 }

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,6 +50,24 @@ public class AthletesActivity extends AppCompatActivity {
         lv_athletes = findViewById(R.id.lv_athletes);
         et_search = findViewById(R.id.et_search);
 
+        et_search.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                adapter.filter(s.toString());
+
+            }
+        });
+
         lv_athletes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -78,6 +98,7 @@ public class AthletesActivity extends AppCompatActivity {
     }
 
     public void goToAddAthlete(View view) {
+        AddAthleteActivity.update = false ;
         Intent intent = new Intent(AthletesActivity.this,AddAthleteActivity.class);
         startActivity(intent);
     }
@@ -118,7 +139,10 @@ public class AthletesActivity extends AppCompatActivity {
                     }
                 }
                 if (item.getItemId() == R.id.it_edit){
-
+                    AddAthleteActivity.update = true ;
+                    AddAthleteActivity.athlete = mAthlete ;
+                    Intent intent = new Intent(AthletesActivity.this,AddAthleteActivity.class);
+                    startActivity(intent);
                 }
                 return true;
             }

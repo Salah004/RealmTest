@@ -19,16 +19,19 @@ import java.io.File;
 import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.realm.Case;
 import io.realm.RealmResults;
 
 public class ListAthletesAdapter extends BaseAdapter {
 
     private Context context;
     private RealmResults<Athlete> athletes;
+    private RealmResults<Athlete> originalAthletes;
 
     public ListAthletesAdapter(Context context, RealmResults<Athlete> athletes) {
         this.context = context;
         this.athletes = athletes;
+        this.originalAthletes = athletes;
     }
 
     @Override
@@ -94,5 +97,19 @@ public class ListAthletesAdapter extends BaseAdapter {
 
         return view;
 
+    }
+
+    public void filter(String f){
+        if (f.length()>0){
+            athletes = originalAthletes
+                    .where()
+                    .contains("firstName",f, Case.INSENSITIVE)
+                    .or()
+                    .contains("lastName",f, Case.INSENSITIVE)
+                    .findAll();
+        }else {
+            athletes = originalAthletes;
+        }
+        notifyDataSetChanged();
     }
 }

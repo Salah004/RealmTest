@@ -263,4 +263,18 @@ public class RealmService {
         });
         return del[0];
     }
+
+    public Athlete updateAthlete(final String firstName, final String lastName, final String phone, final int gender, final String pick, final Athlete athlete) {
+        mRealm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                athlete.setFirstName(firstName);
+                athlete.setLastName(lastName);
+                athlete.setPhone(phone);
+                athlete.setGender(gender);
+                athlete.setPick(pick);
+            }
+        });
+        return athlete;
+    }
 }
