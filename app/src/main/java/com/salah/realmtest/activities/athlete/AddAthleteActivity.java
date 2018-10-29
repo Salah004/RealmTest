@@ -1,6 +1,7 @@
 package com.salah.realmtest.activities.athlete;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,6 +22,8 @@ import com.vansuita.pickimage.bean.PickResult;
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.dialog.PickImageDialog;
 import com.vansuita.pickimage.listeners.IPickResult;
+
+import java.io.File;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import es.dmoral.toasty.Toasty;
@@ -51,6 +54,23 @@ public class AddAthleteActivity extends AppCompatActivity  implements IPickResul
         btn_save = findViewById(R.id.btn_save);
         iv_athlete = findViewById(R.id.iv_athlete);
 
+        if (update){
+            et_first_name.setText(athlete.getFirstName());
+            et_last_name.setText(athlete.getLastName());
+            et_phone.setText(athlete.getPhone());
+            //sp_gender = findViewById(R.id.sp_gender);
+            //btn_save = findViewById(R.id.btn_save);
+            try {
+                File imgFile = new File(athlete.getPick());
+                if(imgFile.exists()){
+                    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                    iv_athlete.setImageBitmap(myBitmap);
+                }
+            }catch (Exception e){
+
+            }
+        }
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.genders_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -73,8 +93,7 @@ public class AddAthleteActivity extends AppCompatActivity  implements IPickResul
             Toasty.success(this,mAthlete.getFirstName(),Toast.LENGTH_LONG).show();
             onBackPressed();
             //btn_save.setEnabled(false);
-            //QrCodeViewDialog dialog = new QrCodeViewDialog(this,athlete.getId()){};
-            //dialog.show();
+            //
         }catch (Exception e){
             Toasty.error(this,e.getMessage(),Toast.LENGTH_LONG).show();
         }

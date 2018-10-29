@@ -96,7 +96,7 @@ public class DetectAthleteActivity extends AppCompatActivity implements  OnQRCod
                 btn_torch.setImageResource(R.drawable.ic_flash_on_24dp);
             }
             TORCH_ON = !TORCH_ON;
-            Athlete athlete = realmService.getAllAthleteById(text);
+            Athlete athlete = realmService.getAthleteById(text);
             // Toast.makeText(this,text,Toast.LENGTH_LONG).show();
             if (athlete!=null){
 

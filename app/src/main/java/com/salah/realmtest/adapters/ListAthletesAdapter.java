@@ -21,6 +21,7 @@ import java.util.Date;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.realm.Case;
 import io.realm.RealmResults;
+import io.realm.Sort;
 
 public class ListAthletesAdapter extends BaseAdapter {
 
@@ -30,7 +31,7 @@ public class ListAthletesAdapter extends BaseAdapter {
 
     public ListAthletesAdapter(Context context, RealmResults<Athlete> athletes) {
         this.context = context;
-        this.athletes = athletes;
+        this.athletes = emptyList(athletes);
         this.originalAthletes = athletes;
     }
 
@@ -80,7 +81,7 @@ public class ListAthletesAdapter extends BaseAdapter {
         try {
             File imgFile = new File(athlete.getPick());
             if(imgFile.exists()){
-                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                Bitmap myBitmap = scaleBitmap(BitmapFactory.decodeFile(imgFile.getAbsolutePath()),96,96);
                 iv_athlete.setImageBitmap(myBitmap);
             }
         }catch (Exception e){
@@ -106,10 +107,43 @@ public class ListAthletesAdapter extends BaseAdapter {
                     .contains("firstName",f, Case.INSENSITIVE)
                     .or()
                     .contains("lastName",f, Case.INSENSITIVE)
+                    .sort("creationDate", Sort.ASCENDING)
                     .findAll();
         }else {
-            athletes = originalAthletes;
+            athletes = emptyList(originalAthletes);
         }
         notifyDataSetChanged();
+    }
+
+    RealmResults<Athlete> emptyList(RealmResults<Athlete> list){
+        return list.where().greaterThan("creationDate",new Date()).findAll();
+    }
+
+    private Bitmap scaleBitmap(Bitmap bm , int maxWidth , int maxHeight) {
+        int width = bm.getWidth();
+        int height = bm.getHeight();
+
+        Log.v("Pictures", "Width and height are " + width + "--" + height);
+
+        if (width > height) {
+            // landscape
+            float ratio = (float) width / maxWidth;
+            width = maxWidth;
+            height = (int)(height / ratio);
+        } else if (height > width) {
+            // portrait
+            float ratio = (float) height / maxHeight;
+            height = maxHeight;
+            width = (int)(width / ratio);
+        } else {
+            // square
+            height = maxHeight;
+            width = maxWidth;
+        }
+
+        Log.v("Pictures", "after scaling Width and height are " + width + "--" + height);
+
+        bm = Bitmap.createScaledBitmap(bm, width, height, true);
+        return bm;
     }
 }

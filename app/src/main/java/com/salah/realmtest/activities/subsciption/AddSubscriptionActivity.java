@@ -200,15 +200,16 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
                     .findAll()
                     .size();
 
-            Toasty.error(this,size+"",Toast.LENGTH_LONG).show();
-
-            //if(size==0)
-            Subscription subscription = realmService.addSubscription(athlete,offer,startDate,duration,debt,MainActivity.manager);
-            if (subscription!=null){
-                Toasty.success(this,Informations.dateToString(subscription.getEndDate()),Toast.LENGTH_LONG).show();
-                onBackPressed();
-               // tv_debt.setTextColor(Color.BLUE);
-               // tv_debt.setText(Informations.dateToString(subscription.getEndDate()));
+            if(size==0){
+                Subscription subscription = realmService.addSubscription(athlete,offer,startDate,duration,debt,MainActivity.manager);
+                if (subscription!=null){
+                    Toasty.success(this,Informations.dateToString(subscription.getEndDate()),Toast.LENGTH_LONG).show();
+                    onBackPressed();
+                    // tv_debt.setTextColor(Color.BLUE);
+                    // tv_debt.setText(Informations.dateToString(subscription.getEndDate()));
+                }
+            }else {
+                Toasty.error(this,"he has a subscription  not finished yet",Toast.LENGTH_LONG).show();
             }
         }catch (Exception e){
             Toasty.error(this,e.getMessage(),Toast.LENGTH_LONG).show();

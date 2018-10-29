@@ -15,6 +15,7 @@ import com.salah.realmtest.Informations;
 import com.salah.realmtest.R;
 import com.salah.realmtest.activities.debt.DebtsActivity;
 import com.salah.realmtest.activities.subsciption.SubscriptionsActivity;
+import com.salah.realmtest.dialogs.QrCodeViewDialog;
 import com.salah.realmtest.models.Athlete;
 import com.salah.realmtest.models.Debt;
 import com.salah.realmtest.services.RealmService;
@@ -108,5 +109,10 @@ public class AthleteActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:"+athlete.getPhone()));
         startActivity(intent);
+    }
+
+    public void showCard(View view) {
+        QrCodeViewDialog dialog = new QrCodeViewDialog(this,athlete.getId()){};
+        dialog.show();
     }
 }

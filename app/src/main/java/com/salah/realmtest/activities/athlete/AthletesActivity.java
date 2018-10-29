@@ -107,6 +107,11 @@ public class AthletesActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         setup();
+        try {
+            adapter.filter(et_search.getText().toString());
+        }catch (Exception e){
+
+        }
     }
 
     public void showActionMenu(View view){

@@ -16,6 +16,7 @@ import java.util.UUID;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
+import io.realm.Sort;
 
 public class RealmService {
 
@@ -30,15 +31,25 @@ public class RealmService {
     }
 
     public RealmResults<Athlete> getAllAthletes(){
-        return mRealm.where(Athlete.class).findAll();
+
+        return mRealm
+                .where(Athlete.class)
+                .sort("creationDate", Sort.ASCENDING)
+                .findAll();
     }
 
     public RealmResults<Offer> getAllOffers(){
-        return mRealm.where(Offer.class).findAll();
+        return mRealm
+                .where(Offer.class)
+                .sort("creationDate",Sort.ASCENDING)
+                .findAll();
     }
 
     public RealmResults<Subscription> getAllSubscriptions(){
-        return mRealm.where(Subscription.class).findAll();
+        return mRealm
+                .where(Subscription.class)
+                .sort("creationDate",Sort.ASCENDING)
+                .findAll();
     }
 
     public Subscription addSubscription(final Athlete athlete, final Offer offer, final Date startDate, final int duration, final double amountDebt, final Manager manager) {
@@ -202,7 +213,7 @@ public class RealmService {
         });
     }
 
-    public Athlete getAllAthleteById(String text) {
+    public Athlete getAthleteById(String text) {
         return mRealm.where(Athlete.class).equalTo("id",text).findFirst();
     }
 
