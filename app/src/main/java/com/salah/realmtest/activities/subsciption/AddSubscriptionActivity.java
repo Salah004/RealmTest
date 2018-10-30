@@ -37,8 +37,6 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
     public static Athlete athlete;
     private EditText et_duration, et_paid, et_return;
     private Spinner sp_offers;
-    //private TextView tv_to_paid, tv_to_return , tv_debt;
-    //private TextView tv_user_name , tv_athlete;
 
     double paid = 0 , _return = 0 , toPaid = 0 , toReturn = 0 , debt = 0 ;
     int duration = 0 ;
@@ -192,11 +190,23 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
         try {
             int duration = Integer.parseInt(et_duration.getText().toString()) ;
             Offer offer = (Offer) sp_offers.getSelectedItem();
-
+            Date endDatePriview = expirationDate(startDate,duration,offer);
             int size =  athlete.getSubscriptions()
                     .where()
-                    .lessThan("startDate",startDate)
-                    .greaterThan("endDate",startDate)
+                    .beginGroup()
+                        .lessThan("startDate",startDate)
+                        .greaterThan("endDate",startDate)
+                    .endGroup()
+                    .or()
+                    .beginGroup()
+                        .lessThan("startDate",endDatePriview)
+                        .greaterThan("endDate",endDatePriview)
+                    .endGroup()
+                    .or()
+                    .beginGroup()
+                        .greaterThan("startDate",startDate)
+                        .lessThan("endDate",endDatePriview)
+                    .endGroup()
                     .findAll()
                     .size();
 
@@ -205,15 +215,38 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
                 if (subscription!=null){
                     Toasty.success(this,Informations.dateToString(subscription.getEndDate()),Toast.LENGTH_LONG).show();
                     onBackPressed();
-                    // tv_debt.setTextColor(Color.BLUE);
-                    // tv_debt.setText(Informations.dateToString(subscription.getEndDate()));
                 }
             }else {
-                Toasty.error(this,"he has a subscription  not finished yet",Toast.LENGTH_LONG).show();
+                Toasty.error(this,"he has a subscription not finished yet",Toast.LENGTH_LONG).show();
             }
         }catch (Exception e){
             Toasty.error(this,e.getMessage(),Toast.LENGTH_LONG).show();
         }
+    }
+
+    private Date expirationDate(Date startDate , int subDuration , Offer offre){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(startDate);
+        Date endDate ;
+        int duration = subDuration * offre.getDuration() ;
+        int unit = offre.getDurationUnit();
+        switch (unit){
+            case 0 : //day
+                calendar.add(Calendar.DAY_OF_MONTH,duration);
+                break;
+            case 1 : //week
+                calendar.add(Calendar.WEEK_OF_MONTH,duration);
+                break;
+            case 2 : //month
+                calendar.add(Calendar.MONTH,duration);
+                break;
+            case 3 : //year
+                calendar.add(Calendar.YEAR,duration);
+                break;
+            default:break;
+        }
+        endDate = calendar.getTime();
+        return endDate;
     }
 
     @Override

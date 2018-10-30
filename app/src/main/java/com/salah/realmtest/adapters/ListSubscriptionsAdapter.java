@@ -1,10 +1,13 @@
 package com.salah.realmtest.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.salah.realmtest.Informations;
@@ -52,13 +55,26 @@ public class ListSubscriptionsAdapter extends BaseAdapter {
         TextView tv_offer = view.findViewById(R.id.tv_offer);
         TextView tv_date_start = view.findViewById(R.id.tv_date_start);
         TextView tv_date_end = view.findViewById(R.id.tv_date_end);
+        ImageView iv_current = view.findViewById(R.id.iv_current);
+        LinearLayout ll_item = view.findViewById(R.id.ll_item);
 
         Subscription subscription = subscriptions.get(position);
+
+        Date now = new Date();
+        Date startDate = subscription.getStartDate();
+        Date endDate = subscription.getEndDate();
+
+        if ( now.after(startDate) && now.before(endDate) ) {
+            iv_current.setVisibility(View.VISIBLE);
+            ll_item.setBackgroundResource(R.color.primary_light);
+            tv_offer.setTextColor(Color.WHITE);
+            tv_date_start.setTextColor(Color.WHITE);
+            tv_date_end.setTextColor(Color.WHITE);
+        }
+
         tv_offer.setText(subscription.getOffer().getTitle());
-
-
-        tv_date_start.setText(Informations.dateToString(subscription.getStartDate()));
-        tv_date_end.setText(Informations.dateToString(subscription.getEndDate()));
+        tv_date_start.setText(Informations.dateToString(startDate));
+        tv_date_end.setText(Informations.dateToString(endDate));
 
 
 
