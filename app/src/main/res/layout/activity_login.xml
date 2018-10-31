@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/colorWhite"
     tools:context=".activities.manager.LoginActivity">
 
     <ImageView
@@ -44,9 +44,9 @@
         android:layout_marginStart="8dp"
         android:background="@drawable/reg_edittext_style"
         android:ems="10"
-        android:hint="user name"
+        android:hint="@string/user_name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@id/et_password"
+        app:layout_constraintBottom_toTopOf="@+id/et_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -61,56 +61,46 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/reg_edittext_style"
         android:ems="10"
-        android:hint="password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/gl" />
 
-    <LinearLayout
-        android:id="@+id/ll"
+    <Button
+        android:id="@+id/btn_save"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/reg_btn_style"
+        android:onClick="onLogin"
         android:orientation="vertical"
+        android:text="@string/login"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
+    <TextView
+        android:id="@+id/tv_creat_owner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:text="@string/new_manager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_password">
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/reg_btn_style"
-            android:text="login"
-            android:textColor="#FFFFFF"
-            android:onClick="onLogin"
-            android:id="@+id/btn_save"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="8dp"/>
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/reg_btn_style"
-            android:text="new manager"
-            android:id="@+id/btn_creat_owner"
-            android:onClick="goToNewManager"
-            android:textColor="#FFFFFF" />
-    </LinearLayout>
-    <ProgressBar
-        android:id="@+id/pb_save"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/ll"
-        app:layout_constraintEnd_toEndOf="@id/ll"
-        app:layout_constraintStart_toStartOf="@id/ll"
-        app:layout_constraintTop_toTopOf="@id/ll"
-        android:visibility="gone"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/btn_save"
+        android:textColor="@color/colorPrimary"
+        android:onClick="goToNewManager"/>
 
 </android.support.constraint.ConstraintLayout>

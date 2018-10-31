@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
                 android:textColor="@color/primary_text"
-                android:text="Amount"/>
+                android:text="@string/amount"/>
         </LinearLayout>
         <View
             android:layout_margin="5dp"
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/primary_text"
                 android:textSize="16dp"
-                android:text="Date"/>
+                android:text="@string/date"/>
         </LinearLayout>
     </LinearLayout>
     <View
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:textSize="16dp"
             android:textColor="@color/primary_text"
-            android:text="Sum : "/>
+            android:text="@string/sum"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,13 +97,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="new debt"
+            android:text="@string/new_debt"
             android:onClick="goToAddDebt"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="pay debt"
+            android:text="@string/pay_debt"
             android:onClick="goToPayDebt"/>
     </LinearLayout>
 </LinearLayout>

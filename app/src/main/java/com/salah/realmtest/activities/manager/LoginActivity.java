@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.salah.realmtest.R;
@@ -19,16 +21,18 @@ public class LoginActivity extends AppCompatActivity {
 
     //public static Manager manager;
     private EditText et_username, et_password;
-    private Button btn_creat_owner;
+    private TextView tv_creat_owner;
     private RealmService realmService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         realmService = new RealmService(Realm.getDefaultInstance());
         et_username=findViewById(R.id.et_user_name);
         et_password=findViewById(R.id.et_password);
-        btn_creat_owner=findViewById(R.id.btn_creat_owner);
+        tv_creat_owner =findViewById(R.id.tv_creat_owner);
 
         checkExistOwner();
     }
@@ -71,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void checkExistOwner(){
         if (!realmService.getAllManagers().isEmpty()){
-            btn_creat_owner.setVisibility(View.GONE);
+            tv_creat_owner.setVisibility(View.GONE);
         }
     }
 

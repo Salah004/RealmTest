@@ -42,17 +42,19 @@ public class SimpleListOffersAdapter extends BaseAdapter{
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View view = inflater.inflate(R.layout.list_item, null);
+        View view = inflater.inflate(R.layout.item_list_offers_simple, null);
 
-        TextView tv = view.findViewById(R.id.tv);
+        TextView tv_title = view.findViewById(R.id.tv_title);
+        TextView tv_price = view.findViewById(R.id.tv_price);
+        TextView tv_duration = view.findViewById(R.id.tv_duration);
 
 
         String[] s = context.getResources().getStringArray(R.array.units_array);
         Offer offer = offers.get(position);
 
-        String txt = offer.getTitle()+" ("+offer.getDuration()+" "+s[offer.getDurationUnit()]+") "+" => "+offer.getPrice()+" DZD";
-
-        tv.setText(txt);
+        tv_title.setText(offer.getTitle());
+        tv_price.setText(offer.getPrice()+" DZD");
+        tv_duration.setText(offer.getDuration()+" "+s[offer.getDurationUnit()]);
 
         return view;
 

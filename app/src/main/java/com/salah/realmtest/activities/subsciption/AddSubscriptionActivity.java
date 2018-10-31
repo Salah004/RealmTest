@@ -33,12 +33,12 @@ import io.realm.RealmResults;
 public class AddSubscriptionActivity extends AppCompatActivity implements
         BottomSheetTimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener{
 
-    private TextView tv_start_date;
+    private TextView tv_start_date , tv_to_pay ;
     public static Athlete athlete;
-    private EditText et_duration, et_paid, et_return;
+    private EditText et_duration, et_paid;
     private Spinner sp_offers;
 
-    double paid = 0 , _return = 0 , toPaid = 0 , toReturn = 0 , debt = 0 ;
+    double paid = 0 , toPay = 0 , toReturn = 0 , debt = 0 ;
     int duration = 0 ;
 
     RealmService realmService;
@@ -53,7 +53,7 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
 
         et_duration = findViewById(R.id.et_duration);
         et_paid = findViewById(R.id.et_paid);
-        et_return = findViewById(R.id.et_return);
+        tv_to_pay = findViewById(R.id.tv_to_pay);
         //tv_to_paid = findViewById(R.id.tv_to_paid);
         //tv_to_return = findViewById(R.id.tv_to_return);
         //tv_debt = findViewById(R.id.tv_debt);
@@ -111,31 +111,13 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
             }
         });
 
-        et_return.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void afterTextChanged(Editable s) {}
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start,
-                                      int before, int count) {
-                areChanges();
-
-            }
-        });
         areChanges();
 
     }
 
     private void areChanges(){
         paid = 0 ;
-        _return = 0 ;
-        toPaid = 0 ;
+        toPay = 0 ;
         toReturn = 0 ;
         debt = 0 ;
         duration = 0 ;
@@ -145,14 +127,14 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
         try{
             paid = Double.parseDouble(et_paid.getText().toString());
         }catch (Exception e){}
-        try{
-            _return = Double.parseDouble(et_return.getText().toString());
-        }catch (Exception e){}
+
         try{
             Offer offer = (Offer) sp_offers.getSelectedItem();
-            toPaid = offer.getPrice() * duration;
-            toReturn = paid - toPaid ;
-            debt = _return - toReturn ;
+            toPay = offer.getPrice() * duration;
+            toReturn = paid - toPay ;
+            debt = toPay - paid ;
+
+            tv_to_pay.setText(toPay+" DZD");
             //tv_to_paid.setText("toPaid :"+toPaid+" DZD");
             //if(toReturn>0) tv_to_return.setText("toReturn : "+toReturn+" DZD") ; else tv_to_return.setText("toReturn : ");
             //tv_debt.setText("debt "+Math.abs(debt)+" DZD");

@@ -34,9 +34,7 @@ public abstract class QrCodeViewDialog extends Dialog {
     public void onCreate(Bundle savedInstanceState) {
 
         setContentView(R.layout.dialog_qr_code_view);
-
         iv_qr_code = findViewById(R.id.iv_qr_code);
-
         try{
             Bitmap qrCode = getQrCode(id);
             iv_qr_code.setImageBitmap(qrCode);
@@ -69,4 +67,8 @@ public abstract class QrCodeViewDialog extends Dialog {
     @Override
     public void onProvideKeyboardShortcuts(List<KeyboardShortcutGroup> data, @Nullable Menu menu, int deviceId) {
     }
+
+    /*public abstract void onShare();
+    public abstract void onPrint();
+    public abstract void onSave();*/
 }

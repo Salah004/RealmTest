@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#ffffff"
+    android:background="@color/colorWhite"
     tools:context=".activities.MainActivity">
     <include layout="@layout/toolbar"/>
 
@@ -50,7 +50,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="Exipred"
+                            android:text="@string/exipred"
                             android:textColor="@color/primary_text"
                             android:textStyle="bold" />
 
@@ -83,7 +83,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="Statistic"
+                            android:text="@string/statistics"
                             android:textColor="@color/primary_text"
                             android:textStyle="bold" />
 
@@ -123,7 +123,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="Athlete"
+                            android:text="@string/athlete"
                             android:textColor="@color/primary_text"
                             android:textStyle="bold" />
 
@@ -157,7 +157,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="Session"
+                            android:text="@string/session"
                             android:textColor="@color/primary_text"
                             android:textStyle="bold" />
 
@@ -181,7 +181,7 @@
                 android:src="@drawable/ic_person_black_24dp"
                 fab:fab_size="mini"
                 android:onClick="goToAthletes"
-                fab:fab_label="Athletes" />
+                fab:fab_label="@string/athletes" />
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/it_offers"
                 android:layout_width="wrap_content"
@@ -189,7 +189,7 @@
                 android:src="@drawable/ic_local_offer_white_24dp"
                 fab:fab_size="mini"
                 android:onClick="goToOffers"
-                fab:fab_label="Offers" />
+                fab:fab_label="@string/offers" />
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/it_managers"
                 android:layout_width="wrap_content"
@@ -197,7 +197,7 @@
                 android:src="@drawable/ic_person_black_24dp"
                 fab:fab_size="mini"
                 android:onClick="goToManagers"
-                fab:fab_label="Managers" />
+                fab:fab_label="@string/managers" />
         </com.github.clans.fab.FloatingActionMenu>
     </FrameLayout>
 </LinearLayout>

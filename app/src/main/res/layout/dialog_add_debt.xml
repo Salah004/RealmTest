@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/colorWhite"
     tools:context=".dialogs.AddDebtDialog">
 
     <android.support.constraint.Guideline
@@ -26,7 +26,7 @@
         android:layout_marginStart="8dp"
         android:background="@drawable/reg_edittext_style"
         android:ems="10"
-        android:hint="amount"
+        android:hint="@string/amount"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toTopOf="@id/et_description"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,33 +40,33 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:background="@drawable/reg_edittext_style"
         android:ems="10"
-        android:hint="description.."
-        android:inputType="textMultiLine"
         android:gravity="start"
+        android:hint="@string/detail"
+        android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/gl" />
+        app:layout_constraintTop_toTopOf="@+id/gl" />
 
     <Button
+        android:id="@+id/btn_add"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/reg_btn_style"
-        android:text="add"
-        android:textColor="#FFFFFF"
-        android:id="@+id/btn_add"
-        android:orientation="vertical"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/reg_btn_style"
+        android:orientation="vertical"
+        android:text="@string/add"
+        android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_description"/>
+        app:layout_constraintTop_toBottomOf="@+id/et_description" />
 
 
 

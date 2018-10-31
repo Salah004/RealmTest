@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/graylight"
+    android:background="@color/colorWhite"
     tools:context=".activities.athlete.AthleteActivity">
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,8 +46,8 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Wiliam Snoe"
-                android:textColor="#fff"
+                android:text="Lachi Salah"
+                android:textColor="@color/colorWhite"
                 android:textSize="21sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -168,7 +168,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_person_black_24dp"
             fab:fab_size="mini"
-            fab:fab_label="Info" />
+            fab:fab_label="@string/info" />
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/it_offers"
             android:layout_width="wrap_content"
@@ -176,7 +176,7 @@
             android:onClick="showCard"
             android:src="@drawable/ic_credit_card_white_24dp"
             fab:fab_size="mini"
-            fab:fab_label="Card" />
+            fab:fab_label="@string/card" />
     </com.github.clans.fab.FloatingActionMenu>
 
 </FrameLayout>

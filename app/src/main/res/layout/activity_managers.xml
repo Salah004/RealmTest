@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#ffffff"
+    android:background="@color/colorWhite"
     tools:context=".activities.manager.ManagersActivity">
     <include layout="@layout/toolbar"/>
     <FrameLayout

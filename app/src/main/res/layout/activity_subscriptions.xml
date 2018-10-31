@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#ffffff"
+    android:background="@color/colorWhite"
     tools:context=".activities.subsciption.SubscriptionsActivity">
     <include layout="@layout/toolbar"/>
     <LinearLayout
@@ -27,7 +27,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Offer"
+                android:text="@string/offer"
                 android:textSize="16dp" />
         </LinearLayout>
         <View
@@ -51,7 +51,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Start"
+                android:text="@string/start"
                 android:textSize="16dp" />
         </LinearLayout>
         <View
@@ -75,7 +75,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="End"
+                android:text="@string/end"
                 android:textSize="16dp" />
         </LinearLayout>
         <FrameLayout

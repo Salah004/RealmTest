@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/colorWhite"
     tools:context=".activities.subsciption.AddSubscriptionActivity">
 
     <TextView
@@ -57,7 +57,7 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/reg_edittext_style"
         android:ems="10"
-        android:hint="Duration"
+        android:hint="@string/duration"
         android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/et_paid"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,14 +74,14 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/reg_edittext_style"
         android:ems="10"
-        android:hint="Paid"
+        android:hint="@string/paid"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
-    <EditText
-        android:id="@+id/et_return"
+    <TextView
+        android:id="@+id/tv_to_pay"
         android:layout_width="256dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -91,10 +91,11 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/reg_edittext_style"
         android:ems="10"
-        android:hint="Return"
+        android:hint="@string/to_pay"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintTop_toBottomOf="@+id/et_paid" />
 
     <Button
@@ -108,10 +109,11 @@
         android:layout_marginStart="8dp"
         android:background="@drawable/reg_btn_style"
         android:onClick="onSave"
-        android:text="Save"
-        android:textColor="#ffffff"
+        android:text="@string/add"
+        android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_return" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_to_pay" />
+
 </android.support.constraint.ConstraintLayout>

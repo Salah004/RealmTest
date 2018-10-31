@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#ffffff"
+    android:background="@color/colorWhite"
     tools:context=".activities.athlete.AthletesActivity">
     <include layout="@layout/toolbar"/>
     <FrameLayout
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:drawableLeft="@drawable/ic_search_gray_24dp"
-            android:hint="Search"/>
+            android:hint="@string/search"/>
     </FrameLayout>
     <FrameLayout
         android:layout_width="match_parent"

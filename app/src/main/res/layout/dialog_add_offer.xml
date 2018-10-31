@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/colorWhite"
     tools:context=".dialogs.AddOfferDialog">
 
     <android.support.constraint.Guideline
@@ -26,7 +26,7 @@
         android:layout_marginStart="8dp"
         android:background="@drawable/reg_edittext_style"
         android:ems="10"
-        android:hint="Title"
+        android:hint="@string/title"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/ll_duration"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="number"
-            android:hint="Duration"
+            android:hint="@string/duration"
             android:layout_gravity="center_vertical"
             android:background="@drawable/reg_edittext_style"
             android:id="@+id/et_duration"/>
@@ -79,7 +79,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:background="@drawable/reg_edittext_style"
-            android:hint="open"/>
+            android:textColor="@color/primary_text"
+            android:text="@string/open"/>
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -99,7 +100,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/reg_edittext_style"
         android:ems="10"
-        android:hint="Number of sessions"
+        android:hint="@string/number_sessions"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,7 +117,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/reg_edittext_style"
         android:ems="10"
-        android:hint="Price"
+        android:hint="@string/price"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -133,7 +134,7 @@
         android:layout_marginTop="4dp"
         android:background="@drawable/reg_edittext_style"
         android:ems="10"
-        android:hint="Description"
+        android:hint="@string/description"
         android:inputType="textMultiLine"
         android:gravity="start"
         app:layout_constraintEnd_toEndOf="parent"
@@ -152,7 +153,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/reg_btn_style"
         android:text="Add"
-        android:textColor="#ffffff"
+        android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
