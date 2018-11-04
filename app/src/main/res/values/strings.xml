@@ -38,6 +38,12 @@
     <string name="save">Save</string>
     <string name="new_debt">New Debt</string>
     <string name="pay_debt">Pay Debt</string>
+    <string name="first_name_empty">enter the first name</string>
+    <string name="last_name_empty">enter the last name</string>
+    <string name="phone_empty">enter the phone number</string>
+    <string name="user_name_empty">enter the user name</string>
+    <string name="password_empty">enter the password</string>
+    <string name="duration_empty">enter th duration</string>
 
     <string-array name="units_array">
         <item>Day</item>

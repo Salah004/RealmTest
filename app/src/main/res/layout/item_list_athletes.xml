@@ -16,12 +16,12 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/iv_athlete"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="@dimen/im_menu_dim"
+                android:layout_height="@dimen/im_menu_dim"
                 android:layout_margin="5dp"
                 android:src="@drawable/userphoto"
                 app:civ_border_width="1dp"
-                app:civ_border_color="#ffffff"
+                app:civ_border_color="@color/colorWhite"
                 android:layout_gravity="center"/>
             <LinearLayout
                 android:layout_width="0dp"
@@ -33,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:textSize="16dp"
+                    android:textSize="23dp"
                     android:layout_marginLeft="10dp"
                     android:gravity="center_vertical"
                     android:text="firstName lastName"/>
@@ -80,7 +80,8 @@
                 android:onClick="showActionMenu"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="5dp"
-                android:padding="5dp"
+                android:padding="15dp"
+                android:background="@drawable/reg_edittext_style"
                 android:src="@drawable/ic_more_vert_black_24dp"
                 android:id="@+id/iv"/>
 

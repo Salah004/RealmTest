@@ -61,25 +61,29 @@ public class NewManagerActivity extends AppCompatActivity implements IPickResult
 
     public void addManager(View view) {
         try {
-            String firstName = et_first_name.getText().toString();
-            String lastName = et_last_name.getText().toString();
-            String userName = et_user_name.getText().toString();
-            String password = et_password.getText().toString();
-            int gender = sp_gender.getSelectedItemPosition();
-            int role = sp_role.getSelectedItemPosition();
-            String phone = et_phone.getText().toString();
-            if (manager_owner){
-                Manager manager = realmService.AddOwner(userName,password,firstName,lastName,phone,gender,role,pick);
-                if (manager!=null){
-                    onBackPressed();
-                    Toasty.success(this,manager.getFirstName(),Toast.LENGTH_LONG).show();
+            if (check()){
+                String firstName = et_first_name.getText().toString();
+                String lastName = et_last_name.getText().toString();
+                String userName = et_user_name.getText().toString();
+                String password = et_password.getText().toString();
+                int gender = sp_gender.getSelectedItemPosition();
+                int role = sp_role.getSelectedItemPosition();
+                String phone = et_phone.getText().toString();
+                if (manager_owner){
+                    Manager manager = realmService.AddOwner(userName,password,firstName,lastName,phone,gender,role,pick);
+                    if (manager!=null){
+                        onBackPressed();
+                        Toasty.success(this,manager.getFirstName(),Toast.LENGTH_LONG).show();
+                    }
+                }else {
+                    Manager manager = realmService.AddManager(userName,password,firstName,lastName,phone,gender,role,pick, MainActivity.manager);
+                    if (manager!=null){
+                        onBackPressed();
+                        Toasty.success(this,manager.getFirstName(),Toast.LENGTH_LONG).show();
+                    }
                 }
             }else {
-                Manager manager = realmService.AddManager(userName,password,firstName,lastName,phone,gender,role,pick, MainActivity.manager);
-                if (manager!=null){
-                    onBackPressed();
-                    Toasty.success(this,manager.getFirstName(),Toast.LENGTH_LONG).show();
-                }
+
             }
         }catch (Exception e){
             Toasty.error(this, e.getMessage(), Toast.LENGTH_SHORT, true).show();
@@ -110,5 +114,30 @@ public class NewManagerActivity extends AppCompatActivity implements IPickResult
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    private boolean check() {
+        if (et_user_name.getText().toString().length()==0){
+            Toasty.error(NewManagerActivity.this,getString(R.string.user_name_empty),Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (et_password.getText().toString().length()==0){
+            Toasty.error(NewManagerActivity.this,getString(R.string.password_empty),Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        if (et_first_name.getText().toString().length()==0){
+            Toasty.error(NewManagerActivity.this,getString(R.string.first_name_empty),Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (et_last_name.getText().toString().length()==0){
+            Toasty.error(NewManagerActivity.this,getString(R.string.last_name_empty),Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (et_phone.getText().toString().length()==0){
+            Toasty.error(NewManagerActivity.this,getString(R.string.phone_empty),Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
     }
 }

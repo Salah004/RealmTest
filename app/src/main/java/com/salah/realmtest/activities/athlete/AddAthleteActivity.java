@@ -4,18 +4,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.salah.realmtest.R;
 import com.salah.realmtest.activities.MainActivity;
-import com.salah.realmtest.dialogs.QrCodeViewDialog;
 import com.salah.realmtest.models.Athlete;
 import com.salah.realmtest.services.RealmService;
 import com.vansuita.pickimage.bean.PickResult;
@@ -79,24 +76,44 @@ public class AddAthleteActivity extends AppCompatActivity  implements IPickResul
 
     public void addAthlete(View view) {
         try {
-            String firstName = et_first_name.getText().toString();
-            String lastName = et_last_name.getText().toString();
-            int gender = sp_gender.getSelectedItemPosition();
-            String phone = et_phone.getText().toString();
-            Athlete mAthlete = null ;
-            if (update){
-                mAthlete = realmService.updateAthlete(firstName,lastName,phone,gender, pick ,athlete);
-            }else {
-                mAthlete = realmService.addAthlete(firstName,lastName,phone,gender, pick, MainActivity.manager);
-            }
+            if (check()){
+                String firstName = et_first_name.getText().toString();
+                String lastName = et_last_name.getText().toString();
+                int gender = sp_gender.getSelectedItemPosition();
+                String phone = et_phone.getText().toString();
+                Athlete mAthlete = null ;
+                if (update){
+                    mAthlete = realmService.updateAthlete(firstName,lastName,phone,gender, pick ,athlete);
+                }else {
+                    mAthlete = realmService.addAthlete(firstName,lastName,phone,gender, pick, MainActivity.manager);
+                }
 
-            Toasty.success(this,mAthlete.getFirstName(),Toast.LENGTH_LONG).show();
-            onBackPressed();
+                Toasty.success(this,mAthlete.getFirstName(),Toast.LENGTH_LONG).show();
+                onBackPressed();
+            }else {
+
+            }
             //btn_save.setEnabled(false);
             //
         }catch (Exception e){
             Toasty.error(this,e.getMessage(),Toast.LENGTH_LONG).show();
         }
+    }
+
+    private boolean check() {
+        if (et_first_name.getText().toString().length()==0){
+            Toasty.error(AddAthleteActivity.this,getString(R.string.first_name_empty),Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (et_last_name.getText().toString().length()==0){
+            Toasty.error(AddAthleteActivity.this,getString(R.string.last_name_empty),Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (et_phone.getText().toString().length()==0){
+            Toasty.error(AddAthleteActivity.this,getString(R.string.phone_empty),Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
     }
 
     @Override

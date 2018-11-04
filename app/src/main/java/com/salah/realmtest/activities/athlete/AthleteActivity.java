@@ -7,17 +7,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.salah.realmtest.Informations;
 import com.salah.realmtest.R;
 import com.salah.realmtest.activities.debt.DebtsActivity;
 import com.salah.realmtest.activities.subsciption.SubscriptionsActivity;
-import com.salah.realmtest.dialogs.QrCodeViewDialog;
 import com.salah.realmtest.models.Athlete;
-import com.salah.realmtest.models.Debt;
+import com.salah.realmtest.models.Subscription;
 import com.salah.realmtest.services.RealmService;
 
 import java.io.File;
@@ -81,10 +80,17 @@ public class AthleteActivity extends AppCompatActivity {
 
         tv_manager.setText(athlete.getAddedManager().getFirstName()+" "+athlete.getAddedManager().getLastName());
         tv_phone.setText(athlete.getPhone());
+
         try{
-            Date endDate = athlete.getSubscriptions().maxDate("endDate");
+            Date now = new Date();
+            Subscription currentSub = athlete.getSubscriptions()
+                    .where()
+                    .lessThan("startDate",now)
+                    .greaterThan("endDate",now)
+                    .findFirst();
+            Date endDate = currentSub.getEndDate();
             tv_date_end.setText(Informations.dateToString(endDate));
-        }catch (Exception ex){
+        }catch (Exception e){
             tv_date_end.setText("");
         }
 
@@ -112,7 +118,11 @@ public class AthleteActivity extends AppCompatActivity {
     }
 
     public void showCard(View view) {
-        QrCodeViewDialog dialog = new QrCodeViewDialog(this,athlete.getId()){};
-        dialog.show();
+        AthleteCardActivity.athlete = athlete;
+        Intent intent = new Intent(AthleteActivity.this,AthleteCardActivity.class);
+        startActivity(intent);
+    }
+
+    public void changePick(View view) {
     }
 }

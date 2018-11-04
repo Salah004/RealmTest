@@ -2,7 +2,11 @@ package com.salah.realmtest;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v4.app.DialogFragment;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.philliphsu.bottomsheetpickers.BottomSheetPickerDialog;
 import com.philliphsu.bottomsheetpickers.date.DatePickerDialog;
@@ -13,6 +17,13 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Informations {
+
+
+    public static String MYRIAD_BOLD_SEMI = "myriad_Pro_Bold_SemiExtended.ttf";
+    public static String MYRIAD_BLACK_SEMI = "myriadPro_BlackSemiCn.otf";
+    public static String MYRIAD_BOLD = "myriadPro_Bold.otf";
+
+
     private static SimpleDateFormat dateFormatter = new SimpleDateFormat(
             "dd/MM/yyyy");
     static public String dateToString(Date date) {
@@ -82,6 +93,21 @@ public class Informations {
 
 
         return dialog;
+    }
+
+    public static void setTextFont(Context c, TextView tv, String font) {
+        Typeface type = Typeface.createFromAsset(c.getAssets(), "fonts/" + font);
+        tv.setTypeface(type);
+    }
+
+    public static void setButtonFont(Context c, Button btn, String font) {
+        Typeface type = Typeface.createFromAsset(c.getAssets(), "fonts/" + font);
+        btn.setTypeface(type);
+    }
+
+    public static void setEditFont(Context c, EditText et, String font) {
+        Typeface type = Typeface.createFromAsset(c.getAssets(), "fonts/" + font);
+        et.setTypeface(type);
     }
 
 }

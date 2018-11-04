@@ -37,13 +37,13 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:padding="10dp">
+                        android:padding="15dp">
 
                         <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
+                            android:layout_width="@dimen/im_menu_dim"
+                            android:layout_height="@dimen/im_menu_dim"
                             android:background="@drawable/cercle_background_primary"
-                            android:padding="10dp"
+                            android:padding="15dp"
                             android:src="@drawable/ic_do_not_disturb_black_24dp" />
 
                         <TextView
@@ -63,20 +63,20 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp">
+                    android:layout_margin="15dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:padding="10dp">
+                        android:padding="15dp">
 
                         <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
+                            android:layout_width="@dimen/im_menu_dim"
+                            android:layout_height="@dimen/im_menu_dim"
                             android:background="@drawable/cercle_background_primary"
-                            android:padding="10dp"
+                            android:padding="15dp"
                             android:src="@drawable/ic_trending_up_black_24dp" />
 
                         <TextView
@@ -102,7 +102,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_margin="15dp"
                     android:onClick="gotToAthlete">
 
                     <LinearLayout
@@ -110,13 +110,13 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:padding="10dp">
+                        android:padding="15dp">
 
                         <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
+                            android:layout_width="@dimen/im_menu_dim"
+                            android:layout_height="@dimen/im_menu_dim"
                             android:background="@drawable/cercle_background_primary"
-                            android:padding="10dp"
+                            android:padding="15dp"
                             android:src="@drawable/ic_person_black_24dp" />
 
                         <TextView
@@ -136,7 +136,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_margin="15dp"
                     android:onClick="addSession">
 
                     <LinearLayout
@@ -144,13 +144,13 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:padding="10dp">
+                        android:padding="15dp">
 
                         <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
+                            android:layout_width="@dimen/im_menu_dim"
+                            android:layout_height="@dimen/im_menu_dim"
                             android:background="@drawable/cercle_background_primary"
-                            android:padding="10dp"
+                            android:padding="15dp"
                             android:src="@drawable/ic_fitness_center_black_24dp" />
 
                         <TextView

@@ -55,6 +55,8 @@
         </provider>
 
         <activity android:name=".activities.subsciption.ExpiredActivity"></activity>
+        <activity android:name=".activities.athlete.AthleteCardActivity"></activity>
+
     </application>
 
 </manifest>

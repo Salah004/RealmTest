@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    tools:context=".activities.athlete.AthleteCardActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <FrameLayout
+            android:id="@+id/fl_card"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="@dimen/card_height"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_card">
+
+            <ImageView
+                android:id="@+id/iv_qr_code"
+                android:layout_width="@dimen/qr_code_size"
+                android:layout_height="@dimen/qr_code_size"
+                android:background="@drawable/bg_qr_code"
+                android:layout_gravity="start"
+                android:layout_marginLeft="95px"
+                android:layout_marginTop="130px" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|bottom"
+                android:layout_marginBottom="80px"
+                android:layout_marginLeft="95px"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_first_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="3dp"
+                    android:text="Nom : "
+                    android:textColor="#000000"
+                    android:textSize="@dimen/card_text_size"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tv_last_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="3dp"
+                    android:text="Prénom : "
+                    android:textColor="#000000"
+                    android:textSize="@dimen/card_text_size"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_athlete"
+                android:layout_width="@dimen/pick_size"
+                android:layout_height="@dimen/pick_size"
+                android:layout_gravity="right|bottom"
+                android:layout_marginBottom="80px"
+                android:layout_marginRight="117px"
+                android:background="@drawable/bg_ic_athlete"/>
+
+
+        </FrameLayout>
+
+
+
+
+
+
+
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/ll_share"
+            android:layout_width="0dp"
+            android:padding="5dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:onClick="onShare"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_share_white_24dp"
+                android:id="@+id/iv_shared"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:text="@string/share"/>
+        </LinearLayout>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/colorWhite"/>
+
+        <LinearLayout
+            android:id="@+id/ll_print"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:onClick="onPrint"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/iv_print"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_print_white_24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/print"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/colorWhite"/>
+
+        <LinearLayout
+            android:id="@+id/ll_save"
+            android:layout_width="0dp"
+            android:padding="5dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:onClick="onSave"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_save_white_24dp"
+                android:id="@+id/iv_save"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:text="@string/save"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

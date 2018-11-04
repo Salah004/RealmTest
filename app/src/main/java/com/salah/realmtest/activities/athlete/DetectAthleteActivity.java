@@ -1,6 +1,7 @@
 package com.salah.realmtest.activities.athlete;
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.PointF;
 import android.media.MediaPlayer;
@@ -97,6 +98,9 @@ public class DetectAthleteActivity extends AppCompatActivity implements  OnQRCod
             }
             TORCH_ON = !TORCH_ON;
             Athlete athlete = realmService.getAthleteById(text);
+            AthleteActivity.athlete = athlete;
+            Intent intent = new Intent(DetectAthleteActivity.this,AthleteActivity.class);
+            startActivity(intent);
             // Toast.makeText(this,text,Toast.LENGTH_LONG).show();
             if (athlete!=null){
 

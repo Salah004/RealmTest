@@ -1,182 +1,252 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorWhite"
     tools:context=".activities.athlete.AthleteActivity">
-    <LinearLayout
+
+    <include layout="@layout/toolbar"/>
+
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <include layout="@layout/toolbar"/>
-        <android.support.constraint.ConstraintLayout
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_athlete"
+            android:layout_width="256dp"
+            android:layout_height="256dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/userphoto"
+            android:onClick="changePick"/>
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@android:style/Widget.DeviceDefault.Light.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            android:textSize="@dimen/bsp_bottom_sheet_edge_margin"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <View
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/black_overlay"
-            android:layout_weight="1">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/iv_athlete"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:src="@drawable/userphoto"
-                app:layout_constraintBottom_toTopOf="@+id/tv_name"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="Lachi Salah"
-                android:textColor="@color/colorWhite"
-                android:textSize="21sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideline3" />
-
-            <android.support.constraint.Guideline
-                android:id="@+id/guideline3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.75" />
-        </android.support.constraint.ConstraintLayout>
+            android:layout_height="1dp"
+            android:background="@color/divider"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            android:layout_marginTop="45dp">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:paddingLeft="25dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="goToDetbs">
-                <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:src="@drawable/ic_attach_money_primary_24dp"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingLeft="20dp"
-                    android:text="360 DZD"
-                    android:id="@+id/tv_debt"
-                    android:textStyle="bold" />
-            </LinearLayout>
             <LinearLayout
-                android:layout_marginTop="25dp"
-                android:orientation="horizontal"
-                android:paddingLeft="25dp"
+                android:onClick="goToDetbs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="goToSubscription">
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
                 <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="15dp"
+                    android:src="@drawable/ic_attach_money_primary_24dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:text="Debt"/>
+                <TextView
+                    android:id="@+id/tv_debt"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:textSize="23dp"
+                    android:textStyle="bold"
+                    android:text="Debt"/>
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="15dp"
+                    android:src="@drawable/ic_keyboard_arrow_right_black_24dp"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider"/>
+            <LinearLayout
+                android:onClick="goToSubscription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="15dp"
                     android:src="@drawable/ic_local_offer_black_24dp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:id="@+id/tv_date_end"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingLeft="20dp"
-                    android:text="12/12/1018"
+                    android:layout_weight="1"
+                    android:text="Subscription"
+                    android:textSize="25dp"
                     android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tv_date_end"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:textSize="23dp"
+                    android:textStyle="bold"
+                    android:text="Debt"/>
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="15dp"
+                    android:src="@drawable/ic_keyboard_arrow_right_black_24dp"/>
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider"/>
             <LinearLayout
-                android:layout_marginTop="25dp"
-                android:orientation="horizontal"
-                android:paddingLeft="25dp"
+                android:onClick="call"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="call">
-                <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:src="@drawable/ic_phone_android_black_24dp"/>
-                <TextView
-                    android:textStyle="bold"
-                    android:id="@+id/tv_phone"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="20dp"
-                    android:text="+266 225 225"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="25dp"
                 android:orientation="horizontal"
-                android:paddingLeft="25dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:gravity="center_vertical">
                 <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="15dp"
+                    android:src="@drawable/ic_phone_android_black_24dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Phone"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tv_phone"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:textSize="23dp"
+                    android:textStyle="bold"
+                    android:text="Debt"/>
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="15dp"
+                    android:src="@drawable/ic_keyboard_arrow_right_black_24dp"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="15dp"
                     android:src="@drawable/ic_group_add_black_24dp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:id="@+id/tv_manager"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingLeft="20dp"
-                    android:text="Added by toto"
+                    android:layout_weight="1"
+                    android:text="Added"
+                    android:textSize="25dp"
                     android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tv_manager"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:textSize="23dp"
+                    android:textStyle="bold"
+                    android:text="Debt"/>
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="15dp"
+                    android:src="@drawable/ic_keyboard_arrow_right_black_24dp"/>
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider"/>
 
         </LinearLayout>
-    </LinearLayout>
-    <com.github.clans.fab.FloatingActionMenu
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        fab:menu_icon="@drawable/ic_menu_black_24dp"
-        fab:fab_colorNormal="@color/colorPrimary"
-        fab:fab_colorPressed="@color/colorPrimaryDark"
-        fab:fab_colorRipple="@color/primary_light">
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/it_athletes"
+        <com.github.clans.fab.FloatingActionMenu
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_person_black_24dp"
-            fab:fab_size="mini"
-            fab:fab_label="@string/info" />
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/it_offers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="showCard"
-            android:src="@drawable/ic_credit_card_white_24dp"
-            fab:fab_size="mini"
-            fab:fab_label="@string/card" />
-    </com.github.clans.fab.FloatingActionMenu>
+            android:layout_gravity="bottom|right"
+            android:layout_margin="16dp"
+            fab:menu_icon="@drawable/ic_menu_black_24dp"
+            fab:fab_colorNormal="@color/colorPrimary"
+            fab:fab_colorPressed="@color/colorPrimaryDark"
+            fab:fab_colorRipple="@color/primary_light">
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/it_athletes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_person_black_24dp"
+                fab:fab_size="mini"
+                fab:fab_label="@string/info" />
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/it_offers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="showCard"
+                android:src="@drawable/ic_credit_card_white_24dp"
+                fab:fab_size="mini"
+                fab:fab_label="@string/card" />
+        </com.github.clans.fab.FloatingActionMenu>
 
-</FrameLayout>
+    </FrameLayout>
+
+
+
+
+</LinearLayout>

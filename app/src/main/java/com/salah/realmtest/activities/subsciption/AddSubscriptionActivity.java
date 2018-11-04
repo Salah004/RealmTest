@@ -235,4 +235,5 @@ public class AddSubscriptionActivity extends AppCompatActivity implements
     public void onBackPressed() {
         super.onBackPressed();
     }
+    
 }

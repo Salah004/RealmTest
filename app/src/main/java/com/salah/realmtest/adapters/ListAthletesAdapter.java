@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.salah.realmtest.Informations;
 import com.salah.realmtest.R;
 import com.salah.realmtest.models.Athlete;
+import com.salah.realmtest.models.Subscription;
 
 import java.io.File;
 import java.util.Date;
@@ -79,16 +80,25 @@ public class ListAthletesAdapter extends BaseAdapter {
         }
 
         try {
-            File imgFile = new File(athlete.getPick());
-            if(imgFile.exists()){
-                Bitmap myBitmap = scaleBitmap(BitmapFactory.decodeFile(imgFile.getAbsolutePath()),96,96);
-                iv_athlete.setImageBitmap(myBitmap);
+            String pick = athlete.getPick();
+            if (pick!=null){
+                File imgFile = new File(pick);
+                if(imgFile.exists()){
+                    Bitmap myBitmap = scaleBitmap(BitmapFactory.decodeFile(imgFile.getAbsolutePath()),96,96);
+                    iv_athlete.setImageBitmap(myBitmap);
+                }
             }
         }catch (Exception e){
             Log.e("ImageERR",athlete.getPick()+"\n"+e.getMessage());
         }
         try{
-            Date endDate = athlete.getSubscriptions().maxDate("endDate");
+            Date now = new Date();
+            Subscription currentSub = athlete.getSubscriptions()
+                    .where()
+                    .lessThan("startDate",now)
+                    .greaterThan("endDate",now)
+                    .findFirst();
+            Date endDate = currentSub.getEndDate();
             tv_end_date.setText(Informations.dateToString(endDate));
         }catch (Exception e){
             tv_end_date.setVisibility(View.GONE);
